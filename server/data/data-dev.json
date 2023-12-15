@@ -1,0 +1,9 @@
+{
+    "id": 1,
+    "firstName": "Ross",
+    "lastName": "Terker",
+    "email": "ross.terker@gmail.com",
+    "userName": "rterker",
+    "password": "P@ssword123",
+    "appointments": []
+}
