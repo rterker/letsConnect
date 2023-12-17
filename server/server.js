@@ -10,8 +10,8 @@ app.use(express.json());
 
 //routes
 //use '/' as a test route for now
-app.get('/', userController.createUser, (req, res) => {
-  return res.sendStatus(200).json();
+app.post('/create', userController.createUser, (req, res) => {
+  return res.status(200).json(res.locals.createdUser);
 });
 
 
@@ -25,11 +25,12 @@ app.use((req, res) => res.status(404).send('Page not found'));
 
 app.use((err, req, res, next) => {
   const defaultErr = {
-    log: 'Global error handler activated for unknown reasons',
+    log: 'Global error handler activated',
     status: 500,
     message: {err: 'An error occured'}
   }
-  const error = { ...defaultErr, err};
+
+  const error = Object.assign(defaultErr, err);
   console.log(error.log);
   return res.status(error.status).json(error.message);
 });

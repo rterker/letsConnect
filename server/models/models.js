@@ -9,13 +9,13 @@ mongoose.connect(MONGO_URI, {
   .catch(err => console.log(err));
 
 const loginSchema = new Schema({
-  userName: {type: String, required: true},
+  userName: {type: String, required: true, unique: true},
   password: {type: String, required: true}
 });
 
 const userSchema = new Schema({
-  userName: {type: String, required: true},
-  email: {type: String, required: true},
+  userName: {type: String, required: true, unique: true},
+  email: {type: String, required: true, unique: true},
   firstName: String,
   lastName: String,
   appointments: [{type: Schema.Types.ObjectId, ref: 'appointment'}],

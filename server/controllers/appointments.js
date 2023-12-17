@@ -1,6 +1,7 @@
-const fs = require('fs');
-const path = require('path');
+const { Appointment } = require('../models/models');
 
-let users = fs.readFileSync(path.join(__dirname, '../data/data-dev.json'), 'utf-8');
-users = JSON.parse(users);
+const appointmentController = {};
 
+appointmentController.createAppointment =  async (req, res, next) => {
+
+};
