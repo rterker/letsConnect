@@ -3,8 +3,6 @@ const Schema = mongoose.Schema;
 const { MONGO_URI } = require('../config');
 
 mongoose.connect(MONGO_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
   dbName: 'letsConnect'
 })
   .then(() => console.log('Connected to Mongo DB.'))
