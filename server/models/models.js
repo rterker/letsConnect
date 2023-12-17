@@ -27,6 +27,7 @@ const appointmentSchema = new Schema({
   subject: {type: String, required: true},
   participants: {type: [String], required: true},
   status: {type: String, required: true},
+  creator: {type: String, required: true},
   createdAt: {type: Date, default: Date.now}
 });
 

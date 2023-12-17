@@ -1,6 +1,8 @@
 const express = require('express');
 const { PORT } = require('./config');
 const userController = require('./controllers/users');
+const appointmentController = require('./controllers/appointments');
+
 
 const app = express();
 
@@ -10,9 +12,13 @@ app.use(express.json());
 
 //routes
 //use '/' as a test route for now
-app.post('/create', userController.createUser, (req, res) => {
-  return res.status(200).json(res.locals.createdUser);
+app.post('/user', userController.createUsers, (req, res) => {
+  return res.status(200).json(res.locals.users);
 });
+
+app.post('/appointment', appointmentController.createAppointment, userController.updateUsersAppointment, (req, res) => {
+  return res.status(200).json(res.locals.appointment);
+})
 
 
 
