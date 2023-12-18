@@ -20,6 +20,8 @@ appointmentController.createAppointment =  async (req, res, next) => {
 };
 
 appointmentController.updateAppointment = async (req, res, next) => {
+  //req.body should contain the id of the appointment
+  const appointmentUpdate = req.body;
 
 };
 

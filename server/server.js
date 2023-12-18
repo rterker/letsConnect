@@ -7,7 +7,7 @@ const appointmentController = require('./controllers/appointments');
 const app = express();
 
 app.use(express.json());
-// app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({extended: true}));
 
 
 //routes
@@ -19,6 +19,8 @@ app.post('/user', userController.createUsers, (req, res) => {
 app.post('/appointment', appointmentController.createAppointment, userController.updateUsersAppointment, (req, res) => {
   return res.status(200).json(res.locals.appointment);
 })
+
+//update an appointment
 
 
 

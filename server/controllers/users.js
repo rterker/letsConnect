@@ -20,6 +20,7 @@ userController.createUsers = async (req, res, next) => {
   }
 };
 
+//NEED TO TEST MORE
 userController.updateUsersAppointment = async (req, res, next) => {
   //once appointment is created or updated, need to push appointment to users. 
   const { _id: appointmentId, participants } = res.locals.appointment;
