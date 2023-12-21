@@ -10,18 +10,25 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 
-//user routes
+//USER ROUTES
+
+//creates user and responds with the created user, including id
 app.post('/user', userController.createUsers, (req, res) => {
   return res.status(200).json(res.locals.users);
+});
+//get user and respond with the user
+app.get('/user/:id', userController.getUser, (req, res) => {
+  return res.status(200).json(res.locals.user);
 });
 //update a user
 app.patch('/user/:id');
 
-//appointment routes
+
+//APPOINTMENT ROUTES
+
 app.post('/appointment', appointmentController.createAppointment, userController.updateUsersAppointment, (req, res) => {
   return res.status(200).json(res.locals.appointment);
 })
-
 //delete an appointment
 app.delete('/appointment/:id');
 //get an appointment

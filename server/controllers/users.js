@@ -11,6 +11,7 @@ userController.createUsers = async (req, res, next) => {
     console.log('The following users were created in userController.createUsers: ', createdUsers);
     res.locals.users = createdUsers;
     return next();
+
   } catch (err) {
     return next({
       log: `The following middleware error occured in userController.createUser: ${err}`,
@@ -26,6 +27,7 @@ userController.updateUsersAppointment = async (req, res, next) => {
   const { _id: appointmentId, participants } = res.locals.appointment;
 
   try {
+    //do i need to check for null?
     //need to test this when passing in array of participants
     const updateMessage = await User.updateMany({userName: {$in: participants}}, {$push: {appointments: appointmentId}}, {new: true, upsert: false});
     //need to test this when passing in array of participants
@@ -37,17 +39,35 @@ userController.updateUsersAppointment = async (req, res, next) => {
       console.log(`${updateMessage.modifiedCount} user documents were updated: ${participants}`);
     }
     return next();
+
   } catch (err) {
     return next({
-      log: `The following middleware error occured in appointmentController.pushToUserAppointments: ${err}`,
+      log: `The following middleware error occured in userController.updateUsersAppointment: ${err}`,
       status: 500,
       message: {err: err}
     });
   }
 };
 
-userController.getUsers = async (req, res, next) => {
+userController.getUser = async (req, res, next) => {
+  const userId = req.params.id;
 
+  try {
+    //get user
+    //error thrown if the userId is not a valid ObjectId format, e.g. not enough characters long
+    const user = await User.findOne({_id: userId});
+    //handle null
+    // if (!user) redirect to login page
+    res.locals.user = user;
+    return next();
+
+  } catch (err) {
+    return next({
+      log: `The following middleware error occured in userController.getUser: ${err}`,
+      status: 500,
+      message: {err: err}
+    });
+  }
 };
 
 userController.updateUsers = async (req, res, next) => {

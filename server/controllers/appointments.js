@@ -10,6 +10,7 @@ appointmentController.createAppointment =  async (req, res, next) => {
     console.log('The following appointment was created in appointmentController.createAppointment: ', createdAppointment);
     res.locals.appointment = createdAppointment;
     return next();
+
   } catch (err) {
     return next({
       log: `The following middleware error occured in appointmentController.createAppointment: ${err}`,
@@ -18,6 +19,27 @@ appointmentController.createAppointment =  async (req, res, next) => {
     });
   }
 };
+
+appointmentController.getAppointment = async (req, res, next) => {
+  const appointmentId = req.params.id;
+
+  try {
+    //get appointment
+    //error thrown if the appointmentId is not a valid ObjectId format, e.g. not enough characters long
+    const appointment = await Appointment.findOne({_id: appointmentId});
+    //handle null
+    // if (!appointment) redirect to login page
+    res.locals.appointment = appointment;
+    return next();
+
+  } catch (err) {
+    return next({
+      log: `The following middleware error occured in appointmentController.getAppointment: ${err}`,
+      status: 500,
+      message: {err: err}
+    });
+  }
+}
 
 appointmentController.updateAppointment = async (req, res, next) => {
   //req.body should contain the id of the appointment
