@@ -2,14 +2,14 @@ const { User } = require('../models/models');
 
 const userController = {};
 
-userController.createUsers = async (req, res, next) => {
-  const newUsers = req.body;
+userController.createUser = async (req, res, next) => {
+  const newUser = req.body;
 
   try {
     //handles array of new user objects or a single user object
-    const createdUsers = await User.create(newUsers);
-    console.log('The following users were created in userController.createUsers: ', createdUsers);
-    res.locals.users = createdUsers;
+    const createdUser = await User.create(newUser);
+    console.log('The following users were created in userController.createUsers: ', createdUser);
+    res.locals.user = createdUser;
     return next();
 
   } catch (err) {

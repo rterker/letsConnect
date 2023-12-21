@@ -13,8 +13,8 @@ app.use(express.urlencoded({extended: true}));
 //USER ROUTES
 
 //creates user and responds with the created user, including id
-app.post('/user', userController.createUsers, (req, res) => {
-  return res.status(200).json(res.locals.users);
+app.post('/user', userController.createUser, (req, res) => {
+  return res.status(200).json(res.locals.user);
 });
 //get user and respond with the user
 app.get('/user/:id', userController.getUser, (req, res) => {
@@ -29,10 +29,12 @@ app.patch('/user/:id');
 app.post('/appointment', appointmentController.createAppointment, userController.updateUsersAppointment, (req, res) => {
   return res.status(200).json(res.locals.appointment);
 })
+//get an appointment
+app.get('/appointment/:id', appointmentController.getAppointment, (req, res) => {
+  return res.status(200).json(res.locals.appointment);
+});
 //delete an appointment
 app.delete('/appointment/:id');
-//get an appointment
-app.get('/appointment/:id');
 //update an appointment
 app.patch('/appointment/:id');
 
