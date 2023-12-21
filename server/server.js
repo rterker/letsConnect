@@ -10,18 +10,24 @@ app.use(express.json());
 app.use(express.urlencoded({extended: true}));
 
 
-//routes
-//use '/' as a test route for now
+//user routes
 app.post('/user', userController.createUsers, (req, res) => {
   return res.status(200).json(res.locals.users);
 });
+//update a user
+app.patch('/user/:id');
 
+//appointment routes
 app.post('/appointment', appointmentController.createAppointment, userController.updateUsersAppointment, (req, res) => {
   return res.status(200).json(res.locals.appointment);
 })
 
+//delete an appointment
+app.delete('/appointment/:id');
+//get an appointment
+app.get('/appointment/:id');
 //update an appointment
-
+app.patch('/appointment/:id');
 
 
 
