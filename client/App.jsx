@@ -3,8 +3,10 @@ import React from "react";
 
 const App = () => {
   return(
-    <div id="app-div" >
-      <h1>letsConnect</h1>
+    <div class="h-screen w-screen">
+      <h1 class="text-3xl font-bold underline text-green-500">
+        letsConnect
+      </h1>
     </div>
   );
 }
