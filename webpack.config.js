@@ -8,7 +8,7 @@ module.exports = {
     clean: true,
     publicPath: '/build/'
   },
-  mode: 'development',
+  mode: process.env.NODE_ENV,
   module: {
     rules: [
       {

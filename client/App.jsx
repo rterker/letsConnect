@@ -3,8 +3,8 @@ import React from "react";
 
 const App = () => {
   return(
-    <div>
-      Hang Main Container Here
+    <div id="app-div" >
+      <h1>letsConnect</h1>
     </div>
   );
 }
