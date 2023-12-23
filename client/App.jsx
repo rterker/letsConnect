@@ -1,11 +1,11 @@
 
 import React from "react";
-import Container from './containers/container.jsx';
+import MainContainer from './containers/MainContainer.jsx';
 
 const App = () => {
   return(
     <div className="h-screen w-screen flex">
-      <Container/>
+      <MainContainer/>
     </div>
   );
 }

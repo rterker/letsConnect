@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
+import AppointmentsContainer from "./AppointmentsContainer.jsx"
+import BodyContainer from "./BodyContainer.jsx"
 
 
-const Container = () => {
+const MainContainer = () => {
   const [user, setUser] = useState({});
 
   useEffect(() => {
@@ -16,10 +18,10 @@ const Container = () => {
 
   return (
     <>
-      <div className="bg-gray-300 w-72"></div>
-      <div className="bg-black flex-grow"></div>
+      <AppointmentsContainer className="bg-gray-300 w-72"/>
+      <BodyContainer className="bg-black flex-grow"/>
     </>
   );
 }
 
-export default Container;
+export default MainContainer;
