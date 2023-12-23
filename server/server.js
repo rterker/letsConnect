@@ -16,25 +16,30 @@ app.use(express.urlencoded({extended: true}));
 
 //creates user and responds with the created user, including id
 app.post('/user', userController.createUser, (req, res) => {
-  return res.status(200).json(res.locals.user);
+  return res.status(200).json(res.locals.createdUser);
 });
 //get user and respond with the user
-app.get('/user/:id', userController.getUser, (req, res) => {
+app.get('/user/:userId', userController.getUser, (req, res) => {
   return res.status(200).json(res.locals.user);
 });
 //update a user
-app.patch('/user/:id');
+app.patch('/user/:userId');
 
 
 //APPOINTMENT ROUTES
 
 app.post('/appointment', appointmentController.createAppointment, userController.updateUsersAppointment, (req, res) => {
-  return res.status(200).json(res.locals.appointment);
+  return res.status(200).json(res.locals.createdAppointment);
 })
 //get an appointment
-app.get('/appointment/:id', appointmentController.getAppointment, (req, res) => {
+app.get('/appointment/:appointmentId', appointmentController.getAppointment, (req, res) => {
   return res.status(200).json(res.locals.appointment);
 });
+//get all appointments for a user
+app.get('/appointments/:userId', userController.getUserListOfAppointmentIds, appointmentController.getUserListOfAppointments, (req, res) => {
+  return res.status(200).json(res.locals.userAppointments);
+});
+
 //delete an appointment
 app.delete('/appointment/:id');
 //update an appointment

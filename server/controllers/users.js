@@ -9,7 +9,7 @@ userController.createUser = async (req, res, next) => {
     //handles array of new user objects or a single user object
     const createdUser = await User.create(newUser);
     console.log('The following users were created in userController.createUsers: ', createdUser);
-    res.locals.user = createdUser;
+    res.locals.createdUser = createdUser;
     return next();
 
   } catch (err) {
@@ -50,7 +50,7 @@ userController.updateUsersAppointment = async (req, res, next) => {
 };
 
 userController.getUser = async (req, res, next) => {
-  const userId = req.params.id;
+  const { userId } = req.params;
 
   try {
     //get user
@@ -69,6 +69,25 @@ userController.getUser = async (req, res, next) => {
     });
   }
 };
+
+userController.getUserListOfAppointmentIds = async (req, res, next) => {
+  const { userId } = req.params;
+
+  try {
+    //error thrown if the userId is not a valid ObjectId format, e.g. not enough characters long
+    const user = await User.findOne({_id: userId});
+    //handle null 
+    res.locals.userAppointmentIds = user.appointments;
+    return next();
+    
+  } catch (err) {
+    return next({
+      log: `The following middleware error occured in userController.getUserListOfAppointmentIds: ${err}`,
+      status: 500,
+      message: {err: err}
+    });
+  }
+}
 
 userController.updateUsers = async (req, res, next) => {
 

@@ -8,7 +8,7 @@ appointmentController.createAppointment =  async (req, res, next) => {
   try {
     const createdAppointment = await Appointment.create(newAppointment);
     console.log('The following appointment was created in appointmentController.createAppointment: ', createdAppointment);
-    res.locals.appointment = createdAppointment;
+    res.locals.createdAppointment = createdAppointment;
     return next();
 
   } catch (err) {
@@ -21,7 +21,7 @@ appointmentController.createAppointment =  async (req, res, next) => {
 };
 
 appointmentController.getAppointment = async (req, res, next) => {
-  const appointmentId = req.params.id;
+  const { appointmentId } = req.params;
 
   try {
     //get appointment
@@ -39,6 +39,29 @@ appointmentController.getAppointment = async (req, res, next) => {
       message: {err: err}
     });
   }
+}
+
+appointmentController.getUserListOfAppointments = async (req, res, next) => {
+  const { userAppointmentIds } = res.locals;
+  const userAppointments = [];
+
+  try {
+    for (let i = 0; i < userAppointmentIds.length; i++) {
+      const appointment = await Appointment.findOne({_id: userAppointmentIds[i]});
+      if (appointment) userAppointments.push(appointment);
+    }
+    res.locals.userAppointments = userAppointments;
+    return next();
+
+  } catch (err) {
+    return next({
+      log: `The following middleware error occured in appointmentController.getUserAppointments: ${err}`,
+      status: 500,
+      message: {err: err}
+    });
+  }
+
+
 }
 
 appointmentController.updateAppointment = async (req, res, next) => {
