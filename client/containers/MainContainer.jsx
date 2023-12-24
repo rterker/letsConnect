@@ -8,6 +8,7 @@ const userId = '657f205517722b44fe9fda33';
 const MainContainer = () => {
   const [user, setUser] = useState({});
   const [isLoading, setIsLoading] = useState(true);
+  const [activeAppointment, setActiveAppointment] = useState({});
 
   useEffect(() => {
     fetch(`${BASE_URL}/user/${userId}`)
@@ -19,12 +20,11 @@ const MainContainer = () => {
       .catch(err => console.log(`The following error occured in MainContainer getUser fetch: ${err}`));
   }, []);
 
-
   if (isLoading) return <div>'Data is loading....'</div>;
 
   return (
     <>
-      <AppointmentsContainer user={user} BASE_URL={BASE_URL}/>
+      <AppointmentsContainer user={user} BASE_URL={BASE_URL} setActiveAppointment={setActiveAppointment} />
       <BodyContainer user={user} BASE_URL={BASE_URL}/>
     </>
   );

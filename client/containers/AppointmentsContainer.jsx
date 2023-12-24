@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Appointment from '../components/Appointment.jsx';
 
-const AppointmentsContainer = ({ user, BASE_URL }) => {
+const AppointmentsContainer = ({ user, BASE_URL, setActiveAppointment }) => {
   const [appointments, setAppointments] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -23,7 +23,7 @@ const AppointmentsContainer = ({ user, BASE_URL }) => {
 
   return (
     <ol className="flex flex-col bg-[#f7f6e7] w-72 gap-2 overflow-auto text-center pt-3">
-      {sortedAppointmentsDesc.map(appointment => <Appointment appointment={appointment} />)}
+      {sortedAppointmentsDesc.map(appointment => <Appointment appointment={appointment} setActiveAppointment={setActiveAppointment} key={appointment._id} />)}
     </ol>
   );  
 }
