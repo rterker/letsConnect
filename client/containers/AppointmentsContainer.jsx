@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import Appointment from '../components/Appointment.jsx';
 
 const AppointmentsContainer = ({ user, BASE_URL }) => {
   const [appointments, setAppointments] = useState([]);
@@ -15,12 +16,12 @@ const AppointmentsContainer = ({ user, BASE_URL }) => {
   //may need to add appointments to dependencies if they don't update correctly
   }, []);
 
-  if (isLoading) return <div>'...isLoading'</div>
+  if (isLoading) return <div>'Data is loading...'</div>
 
   return (
-    <div className="bg-gray-300 w-72">
-      {appointments.map(appointment => <div>{appointment.subject}</div>)}
-    </div>
+    <ol className="flex flex-col bg-[#f7f6e7] w-72 gap-2 overflow-auto text-center pt-3">
+      {appointments.map(appointment => <Appointment appointment={appointment} />)}
+    </ol>
   );  
 }
 

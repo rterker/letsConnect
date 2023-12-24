@@ -20,7 +20,7 @@ const MainContainer = () => {
   }, []);
 
 
-  if (isLoading) return <div>'loading....'</div>;
+  if (isLoading) return <div>'Data is loading....'</div>;
 
   return (
     <>
