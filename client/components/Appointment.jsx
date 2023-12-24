@@ -1,6 +1,6 @@
 import React from "react";
 
-const Appointment = ({ appointment, setActiveAppointment }) => {
+const Appointment = ({ appointment, setActiveAppointmentId }) => {
 
   //may need to change this logic once appointment dates are being created from the client
   const convertedDate = ((appointment.date/1000/60/60) + 5) * 60 * 60 * 1000;
@@ -8,8 +8,8 @@ const Appointment = ({ appointment, setActiveAppointment }) => {
   date = date.toLocaleString('en-US', {timeZone: 'America/New_York'});
 
   function handleClick(e) {
-    console.log('handleClick invoked in Appointment. Setting activeAppoinment in MainContainer to: ', appointment._id);
-    setActiveAppointment(appointment._id);
+    console.log('handleClick invoked in Appointment. Setting activeAppoinmentId in MainContainer to: ', appointment._id);
+    setActiveAppointmentId(appointment._id);
   }
 
   return (

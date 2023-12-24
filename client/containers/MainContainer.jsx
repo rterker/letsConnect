@@ -10,7 +10,7 @@ const MainContainer = () => {
   const [isUserLoading, setIsUserLoading] = useState(true);
   const [isAppointmentsLoading, setIsAppointmentsLoading] = useState(true);
   const [appointments, setAppointments] = useState([]);
-  const [activeAppointment, setActiveAppointment] = useState('');
+  const [activeAppointmentId, setActiveAppointmentId] = useState('');
 
   useEffect(() => {
     fetch(`${BASE_URL}/user/${userId}`)
@@ -37,12 +37,13 @@ const MainContainer = () => {
     }
   }, [user]);
 
+  //refactor to render a data loading component when data is loading
   if (isUserLoading || isAppointmentsLoading) return <div>'Data is loading....'</div>;
 
   return (
     <>
-      <AppointmentsContainer user={user} BASE_URL={BASE_URL} appointments={appointments} setActiveAppointment={setActiveAppointment} />
-      <BodyContainer user={user} BASE_URL={BASE_URL} activeAppointment={activeAppointment} appointments={appointments}/>
+      <AppointmentsContainer user={user} BASE_URL={BASE_URL} appointments={appointments} setActiveAppointmentId={setActiveAppointmentId} />
+      <BodyContainer user={user} BASE_URL={BASE_URL} activeAppointmentId={activeAppointmentId} appointments={appointments}/>
     </>
   );
 
