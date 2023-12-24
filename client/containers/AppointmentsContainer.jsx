@@ -1,23 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Appointment from '../components/Appointment.jsx';
 
-const AppointmentsContainer = ({ user, BASE_URL, setActiveAppointment }) => {
-  const [appointments, setAppointments] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    fetch(`${BASE_URL}/appointments/${user._id}`)
-      .then(appointments => appointments.json())
-      .then(appointments => {
-        setAppointments(appointments);
-        setIsLoading(false);
-      })
-      .catch(err => console.log(`The following error occured in AppointmentsContainer fetch: ${err}`));
-  //may need to add appointments to dependencies if they don't update correctly
-  }, []);
-
-  if (isLoading) return <div>'Data is loading...'</div>
-
+const AppointmentsContainer = ({ user, BASE_URL, appointments, setActiveAppointment }) => {
   const appointmentTimestamps = appointments.map(el => ({ ...el, date: Date.parse(el.date)}));
   const sortedAppointmentsDesc = appointmentTimestamps.toSorted((first, second) => second.date - first.date);
 

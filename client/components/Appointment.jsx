@@ -14,7 +14,7 @@ const Appointment = ({ appointment, setActiveAppointment }) => {
 
   return (
     <li className="flex hover:bg-[#c1c0b9] active:bg-[#537791] active:text-[#f7f6e7]">
-      <div className="w-full h-11 pl-4 pt-2.5 text-left overflow-hidden cursor-pointer" onClick={(e) => handleClick(e)}>
+      <div className="w-full h-11 pl-3 pr-3 pt-2.5 text-left overflow-hidden whitespace-nowrap text-ellipsis cursor-pointer" onClick={(e) => handleClick(e)}>
         {date}
       </div>
     </li>
