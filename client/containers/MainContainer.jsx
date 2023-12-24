@@ -23,23 +23,26 @@ const MainContainer = () => {
 
   }, []);
 
-  if (user._id) {
-    fetch(`${BASE_URL}/appointments/${user._id}`)
-    .then(appointments => appointments.json())
-    .then(appointments => {
-      setAppointments(appointments);
-      setIsAppointmentsLoading(false);
-    })
-    .catch(err => console.log(`The following error occured in MainContainer get user appointments fetch: ${err}`));
-//may need to add appointments to dependencies if they don't update correctly
-  }
+  useEffect(() => {
+    if (user._id) {
+      console.log(`Fetching user ${user._id} appointments...`)
+      fetch(`${BASE_URL}/appointments/${user._id}`)
+      .then(appointments => appointments.json())
+      .then(appointments => {
+        setAppointments(appointments);
+        setIsAppointmentsLoading(false);
+      })
+      .catch(err => console.log(`The following error occured in MainContainer get user appointments fetch: ${err}`));
+      //may need to add appointments to dependencies if they don't update correctly
+    }
+  }, [user]);
 
   if (isUserLoading || isAppointmentsLoading) return <div>'Data is loading....'</div>;
 
   return (
     <>
       <AppointmentsContainer user={user} BASE_URL={BASE_URL} appointments={appointments} setActiveAppointment={setActiveAppointment} />
-      <BodyContainer user={user} BASE_URL={BASE_URL} activeAppointment={activeAppointment} />
+      <BodyContainer user={user} BASE_URL={BASE_URL} activeAppointment={activeAppointment} appointments={appointments}/>
     </>
   );
 
