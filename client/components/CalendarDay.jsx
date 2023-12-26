@@ -1,10 +1,10 @@
 import React from "react";
 
-const CalendarDay = ({ id }) => {
+const CalendarDay = ({ date }) => {
 
   return (
-    <div className="bg-red-200">
-      {'Grid Item' + " " + id}
+    <div className="bg-red-200 border border-indigo-600">
+      {date}
     </div>
   );
 }
