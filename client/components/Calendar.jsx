@@ -1,32 +1,14 @@
 import React from "react";
 import CalendarDay from "./CalendarDay.jsx";
+import dateUtil from "../utils/dateUtil.js";
 
 const Calendar = ({ activeAppointment }) => {
 
-  //TO DO: create an object for all the date stuff here
-  const dateOfActiveAppointment = new Date(activeAppointment.date);
-  //format is YYYY
-  const yearOfActiveAppointment = dateOfActiveAppointment.getFullYear();
-  //getMonth is zero-indexed, so 0 is january 11 is december
-  const monthOfActiveAppointment = dateOfActiveAppointment.getMonth();
-  //integer between 1 and 31
-  const dayOfActiveAppointment = dateOfActiveAppointment.getDate();
-  const daysInMonth = getDaysInMonth(yearOfActiveAppointment, monthOfActiveAppointment);
-  const startDay = getFirstDayOfMonth(yearOfActiveAppointment, monthOfActiveAppointment);
-  const endDay = getLastDayOfMonth(yearOfActiveAppointment, monthOfActiveAppointment);
+  const apptDate = new dateUtil(activeAppointment.date);
 
-  //0 - 6, where 0 is sunday
-  function getFirstDayOfMonth(year, month) {
-    return new Date(year, month, 1).getDay();
-  }
-  //0 - 6, where 0 is sunday
-  function getLastDayOfMonth(year, month) {
-    return new Date(year, month + 1, 0).getDay();
-  }
-  //1 - 31
-  function getDaysInMonth(year, month) {
-    return new Date(year, month + 1, 0).getDate();
-  }
+  const daysInMonth = dateUtil.getDaysInMonth(apptDate.yearOfAppointment, apptDate.monthOfAppointment);
+  const startDay = dateUtil.getFirstDayOfMonth(apptDate.yearOfAppointment, apptDate.monthOfAppointment);
+  const endDay = dateUtil.getLastDayOfMonth(apptDate.yearOfAppointment, apptDate.monthOfAppointment);
 
   //add a unique key prop to each CalendarDay for react optimization
   const blankStartCalendarDays = [];
