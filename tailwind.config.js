@@ -12,12 +12,17 @@ module.exports = {
       },
       keyframes: {
         slideIn: {
-          '0%': {transform: 'translateX(100%)'},
+          '0%': {transform: 'translateX(100vw)'},
           '100%': {transform: 'translateX(0%)'}
+        },
+        slideOut: {
+          '0%': {transform: 'translateX(0%)'},
+          '100%': {transform: 'translateX(100vw)'}
         }
       },
       animation: {
-        slideIn: 'slideIn 1s ease-in-out forwards'
+        slideIn: 'slideIn 0.75s ease-in-out forwards',
+        slideOut: 'slideOut 0.75s ease-in-out forwards'
       }
     },
   },

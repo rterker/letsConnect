@@ -10,7 +10,8 @@ const MainContainer = () => {
   const [isUserLoading, setIsUserLoading] = useState(true);
   const [isAppointmentsLoading, setIsAppointmentsLoading] = useState(true);
   const [appointments, setAppointments] = useState([]);
-  const [activeAppointmentId, setActiveAppointmentId] = useState('');
+  const [activeAppointmentId, setActiveAppointmentId] = useState('not yet set');
+  const [previousActiveAppointmentId, setPreviousActiveAppointmentId] = useState('not yet set');
 
   useEffect(() => {
     fetch(`${BASE_URL}/user/${userId}`)
@@ -42,8 +43,8 @@ const MainContainer = () => {
 
   return (
     <>
-      <AppointmentsContainer user={user} BASE_URL={BASE_URL} appointments={appointments} setActiveAppointmentId={setActiveAppointmentId} activeAppointmentId={activeAppointmentId} />
-      <BodyContainer user={user} BASE_URL={BASE_URL} activeAppointmentId={activeAppointmentId} appointments={appointments}/>
+      <AppointmentsContainer user={user} BASE_URL={BASE_URL} appointments={appointments} setActiveAppointmentId={setActiveAppointmentId} activeAppointmentId={activeAppointmentId} setPreviousActiveAppointmentId={setPreviousActiveAppointmentId} />
+      <BodyContainer user={user} BASE_URL={BASE_URL} activeAppointmentId={activeAppointmentId} appointments={appointments} previousActiveAppointmentId={previousActiveAppointmentId}/>
     </>
   );
 
