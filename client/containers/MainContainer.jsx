@@ -42,7 +42,7 @@ const MainContainer = () => {
 
   return (
     <>
-      <AppointmentsContainer user={user} BASE_URL={BASE_URL} appointments={appointments} setActiveAppointmentId={setActiveAppointmentId} />
+      <AppointmentsContainer user={user} BASE_URL={BASE_URL} appointments={appointments} setActiveAppointmentId={setActiveAppointmentId} activeAppointmentId={activeAppointmentId} />
       <BodyContainer user={user} BASE_URL={BASE_URL} activeAppointmentId={activeAppointmentId} appointments={appointments}/>
     </>
   );
