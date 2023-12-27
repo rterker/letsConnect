@@ -28,7 +28,7 @@ const Calendar = ({ activeAppointment }) => {
 
 
   return (
-    <div className="grid grid-rows-6 grid-cols-7 w-full h-full">
+    <div className="grid grid-rows-6 grid-cols-7 w-full h-full border border-black">
       {blankStartCalendarDays}
       {calendarDays}
       {blankEndCalendarDays}
