@@ -14,7 +14,9 @@ const MainContainer = () => {
   const [previousActiveAppointmentId, setPreviousActiveAppointmentId] = useState('not yet set');
 
   useEffect(() => {
-    fetch(`${BASE_URL}/user/${userId}`)
+    const controller = new AbortController();
+
+    fetch(`${BASE_URL}/user/${userId}`, controller.signal)
       .then(user => user.json())
       .then(user => {
         setUser(user);
@@ -22,12 +24,17 @@ const MainContainer = () => {
       })
       .catch(err => console.log(`The following error occured in MainContainer get user fetch: ${err}`));
 
+    return () => {
+      controller.abort();
+    }
   }, []);
 
   useEffect(() => {
+    const controller = new AbortController();
+
     if (user._id) {
       console.log(`Fetching user ${user._id} appointments...`)
-      fetch(`${BASE_URL}/appointments/${user._id}`)
+      fetch(`${BASE_URL}/appointments/${user._id}`, controller.signal)
       .then(appointments => appointments.json())
       .then(appointments => {
         setAppointments(appointments);
@@ -35,6 +42,9 @@ const MainContainer = () => {
       })
       .catch(err => console.log(`The following error occured in MainContainer get user appointments fetch: ${err}`));
       //may need to add appointments to dependencies if they don't update correctly
+      return () => {
+        controller.abort();
+      }
     }
   }, [user]);
 
