@@ -1,18 +1,16 @@
 import React, { useState } from "react";
 import ActiveAppointment from '../components/ActiveAppointment.jsx'
-import getAppointmentsForMonth from '../utils/getAppointmentsForMonth.js'
 import CalendarStart from "../components/CalendarStart.jsx";
 
 const BodyContainer = ({ user, BASE_URL, activeAppointmentId, appointments, previousActiveAppointmentId }) => {
   //useState here?
   const currentDate = Date();
-  const currentMonthAppointments = getAppointmentsForMonth(currentDate, appointments);
 
   //initial render when activeAppointmentId still has default useState value
   if (activeAppointmentId === 'not yet set') {
     return (
       <section className="flex justify-center content-center items-center bg-[#e7e6e1] flex-grow">
-        <CalendarStart currentDate={currentDate} appointments={currentMonthAppointments}/>
+        <CalendarStart currentDate={currentDate} appointments={appointments}/>
       </section>
     );
   }
