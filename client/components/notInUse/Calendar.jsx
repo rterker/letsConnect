@@ -17,7 +17,7 @@ const Calendar = ({ activeAppointment }) => {
   //add a unique key prop to each CalendarDay for react optimization
   const calendarDays = [];
   for (let i = 1; i < daysInMonth + 1; i++) {
-    calendarDays.push(<CalendarDay date={i}/>);
+    calendarDays.push(<CalendarDay dateOfMonth={i}/>);
   }
   //add a unique key prop to each CalendarDay for react optimization
   const blankEndCalendarDays = [];

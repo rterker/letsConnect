@@ -1,6 +1,7 @@
 
-function dateUtil(dateString) {
-  this.dateOfAppointment = new Date(dateString);
+function dateUtil(date) {
+  //date argument can be a dateString, value, or object
+  this.dateOfAppointment = new Date(date);
   this.yearOfAppointment = this.dateOfAppointment.getFullYear();
   this.monthOfAppointment = this.dateOfAppointment.getMonth();
   this.dayOfAppointment = this.dateOfAppointment.getDate();
