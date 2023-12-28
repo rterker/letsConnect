@@ -3,19 +3,19 @@ import CalendarSwitch from "./CalendarSwitch.jsx";
 import CalendarOut from "./CalendarOut.jsx";
 import CalendarIn from "./CalendarIn.jsx";
 
-const ActiveAppointment = ({ activeAppointment, previousActiveAppointment }) => {
+const ActiveAppointmentCalendar = ({ activeAppointment, previousActiveAppointment, appointments }) => {
 
   //currently clicked appointment is unclicked in sidebar
   if (!activeAppointment) {
     return (
-      <CalendarOut activeAppointment={previousActiveAppointment} />
+      <CalendarOut activeAppointment={previousActiveAppointment} appointments={appointments} />
     );
   }
 
   //no appointment is clicked and then appointment clicked in sidebar
   if (!previousActiveAppointment) {
     return (
-      <CalendarIn activeAppointment={activeAppointment} />
+      <CalendarIn activeAppointment={activeAppointment} appointments={appointments} />
     );
   }
 
@@ -26,4 +26,4 @@ const ActiveAppointment = ({ activeAppointment, previousActiveAppointment }) => 
 
 }
 
-export default ActiveAppointment;
+export default ActiveAppointmentCalendar;

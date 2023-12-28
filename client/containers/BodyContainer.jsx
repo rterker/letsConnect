@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import ActiveAppointment from '../components/ActiveAppointment.jsx'
+import ActiveAppointmentCalendar from '../components/ActiveAppointmentCalendar.jsx'
 import CalendarStart from "../components/CalendarStart.jsx";
 
 const BodyContainer = ({ user, BASE_URL, activeAppointmentId, appointments, previousActiveAppointmentId }) => {
@@ -25,7 +25,7 @@ const BodyContainer = ({ user, BASE_URL, activeAppointmentId, appointments, prev
   
   return (
     <section className="flex justify-center content-center items-center bg-[#e7e6e1] flex-grow">
-      <ActiveAppointment activeAppointment={activeAppointment} previousActiveAppointment={previousActiveAppointment} />
+      <ActiveAppointmentCalendar activeAppointment={activeAppointment} previousActiveAppointment={previousActiveAppointment} appointments={appointments}/>
     </section>
   );
 }

@@ -1,8 +1,11 @@
 import React from "react";
 import CalendarDay from "./CalendarDay.jsx";
 import dateUtil from "../utils/dateUtil.js";
+import getAppointmentsForDay from '../utils/getAppointmentsForDay.js'
+import getAppointmentsForMonth from '../utils/getAppointmentsForMonth.js'
 
-const CalendarIn = ({ activeAppointment }) => {
+const CalendarIn = ({ activeAppointment, appointments }) => {
+  const currentMonthAppointments = getAppointmentsForMonth(activeAppointment.date, appointments);
   const apptDate = new dateUtil(activeAppointment.date);
 
   const daysInMonth = dateUtil.getDaysInMonth(apptDate.yearOfAppointment, apptDate.monthOfAppointment);
@@ -17,7 +20,8 @@ const CalendarIn = ({ activeAppointment }) => {
   //add a unique key prop to each CalendarDay for react optimization
   const calendarDays = [];
   for (let i = 1; i < daysInMonth + 1; i++) {
-    calendarDays.push(<CalendarDay dateOfMonth={i}/>);
+    const appointmentsForDay = getAppointmentsForDay(i, currentMonthAppointments);
+    calendarDays.push(<CalendarDay dateOfMonth={i} appointmentsForDay={appointmentsForDay} />);
   }
   //add a unique key prop to each CalendarDay for react optimization
   const blankEndCalendarDays = [];

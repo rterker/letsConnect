@@ -2,7 +2,7 @@ import React from "react";
 import CalendarDay from "./CalendarDay.jsx";
 import dateUtil from "../utils/dateUtil.js";
 
-const CalendarOut = ({ activeAppointment }) => {
+const CalendarOut = ({ activeAppointment, appointments }) => {
   const apptDate = new dateUtil(activeAppointment.date);
 
   const daysInMonth = dateUtil.getDaysInMonth(apptDate.yearOfAppointment, apptDate.monthOfAppointment);
