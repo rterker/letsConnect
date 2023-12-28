@@ -1,22 +1,29 @@
 import React from "react";
-import Calendar from "./Calendar.jsx";
+import CalendarSwitch from "./CalendarSwitch.jsx";
+import CalendarOut from "./CalendarOut.jsx";
+import CalendarIn from "./CalendarIn.jsx";
 
 const ActiveAppointment = ({ activeAppointment, previousActiveAppointment }) => {
+
   //currently clicked appointment is unclicked in sidebar
   if (!activeAppointment) {
     return (
-      <div className="w-160 h-160 bg-white animate-slideOut">
-        <Calendar activeAppointment={previousActiveAppointment} />
-      </div>
+      <CalendarOut activeAppointment={previousActiveAppointment} />
     );
   }
 
-  //appointment clicked in sidebar
+  //no appointment is clicked and then appointment clicked in sidebar
+  if (!previousActiveAppointment) {
+    return (
+      <CalendarIn activeAppointment={activeAppointment} />
+    );
+  }
+
   return (
-    <div className="w-160 h-160 bg-white animate-slideIn">
-      <Calendar activeAppointment={activeAppointment} />
-    </div>
+    <CalendarSwitch activeAppointment={activeAppointment} previousActiveAppointment={previousActiveAppointment} />
   );
+
+
 }
 
 export default ActiveAppointment;

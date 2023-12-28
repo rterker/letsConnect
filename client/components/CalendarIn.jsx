@@ -2,7 +2,7 @@ import React from "react";
 import CalendarDay from "./CalendarDay.jsx";
 import dateUtil from "../utils/dateUtil.js";
 
-const Calendar = ({ activeAppointment }) => {
+const CalendarIn = ({ activeAppointment }) => {
   const apptDate = new dateUtil(activeAppointment.date);
 
   const daysInMonth = dateUtil.getDaysInMonth(apptDate.yearOfAppointment, apptDate.monthOfAppointment);
@@ -26,12 +26,14 @@ const Calendar = ({ activeAppointment }) => {
   }
 
   return (
-    <div className="grid grid-rows-6 grid-cols-7 w-full h-full border border-black">
-      {blankStartCalendarDays}
-      {calendarDays}
-      {blankEndCalendarDays}
+    <div className="w-160 h-160 bg-white animate-slideIn">
+      <div className="grid grid-rows-6 grid-cols-7 w-full h-full border border-black">
+        {blankStartCalendarDays}
+        {calendarDays}
+        {blankEndCalendarDays}
+      </div>
     </div>
   );
 }
 
-export default Calendar;
+export default CalendarIn;
