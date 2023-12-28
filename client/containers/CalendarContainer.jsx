@@ -1,11 +1,11 @@
 import React, { useState } from "react";
-import CalendarSwitch from "./CalendarSwitch.jsx";
-import CalendarOut from "./CalendarOut.jsx";
-import CalendarIn from "./CalendarIn.jsx";
-import ActiveAppointmentDetails from "./ActiveAppointmentDetails.jsx";
+import CalendarSwitch from "../components/CalendarSwitch.jsx";
+import CalendarOut from "../components/CalendarOut.jsx";
+import CalendarIn from "../components/CalendarIn.jsx";
+import ActiveAppointmentDetails from "../components/ActiveAppointmentDetails.jsx";
 import getAppointmentsForDay from '../utils/getAppointmentsForDay.js'
 
-const ActiveAppointmentCalendar = ({ activeAppointment, previousActiveAppointment, appointments, setActiveDay, activeDay }) => {
+const CalendarContainer = ({ activeAppointment, previousActiveAppointment, appointments, setActiveDay, activeDay }) => {
   if (activeDay) {
     const dailyAppointments = getAppointmentsForDay(activeDay, appointments);
     return (
@@ -35,4 +35,4 @@ const ActiveAppointmentCalendar = ({ activeAppointment, previousActiveAppointmen
 
 }
 
-export default ActiveAppointmentCalendar;
+export default CalendarContainer;

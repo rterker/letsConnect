@@ -30,7 +30,7 @@ const CalendarOut = ({ activeAppointment, appointments, setActiveDay }) => {
   }
 
   return (
-    <div className="w-160 h-160 bg-[#fafafa] animate-slideOut delay-150">
+    <div className="w-160 h-160 bg-[#fafafa] animate-slideOut">
       <div className="grid grid-rows-6 grid-cols-7 w-full h-full border border-black">
         {blankStartCalendarDays}
         {calendarDays}
