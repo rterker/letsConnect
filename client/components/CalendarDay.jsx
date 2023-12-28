@@ -1,17 +1,22 @@
 import React from "react";
 import Dot from "./Dot.jsx";
 
-const CalendarDay = ({ dateOfMonth, appointmentsForDay }) => {
+const CalendarDay = ({ dateOfMonth, appointmentsForDay, setActiveDay }) => {
+  
+  function handleClick(e) {
+    setActiveDay(dateOfMonth);
+  }
+  
   if (!appointmentsForDay) {
     return (
-      <div className="bg-white border border-black">
+      <div className="bg-[#fafafa] border border-black">
         {dateOfMonth}
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col bg-white border border-black">
+    <div className="flex flex-col bg-[#fafafa] border border-black cursor-pointer hover:bg-[#c1c0b9] active:bg-[#537791] active:text-[#f7f6e7]" onClick={(e) => handleClick(e)}>
       <div>
       {dateOfMonth}
       </div>

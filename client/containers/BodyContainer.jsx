@@ -3,14 +3,14 @@ import ActiveAppointmentCalendar from '../components/ActiveAppointmentCalendar.j
 import CalendarStart from "../components/CalendarStart.jsx";
 
 const BodyContainer = ({ user, BASE_URL, activeAppointmentId, appointments, previousActiveAppointmentId }) => {
-  //useState here?
+  const [activeDay, setActiveDay] = useState(null);
   const currentDate = Date();
 
   //initial render when activeAppointmentId still has default useState value
-  if (activeAppointmentId === 'not yet set') {
+  if (activeAppointmentId === 'not yet set' && !activeDay) {
     return (
       <section className="flex justify-center content-center items-center bg-[#e7e6e1] flex-grow">
-        <CalendarStart currentDate={currentDate} appointments={appointments}/>
+        <CalendarStart currentDate={currentDate} appointments={appointments} setActiveDay={setActiveDay}/>
       </section>
     );
   }
@@ -25,7 +25,7 @@ const BodyContainer = ({ user, BASE_URL, activeAppointmentId, appointments, prev
   
   return (
     <section className="flex justify-center content-center items-center bg-[#e7e6e1] flex-grow">
-      <ActiveAppointmentCalendar activeAppointment={activeAppointment} previousActiveAppointment={previousActiveAppointment} appointments={appointments}/>
+      <ActiveAppointmentCalendar activeAppointment={activeAppointment} previousActiveAppointment={previousActiveAppointment} appointments={appointments} setActiveDay={setActiveDay} activeDay={activeDay} />
     </section>
   );
 }
