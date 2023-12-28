@@ -2,7 +2,7 @@ import React from "react";
 import Dot from "./Dot.jsx";
 
 const CalendarDay = ({ dateOfMonth, appointmentsForDay }) => {
-  if (!dateOfMonth) {
+  if (!appointmentsForDay) {
     return (
       <div className="bg-white border border-black">
         {dateOfMonth}
