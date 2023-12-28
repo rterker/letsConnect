@@ -4,7 +4,7 @@ import dateUtil from "../utils/dateUtil.js";
 import getAppointmentsForDay from '../utils/getAppointmentsForDay.js'
 import getAppointmentsForMonth from '../utils/getAppointmentsForMonth.js'
 
-const CalendarIn = ({ activeAppointment, appointments, setActiveDay }) => {
+const Calendar = ({ activeAppointment, appointments, setActiveDay, animation, setAnimation }) => {
   const currentMonthAppointments = getAppointmentsForMonth(activeAppointment.date, appointments);
   const apptDate = new dateUtil(activeAppointment.date);
 
@@ -29,15 +29,16 @@ const CalendarIn = ({ activeAppointment, appointments, setActiveDay }) => {
     blankEndCalendarDays.push(<CalendarDay />);  
   }
 
+  const totalCells = blankStartCalendarDays.length + calendarDays.length + blankEndCalendarDays.length;
+  const gridRows = Math.ceil(totalCells / 7);
+
   return (
-    <div className="w-160 h-160 bg-[#fafafa] animate-slideIn">
-      <div className="grid grid-rows-6 grid-cols-7 w-full h-full border border-black">
-        {blankStartCalendarDays}
-        {calendarDays}
-        {blankEndCalendarDays}
-      </div>
+    <div className={`grid grid-rows-${gridRows} grid-cols-7 w-full h-full border border-black`}>
+      {blankStartCalendarDays}
+      {calendarDays}
+      {blankEndCalendarDays}
     </div>
   );
 }
 
-export default CalendarIn;
+export default Calendar;
