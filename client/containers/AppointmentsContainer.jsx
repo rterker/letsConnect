@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Appointment from '../components/Appointment.jsx';
 
+//called by: MainContainer
 const AppointmentsContainer = ({ user, BASE_URL, appointments, setActiveAppointmentId, activeAppointmentId, setPreviousActiveAppointmentId }) => {
   const appointmentTimestamps = appointments.map(el => ({ ...el, date: Date.parse(el.date)}));
   const sortedAppointmentsDesc = appointmentTimestamps.toSorted((first, second) => second.date - first.date);

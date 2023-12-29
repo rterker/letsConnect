@@ -1,6 +1,7 @@
 import React from "react";
 import Dot from "./Dot.jsx";
 
+//called by: CalendarStart, Calendar
 const CalendarDay = ({ dateOfMonth, appointmentsForDay, setActiveDay }) => {
   function handleClick(e) {
     if (appointmentsForDay.length > 0) {

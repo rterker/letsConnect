@@ -4,6 +4,7 @@ import dateUtil from "../utils/dateUtil.js";
 import getAppointmentsForDay from '../utils/getAppointmentsForDay.js'
 import getAppointmentsForMonth from '../utils/getAppointmentsForMonth.js'
 
+//called by: CalendarContainer
 const Calendar = ({ activeAppointment, appointments, setActiveDay, animation, setAnimation }) => {
   const currentMonthAppointments = getAppointmentsForMonth(activeAppointment.date, appointments);
   const apptDate = new dateUtil(activeAppointment.date);

@@ -1,5 +1,6 @@
 import React from "react";
 
+//called by: AppointmentsContainer
 const Appointment = ({ appointment, setActiveAppointmentId, activeAppointmentId, setPreviousActiveAppointmentId }) => {
 
   //may need to change this logic once appointment dates are being created from the client

@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+//called by: DaysDetails
 const DailyAppointment = ({ appointment }) => {
   const [isClicked, setIsClicked] = useState(false);
   const { date, subject, participants, status, creator, createdAt} = appointment;

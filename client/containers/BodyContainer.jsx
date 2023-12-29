@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import CalendarContainer from './CalendarContainer.jsx'
 import CalendarStart from "../components/CalendarStart.jsx";
 
+//called by: MainContainer
 const BodyContainer = ({ user, BASE_URL, activeAppointmentId, appointments, previousActiveAppointmentId }) => {
   const [activeDay, setActiveDay] = useState(null);
   const currentDate = Date();

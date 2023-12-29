@@ -1,6 +1,7 @@
 import React from "react";
 import DaysDetails from "./DaysDetails.jsx";
 
+//called by: CalendarContainer
 const ActiveDay = ({ dailyAppointments, setActiveDay }) => {
   console.log('dailyAppointments in ActiveDay: ', dailyAppointments)
 

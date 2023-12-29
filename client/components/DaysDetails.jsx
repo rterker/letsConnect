@@ -1,6 +1,7 @@
 import React from "react";
 import DailyAppointment from './DailyAppointment.jsx';
 
+//called by: ActiveDay
 const DaysDetails = ({ dailyAppointments, setActiveDay }) => {
   console.log('dailyAppointments in DayDetails: ', dailyAppointments)
   function handleClick(e) {
