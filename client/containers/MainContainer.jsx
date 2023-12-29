@@ -49,7 +49,15 @@ const MainContainer = () => {
   }, [user]);
 
   //refactor to render a data loading component when data is loading
-  if (isUserLoading || isAppointmentsLoading) return <div>'Data is loading....'</div>;
+  if (isUserLoading || isAppointmentsLoading) {
+    return (
+      <div className="h-full w-full bg-[#392f2f]">
+        <svg className="spinner" viewBox="0 0 50 50">
+          <circle class="path" cx="25" cy="25" r="20" fill="none" stroke-width="5"></circle>
+        </svg>
+      </div>
+    );
+  }
 
   return (
     <>

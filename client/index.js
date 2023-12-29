@@ -7,6 +7,8 @@ import App from './App.jsx';
 
 //import styles for tailwind
 import './styles.css';
+//import styles for sass
+import './style.scss';
 
 const root = createRoot(document.getElementById('root'));
 root.render(<App />);
