@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import Calendar from "../components/Calendar.jsx";
-import ActiveAppointmentDetails from "../components/ActiveAppointmentDetails.jsx";
+import ActiveDay from "../components/ActiveDay.jsx";
 import getAppointmentsForDay from '../utils/getAppointmentsForDay.js'
 
 const CalendarContainer = ({ activeAppointment, previousActiveAppointment, appointments, setActiveDay, activeDay }) => {
@@ -10,21 +10,23 @@ const CalendarContainer = ({ activeAppointment, previousActiveAppointment, appoi
   if (activeDay) {
     const dailyAppointments = getAppointmentsForDay(activeDay, appointments);
     return (
-      <ActiveAppointmentDetails dailyAppointments={dailyAppointments} setActiveDay={setActiveDay}/>
+      <div key={containerKey} className="w-160 h-160 bg-[#fafafa]">
+        <ActiveDay dailyAppointments={dailyAppointments} setActiveDay={setActiveDay}/>
+      </div>
     );
   }
 
   //currently clicked appointment is unclicked in sidebar
   if (!activeAppointment) {
     return (
-      <div key={containerKey} className="w-160 h-160 bg-[#fafafa] animate-slideOut">
+      <div key={containerKey} className="w-160 h-160 bg-[#e7e6e1] animate-slideOut">
         <Calendar activeAppointment={previousActiveAppointment} appointments={appointments} setActiveDay={setActiveDay}/>
       </div>
     );
   }
 
   return (
-    <div key={containerKey} className="w-160 h-160 bg-[#fafafa] animate-slideIn">
+    <div key={containerKey} className="w-160 h-160 bg-[#e7e6e1] animate-slideIn">
       <Calendar activeAppointment={activeAppointment} appointments={appointments} setActiveDay={setActiveDay}/>
     </div>    
   );

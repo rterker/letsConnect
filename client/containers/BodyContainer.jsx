@@ -9,7 +9,7 @@ const BodyContainer = ({ user, BASE_URL, activeAppointmentId, appointments, prev
   //initial render when activeAppointmentId still has default useState value
   if (activeAppointmentId === 'not yet set' && !activeDay) {
     return (
-      <section className="flex justify-center content-center items-center bg-[#e7e6e1] flex-grow">
+      <section className="flex justify-center items-center bg-[#e7e6e1] flex-grow">
         <CalendarStart currentDate={currentDate} appointments={appointments} setActiveDay={setActiveDay}/>
       </section>
     );
@@ -24,7 +24,7 @@ const BodyContainer = ({ user, BASE_URL, activeAppointmentId, appointments, prev
 
   
   return (
-    <section className="flex justify-center content-center items-center bg-[#e7e6e1] flex-grow">
+    <section className="flex justify-center items-center bg-[#e7e6e1] flex-grow">
       <CalendarContainer activeAppointment={activeAppointment} previousActiveAppointment={previousActiveAppointment} appointments={appointments} setActiveDay={setActiveDay} activeDay={activeDay} />
     </section>
   );

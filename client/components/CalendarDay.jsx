@@ -2,9 +2,10 @@ import React from "react";
 import Dot from "./Dot.jsx";
 
 const CalendarDay = ({ dateOfMonth, appointmentsForDay, setActiveDay }) => {
-  
   function handleClick(e) {
-    setActiveDay(dateOfMonth);
+    if (appointmentsForDay.length > 0) {
+      setActiveDay(dateOfMonth);
+    }
   }
   
   if (!appointmentsForDay) {

@@ -30,7 +30,7 @@ const Appointment = ({ appointment, setActiveAppointmentId, activeAppointmentId,
   return (
     <li className="flex hover:bg-[#c1c0b9] active:bg-[#537791] active:text-[#f7f6e7]">
       <div className="w-full h-11 pl-3 pr-3 pt-2.5 text-left overflow-hidden whitespace-nowrap text-ellipsis cursor-pointer" onClick={(e) => handleClick(e)}>
-        {date}
+        {appointment.subject}
       </div>
     </li>
   );

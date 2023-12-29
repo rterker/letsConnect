@@ -5,10 +5,24 @@ module.exports = {
   theme: {
     extend: {
       height: {
-        160: '40rem'
+        160: '40rem',
+        144: '36rem',
+        156: '39rem'
       },
       width: {
-        160: '40rem'
+        160: '40rem',
+        144: '36rem',
+        156: '39rem'
+      },
+      minHeight: {
+        160: '40rem',
+        144: '36rem',
+        156: '39rem'
+      },
+      minWidth: {
+        160: '40rem',
+        144: '36rem',
+        156: '39rem'
       },
       keyframes: {
         slideIn: {
@@ -26,6 +40,6 @@ module.exports = {
       }
     },
   },
-  plugins: [],
+  plugins: []
 }
 
