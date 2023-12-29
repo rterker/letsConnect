@@ -9,8 +9,9 @@ const CalendarContainer = ({ activeAppointment, previousActiveAppointment, appoi
   //date on calendar is clicked
   if (activeDay) {
     const dailyAppointments = getAppointmentsForDay(activeDay, appointments);
+    // bg-[#fafafa]
     return (
-      <div key={containerKey} className="w-160 h-160 bg-[#fafafa]">
+      <div key={containerKey} className="w-160 h-160">
         <ActiveDay dailyAppointments={dailyAppointments} setActiveDay={setActiveDay}/>
       </div>
     );
