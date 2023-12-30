@@ -7,14 +7,14 @@ import AddAppointmentContainer from "../components/AddAppointmentContainer.jsx";
 //called by: MainContainer
 const BodyContainer = ({ user, BASE_URL, activeAppointmentId, appointments, previousActiveAppointmentId }) => {
   const [activeDay, setActiveDay] = useState(null);
-  const [mode, setMode] = useState(null);
+  const [isInAddMode, setIsInAddMode] = useState(false);
   const currentDate = Date();
 
 
-  if (mode === 'addAppointment') {
+  if (isInAddMode) {
     return (
       <section className="flex justify-center items-center bg-[#e7e6e1] flex-grow">
-        <AddAppointmentContainer setMode={setMode} />
+        <AddAppointmentContainer setIsInAddMode={setIsInAddMode} />
       </section>
     );
   }
@@ -23,7 +23,7 @@ const BodyContainer = ({ user, BASE_URL, activeAppointmentId, appointments, prev
   if (activeAppointmentId === 'not yet set' && !activeDay) {
     return (
       <section className="flex justify-center items-center bg-[#e7e6e1] flex-grow">
-        <AddAppointmentButton mode={mode} setMode={setMode} />
+        <AddAppointmentButton isInAddMode={isInAddMode} setIsInAddMode={setIsInAddMode} />
         <CalendarStart currentDate={currentDate} appointments={appointments} setActiveDay={setActiveDay}/>
       </section>
     );
@@ -39,7 +39,7 @@ const BodyContainer = ({ user, BASE_URL, activeAppointmentId, appointments, prev
   
   return (
     <section className="flex justify-center items-center bg-[#e7e6e1] flex-grow">
-      <AddAppointmentButton mode={mode} setMode={setMode} />
+      <AddAppointmentButton isInAddMode={isInAddMode} setIsInAddMode={setIsInAddMode} />
       <CalendarContainer activeAppointment={activeAppointment} previousActiveAppointment={previousActiveAppointment} appointments={appointments} setActiveDay={setActiveDay} activeDay={activeDay} />
     </section>
   );

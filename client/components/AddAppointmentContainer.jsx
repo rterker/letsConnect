@@ -1,9 +1,9 @@
 import React from "react";
 
 //called by: BodyContainer
-const AddAppointmentContainer = ({ setMode }) => {
+const AddAppointmentContainer = ({ setIsInAddMode }) => {
   function handleClick() {
-    setMode(null);
+    setIsInAddMode(false);
   }
 
     return (

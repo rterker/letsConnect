@@ -1,10 +1,9 @@
 import React from "react";
 
 //called by: BodyContainer
-const AddAppointmentButton = ({ mode, setMode }) => {
-  //add onlick to add appointment
+const AddAppointmentButton = ({ isInAddMode, setIsInAddMode }) => {
   function handleClick() {
-    if (mode !== 'addAppointment') setMode('addAppointment');
+    if (!isInAddMode) setIsInAddMode(true);
   }
 
   return (
