@@ -7,7 +7,7 @@ const AddAppointmentContainer = ({ setIsInAddMode }) => {
   }
 
     return (
-      <div className="flex flex-col w-160 h-160 bg-black" onClick={handleClick}></div>
+      <div className="flex mx-auto my-auto w-160 h-160 bg-black" onClick={handleClick}></div>
     );
 }
 

@@ -13,7 +13,8 @@ const BodyContainer = ({ user, BASE_URL, activeAppointmentId, appointments, prev
 
   if (isInAddMode) {
     return (
-      <section className="flex justify-center items-center bg-[#e7e6e1] flex-grow">
+      <section className="flex flex-col justify-start items-center bg-[#e7e6e1] flex-grow">
+        <AddAppointmentButton isInAddMode={isInAddMode} setIsInAddMode={setIsInAddMode} />
         <AddAppointmentContainer setIsInAddMode={setIsInAddMode} />
       </section>
     );
@@ -22,7 +23,7 @@ const BodyContainer = ({ user, BASE_URL, activeAppointmentId, appointments, prev
   //initial render when activeAppointmentId still has default useState value
   if (activeAppointmentId === 'not yet set' && !activeDay) {
     return (
-      <section className="flex justify-center items-center bg-[#e7e6e1] flex-grow">
+      <section className="flex flex-col justify-start items-center bg-[#e7e6e1] flex-grow">
         <AddAppointmentButton isInAddMode={isInAddMode} setIsInAddMode={setIsInAddMode} />
         <CalendarStart currentDate={currentDate} appointments={appointments} setActiveDay={setActiveDay}/>
       </section>
@@ -38,7 +39,7 @@ const BodyContainer = ({ user, BASE_URL, activeAppointmentId, appointments, prev
 
   
   return (
-    <section className="flex justify-center items-center bg-[#e7e6e1] flex-grow">
+    <section className="flex flex-col justify-start items-center bg-[#e7e6e1] flex-grow">
       <AddAppointmentButton isInAddMode={isInAddMode} setIsInAddMode={setIsInAddMode} />
       <CalendarContainer activeAppointment={activeAppointment} previousActiveAppointment={previousActiveAppointment} appointments={appointments} setActiveDay={setActiveDay} activeDay={activeDay} />
     </section>
