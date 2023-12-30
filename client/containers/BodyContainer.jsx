@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import CalendarContainer from './CalendarContainerP.jsx'
 import CalendarStart from "../components/CalendarStartP.jsx";
 import AddAppointmentButton from "../components/AddAppointmentButtonP.jsx";
-import AddAppointmentContainer from "../components/AddAppointmentContainer.jsx";
+import AddAppointmentContainer from "../components/AddAppointmentContainerP.jsx";
 
 //called by: MainContainer
 const BodyContainer = ({ user, BASE_URL, activeAppointmentId, appointments, previousActiveAppointmentId }) => {
