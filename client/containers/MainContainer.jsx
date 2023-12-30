@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
-import AppointmentsContainer from "./AppointmentsContainerP.jsx"
-import BodyContainer from "./BodyContainer.jsx"
+import AppointmentsContainer from "./AppointmentsContainerP.jsx";
+import BodyContainer from "./BodyContainer.jsx";
+import config from '../config.js';
 
-const BASE_URL = 'http://localhost:8080';
-const userId = '657f205517722b44fe9fda33';
+const BASE_URL = config.DEV_BASE_URL;
+const userId = config.TESTING_USER_ID;
 
 const MainContainer = () => {
   const [user, setUser] = useState({});
