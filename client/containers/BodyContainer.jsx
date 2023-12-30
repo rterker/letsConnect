@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import CalendarContainer from './CalendarContainerP.jsx'
 import CalendarStart from "../components/CalendarStartP.jsx";
+import AddAppointment from "../components/AddAppointmentP.jsx";
 
 //called by: MainContainer
 const BodyContainer = ({ user, BASE_URL, activeAppointmentId, appointments, previousActiveAppointmentId }) => {
@@ -11,6 +12,7 @@ const BodyContainer = ({ user, BASE_URL, activeAppointmentId, appointments, prev
   if (activeAppointmentId === 'not yet set' && !activeDay) {
     return (
       <section className="flex justify-center items-center bg-[#e7e6e1] flex-grow">
+        <AddAppointment/>
         <CalendarStart currentDate={currentDate} appointments={appointments} setActiveDay={setActiveDay}/>
       </section>
     );
