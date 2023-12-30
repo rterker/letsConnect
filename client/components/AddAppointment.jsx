@@ -14,7 +14,7 @@ const AddAppointment = ({ setIsInAddMode }) => {
 
   return (
     <div className="flex flex-col h-160 w-160">
-      <form className="flex flex-col grow w-full bg-white rounded-lg" action="">
+      <form className="flex flex-col grow w-full bg-white rounded-lg" action={`${config.DEV_BASE_URL}/appointment`}>
         <div className="flex flex-col grow w-full bg-white rounded-lg">
 
           
@@ -45,3 +45,9 @@ export default AddAppointment;
     <input type="submit" value="Subscribe!" />
   </div>
 </form>
+
+// date: {type: Date, required: true},
+// subject: {type: String, required: true},
+// participants: {type: [String], required: true},
+// status: {type: String, required: true},
+// creator: {type: String, required: true},
