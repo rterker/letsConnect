@@ -21,14 +21,14 @@ const CalendarContainer = ({ activeAppointment, previousActiveAppointment, appoi
   //currently clicked appointment is unclicked in sidebar
   if (!activeAppointment) {
     return (
-      <div key={containerKey} className="w-160 h-160 bg-[#e7e6e1] animate-slideOut">
+      <div key={containerKey} className="flex flex-col w-160 h-160 bg-[#e7e6e1] animate-slideOut">
         <Calendar activeAppointment={previousActiveAppointment} appointments={appointments} setActiveDay={setActiveDay}/>
       </div>
     );
   }
 
   return (
-    <div key={containerKey} className="w-160 h-160 bg-[#e7e6e1] animate-slideIn">
+    <div key={containerKey} className="flex flex-col w-160 h-160 bg-[#e7e6e1] animate-slideIn">
       <Calendar activeAppointment={activeAppointment} appointments={appointments} setActiveDay={setActiveDay}/>
     </div>    
   );

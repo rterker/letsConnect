@@ -30,9 +30,17 @@ const CalendarStart = ({ currentDate, appointments, setActiveDay }) => {
     blankEndCalendarDays.push(<CalendarDay />);  
   }
 
+  const totalCells = blankStartCalendarDays.length + calendarDays.length + blankEndCalendarDays.length;
+  const gridRows = Math.ceil(totalCells / 7);
+
   return (
-    <div className="w-160 h-160 bg-white animate-slideIn">
-      <div className="grid grid-rows-6 grid-cols-7 w-full h-full border border-black">
+    <div className="flex flex-col w-160 h-160 bg-white animate-slideIn">
+      <div className="flex justify-between pt-3 pb-3 border-t-2 border-l-2 border-r-2 border-black bg-[#fafafa]">
+        <button className="w-10 bg-[#c1c0b9] text-xl rounded-lg shadow-lg hover:shadow-xl active:shadow-inner focus:outline-none ml-2 cursor-pointer">{'<'}</button>
+        <b className="text-xl">{currentDateObj.monthOfAppointment} / {currentDateObj.yearOfAppointment}</b>
+        <button className="w-10 bg-[#c1c0b9] text-xl rounded-lg shadow-lg hover:shadow-xl active:shadow-inner focus:outline-none mr-2 cursor-pointer">{'>'}</button>
+      </div>
+      <div className={`grid grid-rows-${gridRows} grid-cols-7 w-full h-full border border-black`}>
         {blankStartCalendarDays}
         {calendarDays}
         {blankEndCalendarDays}
