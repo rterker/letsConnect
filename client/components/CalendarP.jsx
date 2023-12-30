@@ -1,17 +1,17 @@
 import React from "react";
-import CalendarDay from "./CalendarDay.jsx";
+import CalendarDay from "./CalendarDayP.jsx";
 import dateUtil from "../utils/dateUtil.js";
 import getAppointmentsForDay from '../utils/getAppointmentsForDay.js'
 import getAppointmentsForMonth from '../utils/getAppointmentsForMonth.js'
 
-//called by: BodyContainer
-const CalendarStart = ({ currentDate, appointments, setActiveDay }) => {
-  const currentMonthAppointments = getAppointmentsForMonth(currentDate, appointments);
-  const currentDateObj = new dateUtil(currentDate);
+//called by: CalendarContainer
+const Calendar = ({ activeAppointment, appointments, setActiveDay }) => {
+  const currentMonthAppointments = getAppointmentsForMonth(activeAppointment.date, appointments);
+  const apptDate = new dateUtil(activeAppointment.date);
 
-  const daysInMonth = dateUtil.getDaysInMonth(currentDateObj.yearOfAppointment, currentDateObj.monthOfAppointment);
-  const startDay = dateUtil.getFirstDayOfMonth(currentDateObj.yearOfAppointment, currentDateObj.monthOfAppointment);
-  const endDay = dateUtil.getLastDayOfMonth(currentDateObj.yearOfAppointment, currentDateObj.monthOfAppointment);
+  const daysInMonth = dateUtil.getDaysInMonth(apptDate.yearOfAppointment, apptDate.monthOfAppointment);
+  const startDay = dateUtil.getFirstDayOfMonth(apptDate.yearOfAppointment, apptDate.monthOfAppointment);
+  const endDay = dateUtil.getLastDayOfMonth(apptDate.yearOfAppointment, apptDate.monthOfAppointment);
 
   //add a unique key prop to each CalendarDay for react optimization
   const blankStartCalendarDays = [];
@@ -30,15 +30,16 @@ const CalendarStart = ({ currentDate, appointments, setActiveDay }) => {
     blankEndCalendarDays.push(<CalendarDay />);  
   }
 
+  const totalCells = blankStartCalendarDays.length + calendarDays.length + blankEndCalendarDays.length;
+  const gridRows = Math.ceil(totalCells / 7);
+
   return (
-    <div className="w-160 h-160 bg-white animate-slideIn">
-      <div className="grid grid-rows-6 grid-cols-7 w-full h-full border border-black">
-        {blankStartCalendarDays}
-        {calendarDays}
-        {blankEndCalendarDays}
-      </div>
+    <div className={`grid grid-rows-${gridRows} grid-cols-7 w-full h-full border border-black`}>
+      {blankStartCalendarDays}
+      {calendarDays}
+      {blankEndCalendarDays}
     </div>
   );
 }
 
-export default CalendarStart;
+export default Calendar;

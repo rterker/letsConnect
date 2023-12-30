@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import Calendar from "../components/Calendar.jsx";
-import ActiveDay from "../components/ActiveDay.jsx";
+import Calendar from "../components/CalendarP.jsx";
+import ActiveDay from "../components/ActiveDayP.jsx";
 import getAppointmentsForDay from '../utils/getAppointmentsForDay.js'
 
 //called by: BodyContainer

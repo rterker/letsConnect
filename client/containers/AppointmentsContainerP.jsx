@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Appointment from '../components/Appointment.jsx';
+import Appointment from '../components/AppointmentP.jsx';
 
 //called by: MainContainer
 const AppointmentsContainer = ({ user, BASE_URL, appointments, setActiveAppointmentId, activeAppointmentId, setPreviousActiveAppointmentId }) => {

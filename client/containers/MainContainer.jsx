@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import AppointmentsContainer from "./AppointmentsContainer.jsx"
+import AppointmentsContainer from "./AppointmentsContainerP.jsx"
 import BodyContainer from "./BodyContainer.jsx"
 
 const BASE_URL = 'http://localhost:8080';

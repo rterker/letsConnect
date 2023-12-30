@@ -1,5 +1,5 @@
 import React from "react";
-import DaysDetails from "./DaysDetails.jsx";
+import DaysDetails from "./DaysDetailsP.jsx";
 
 //called by: CalendarContainer
 const ActiveDay = ({ dailyAppointments, setActiveDay }) => {

@@ -1,5 +1,5 @@
 import React from "react";
-import Dot from "./Dot.jsx";
+import Dot from "./DotP.jsx";
 
 //called by: CalendarStart, Calendar
 const CalendarDay = ({ dateOfMonth, appointmentsForDay, setActiveDay }) => {
