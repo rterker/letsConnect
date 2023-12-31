@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import adaptValidatePost from '../hooks/adaptValidatePost.js';
+import adaptValidatePost from '../utils/adaptValidatePost.js';
 
 //called by: AddAppointmentContainer
 const AddAppointment = ({ user, setIsInAddMode }) => {
