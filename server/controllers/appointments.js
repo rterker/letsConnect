@@ -4,6 +4,7 @@ const appointmentController = {};
 
 appointmentController.createAppointment =  async (req, res, next) => {
   const newAppointment = req.body;
+  console.log('newAppointment:', newAppointment)
 
   try {
     const createdAppointment = await Appointment.create(newAppointment);
