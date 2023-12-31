@@ -25,18 +25,20 @@ userController.createUser = async (req, res, next) => {
 userController.updateUsersAppointment = async (req, res, next) => {
   //once appointment is created or updated, need to push appointment to users. 
   const { _id: appointmentId, participants } = res.locals.createdAppointment;
+  const participantsEmails = participants;
 
   try {
     //do i need to check for null?
-    //need to test this when passing in array of participants
-    const updateMessage = await User.updateMany({userName: {$in: participants}}, {$push: {appointments: appointmentId}}, {new: true, upsert: false});
-    //need to test this when passing in array of participants
-    if (updateMessage.modifiedCount !== participants.length) throw new Error('Number of modified user documents did not equal number of passed in users');
+    //this updateMany works when passing in an array with a single participant
+    const updateMessage = await User.updateMany({email: {$in: participantsEmails}}, {$push: {appointments: appointmentId}}, {new: true, upsert: false});
+    console.log('updateMessage:', updateMessage)
+    //need to test this when passing in array of participantsEmails
+    if (updateMessage.modifiedCount !== participantsEmails.length) throw new Error('Number of modified user documents did not equal number of passed in users');
     if (updateMessage.modifiedCount === 1) {
-      console.log(`${updateMessage.modifiedCount} user document was updated: ${participants}`);
+      console.log(`${updateMessage.modifiedCount} user document was updated: ${participantsEmails}`);
     } else {
       //need to test this when passing in array of partipcants
-      console.log(`${updateMessage.modifiedCount} user documents were updated: ${participants}`);
+      console.log(`${updateMessage.modifiedCount} user documents were updated: ${participantsEmails}`);
     }
     return next();
 
