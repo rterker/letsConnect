@@ -15,7 +15,7 @@ const BodyContainer = ({ user, BASE_URL, activeAppointmentId, appointments, prev
     return (
       <section className="flex flex-col justify-start items-center bg-[#e7e6e1] flex-grow">
         <AddAppointmentButton isInAddMode={isInAddMode} setIsInAddMode={setIsInAddMode} />
-        <AddAppointmentContainer setIsInAddMode={setIsInAddMode} />
+        <AddAppointmentContainer user={user} setIsInAddMode={setIsInAddMode} />
       </section>
     );
   }

@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import config from '../config.js';
 
 //called by: AddAppointmentContainer
-const AddAppointment = ({ setIsInAddMode }) => {
+const AddAppointment = ({ user, setIsInAddMode }) => {
+  const [formData, setFormData] = useState({date: '', subject: '', participants: [user.email], status: 'pending', creator: user.email});
+
   function handleCancel() {
     setIsInAddMode(false);
   }
 
   //TO DO: when save button clicked, save appointment to database and setIsInAddMode to false
-  function handleSave() {
-
+  function handleSave(e) {
+    e.preventDefault();
   }
 
   return (
@@ -21,7 +23,7 @@ const AddAppointment = ({ setIsInAddMode }) => {
 
         </div>
         <div className="flex h-20 justify-center items-center space-x-4 w-full flex bg-[#537791] pt-4 pb-4 border-t-8 border-black">
-          <button className="h-12 w-36 bg-[#c1c0b9] text-xl rounded-lg shadow-lg hover:shadow-xl active:shadow-inner focus:outline-none" onClick={handleSave}>Save</button>
+          <button className="h-12 w-36 bg-[#c1c0b9] text-xl rounded-lg shadow-lg hover:shadow-xl active:shadow-inner focus:outline-none" onClick={(e) => handleSave(e)}>Save</button>
           <button className="h-12 w-36 bg-[#c1c0b9] text-xl rounded-lg shadow-lg hover:shadow-xl active:shadow-inner focus:outline-none" onClick={handleCancel}>Cancel</button>
         </div>
       </form>
