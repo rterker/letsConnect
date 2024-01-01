@@ -33,12 +33,19 @@ const CalendarStart = ({ currentDate, appointments, setActiveDay }) => {
   const totalCells = blankStartCalendarDays.length + calendarDays.length + blankEndCalendarDays.length;
   const gridRows = Math.ceil(totalCells / 7);
 
+  function handleLeftClick() {
+
+  }
+  function handleRightClick() {
+
+  }
+
   return (
     <div className="flex flex-col mx-auto my-auto w-160 h-160 bg-white animate-slideIn">
       <div className="flex justify-between pt-3 pb-3 border-t-2 border-l-2 border-r-2 border-black bg-[#fafafa]">
-        <button className="w-10 bg-[#c1c0b9] text-xl rounded-lg shadow-lg hover:shadow-xl active:shadow-inner focus:outline-none ml-2 cursor-pointer">{'<'}</button>
+        <button className="w-10 bg-[#c1c0b9] text-xl rounded-lg shadow-lg hover:shadow-xl active:shadow-inner focus:outline-none ml-2 cursor-pointer" onClick={handleLeftClick}>{'<'}</button>
         <b className="text-xl">{currentDateObj.monthOfAppointment + 1} / {currentDateObj.yearOfAppointment}</b>
-        <button className="w-10 bg-[#c1c0b9] text-xl rounded-lg shadow-lg hover:shadow-xl active:shadow-inner focus:outline-none mr-2 cursor-pointer">{'>'}</button>
+        <button className="w-10 bg-[#c1c0b9] text-xl rounded-lg shadow-lg hover:shadow-xl active:shadow-inner focus:outline-none mr-2 cursor-pointer" onClick={handleRightClick}>{'>'}</button>
       </div>
       <div className={`grid grid-rows-${gridRows} grid-cols-7 w-full h-full border border-black`}>
         {blankStartCalendarDays}

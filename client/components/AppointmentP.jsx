@@ -2,9 +2,6 @@ import React from "react";
 
 //called by: AppointmentsContainer
 const Appointment = ({ appointment, setActiveAppointmentId, activeAppointmentId, setPreviousActiveAppointmentId }) => {
-
-  //may need to change this logic once appointment dates are being created from the client
-  // const convertedDate = ((appointment.date/1000/60/60) + 5) * 60 * 60 * 1000;
   let date = new Date(appointment.date);
   date = date.toLocaleString('en-US');
 
@@ -22,7 +19,7 @@ const Appointment = ({ appointment, setActiveAppointmentId, activeAppointmentId,
     return (
       <li className="flex bg-[#537791] text-[#f7f6e7] active:bg-[#537791] active:text-[#f7f6e7]">
         <div className="w-full h-11 pl-3 pr-3 pt-2.5 text-left overflow-hidden whitespace-nowrap text-ellipsis cursor-pointer" onClick={(e) => handleClick(e)}> 
-          {date}
+          {appointment.subject}
         </div>
       </li>
     );
