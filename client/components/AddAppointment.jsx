@@ -4,20 +4,19 @@ import adaptValidatePost from '../utils/adaptValidatePost.js';
 //called by: AddAppointmentContainer
 const AddAppointment = ({ user, setIsInAddMode }) => {
   const [formData, setFormData] = useState({date: '', subject: '', participants: '', status: 'pending', creator: user.email});
+
   //TO DO: add some state to update with the response after successful post of new appointment
 
   function handleCancel() {
     setIsInAddMode(false);
   }
 
-  //TO DO: when save button clicked, adapt and validate data, save appointment to database, and setIsInAddMode to false
   function handleSubmit(e) {
     e.preventDefault();
     adaptValidatePost(formData, user, setIsInAddMode);
   }
 
   function handleChange(e) {
-    //TO DO: need to handle adding participants
     const { name, value } = e.target;
     setFormData((prevFormData) => ({...prevFormData, [name]: value }));
   }

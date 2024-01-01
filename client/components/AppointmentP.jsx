@@ -4,9 +4,9 @@ import React from "react";
 const Appointment = ({ appointment, setActiveAppointmentId, activeAppointmentId, setPreviousActiveAppointmentId }) => {
 
   //may need to change this logic once appointment dates are being created from the client
-  const convertedDate = ((appointment.date/1000/60/60) + 5) * 60 * 60 * 1000;
-  let date = new Date(convertedDate);
-  date = date.toLocaleString('en-US', {timeZone: 'America/New_York'});
+  // const convertedDate = ((appointment.date/1000/60/60) + 5) * 60 * 60 * 1000;
+  let date = new Date(appointment.date);
+  date = date.toLocaleString('en-US');
 
   function handleClick(e) {
     setPreviousActiveAppointmentId(activeAppointmentId);
