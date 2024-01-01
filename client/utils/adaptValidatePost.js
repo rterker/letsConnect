@@ -29,6 +29,7 @@ const adaptValidatePost = async (formData, user, setIsInAddMode) => {
       console.log('New Appointment successfully created: \n' + JSON.stringify(responseJson, null, 2));
       setIsInAddMode(false);   
     } else {
+      console.log('Status code: ', responseStatus);
       console.log('Issue occured during new appointment creation in adaptValidatePost');
     }
     

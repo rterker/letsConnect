@@ -1,19 +1,12 @@
 import React, { useState } from "react";
 
-//called by: DaysDetails
-const DailyAppointment = ({ appointment }) => {
-  const [isClicked, setIsClicked] = useState(false);
+//called by: ActiveDay
+const DailyAppointment = ({ appointment, setClickedAppointment }) => {
   const { date, subject, participants, status, creator, createdAt} = appointment;
   let formattedDate = new Date(date).toLocaleString();
 
   function handleClick() {
-    setIsClicked(true);
-  }
-
-  if (isClicked) {
-    //TO DO:
-    //render new component for editing and viewing appointment details
-    //pass setIsClicked as a prop, so we can set to false, which will cause this to rerender and close the clicked component
+    setClickedAppointment(appointment);
   }
 
   return (
