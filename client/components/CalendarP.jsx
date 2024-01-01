@@ -24,8 +24,13 @@ const Calendar = ({ currentDate, setCurrentDate, appointments, setActiveDay }) =
   //TO DO: add a unique key prop to each CalendarDay for react optimization
   const calendarDays = [];
   for (let i = 1; i < daysInMonth + 1; i++) {
-    const appointmentsForDay = getAppointmentsForDay(i, currentMonthAppointments);
-    calendarDays.push(<CalendarDay dateOfMonth={i} appointmentsForDay={appointmentsForDay} setActiveDay={setActiveDay}/>);
+    const dateObj = {
+      day: i,
+      month: currentDateObj.monthOfAppointment,
+      year: currentDateObj.yearOfAppointment
+    };
+    const appointmentsForDay = getAppointmentsForDay(dateObj, currentMonthAppointments);
+    calendarDays.push(<CalendarDay day={i} year={currentDateObj.yearOfAppointment} month={currentDateObj.monthOfAppointment} appointmentsForDay={appointmentsForDay} setActiveDay={setActiveDay} />);
   }
   //TO DO: add a unique key prop to each CalendarDay for react optimization
   const blankEndCalendarDays = [];

@@ -4,6 +4,7 @@ import React from "react";
 const Appointment = ({ appointment, activeDay, setActiveDay }) => {
   let date = new Date(appointment.date);
   date = date.toLocaleString('en-US');
+  console.log('ActiveDay in Appointment: ', activeDay)
 
   function handleClick(e) {
 

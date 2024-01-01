@@ -1,18 +1,22 @@
 import React from "react";
 import Dot from "./DotP.jsx";
 
-//called by: CalendarStart, Calendar
-const CalendarDay = ({ dateOfMonth, appointmentsForDay, setActiveDay }) => {
+//called by: Calendar
+const CalendarDay = ({ day, year, month, appointmentsForDay, setActiveDay }) => {
   function handleClick(e) {
     if (appointmentsForDay.length > 0) {
-      setActiveDay(dateOfMonth);
+      setActiveDay({
+        month,
+        day,
+        year
+      });
     }
   }
   
   if (!appointmentsForDay) {
     return (
       <div className="bg-[#fafafa] border border-black">
-        {dateOfMonth}
+        {day}
       </div>
     );
   }
@@ -21,7 +25,7 @@ const CalendarDay = ({ dateOfMonth, appointmentsForDay, setActiveDay }) => {
   return (
     <div className="flex flex-col bg-[#fafafa] border border-black cursor-pointer hover:bg-[#c1c0b9] active:bg-[#537791] active:text-[#f7f6e7]" onClick={(e) => handleClick(e)}>
       <div>
-      {dateOfMonth}
+      {day}
       </div>
       <div className="flex grow justify-center items-center gap-1">
         {appointmentsForDay.map(appt => {

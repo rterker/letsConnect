@@ -1,9 +1,9 @@
 import dateUtil from "./dateUtil";
 
-//takes a number for date 1 to 31
-export default function getAppointmentsForDay(date, appointments) {
+//takes an object with day, month, year as properties
+export default function getAppointmentsForDay(dateObj, appointments) {
   return appointments.filter(appt => {
     const apptDate = new dateUtil(appt.date);
-    return (apptDate.dayOfAppointment === date);
+    return (apptDate.dayOfAppointment === dateObj.day && apptDate.monthOfAppointment === dateObj.month && apptDate.yearOfAppointment === dateObj.year);
   });
 }

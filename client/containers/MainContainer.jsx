@@ -11,7 +11,7 @@ const MainContainer = () => {
   const [isUserLoading, setIsUserLoading] = useState(true);
   const [isAppointmentsLoading, setIsAppointmentsLoading] = useState(true);
   const [appointments, setAppointments] = useState([]);
-  const [activeDay, setActiveDay] = useState(null);
+  const [activeDay, setActiveDay] = useState(null); //MOVE THIS TO CALENDAR CONTAINER IF I DON'T NEED IN APPOINTMENT CONTAINER
 
   useEffect(() => {
     const controller = new AbortController();

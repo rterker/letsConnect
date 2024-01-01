@@ -8,6 +8,7 @@ const CalendarContainer = ({ currentDate, setCurrentDate, appointments, setActiv
   // const containerKey = activeAppointment ? activeAppointment._id : 'no-appointment';
   
   //date on calendar is clicked
+  //TO DO: NEED TO CHANGE ACTIVE DAY TO ACCOUNT FOR THE ACTUAL DATE ALSO, NOT JUST HTE DAY
   if (activeDay) {
     const dailyAppointments = getAppointmentsForDay(activeDay, appointments);
     return (
