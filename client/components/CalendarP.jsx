@@ -6,6 +6,9 @@ import getAppointmentsForMonth from '../utils/getAppointmentsForMonth.js'
 
 //called by: CalendarContainer
 const Calendar = ({ activeAppointment, appointments, setActiveDay }) => {
+  //activeAppointment.date is a string
+  console.log('Calendar re-render')
+  //getAppointmentsForMonth only cares about year and month, not day
   const currentMonthAppointments = getAppointmentsForMonth(activeAppointment.date, appointments);
   const apptDate = new dateUtil(activeAppointment.date);
 

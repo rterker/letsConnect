@@ -1,11 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import CalendarDay from "./CalendarDayP.jsx";
 import dateUtil from "../utils/dateUtil.js";
 import getAppointmentsForDay from '../utils/getAppointmentsForDay.js'
 import getAppointmentsForMonth from '../utils/getAppointmentsForMonth.js'
 
 //called by: BodyContainer
-const CalendarStart = ({ currentDate, appointments, setActiveDay }) => {
+const CalendarStart = ({ currentDate, setCurrentDate, appointments, setActiveDay }) => {
+  //currentDate is a string
+  console.log('CalendarStart re-render')
+  //getAppointmentsForMonth only cares about year and month, not day
   const currentMonthAppointments = getAppointmentsForMonth(currentDate, appointments);
   const currentDateObj = new dateUtil(currentDate);
 
@@ -13,18 +16,18 @@ const CalendarStart = ({ currentDate, appointments, setActiveDay }) => {
   const startDay = dateUtil.getFirstDayOfMonth(currentDateObj.yearOfAppointment, currentDateObj.monthOfAppointment);
   const endDay = dateUtil.getLastDayOfMonth(currentDateObj.yearOfAppointment, currentDateObj.monthOfAppointment);
 
-  //add a unique key prop to each CalendarDay for react optimization
+  //TO DO: add a unique key prop to each CalendarDay for react optimization
   const blankStartCalendarDays = [];
   for (let i = 0; i < startDay; i++) {
     blankStartCalendarDays.push(<CalendarDay />);  
   }
-  //add a unique key prop to each CalendarDay for react optimization
+  //TO DO: add a unique key prop to each CalendarDay for react optimization
   const calendarDays = [];
   for (let i = 1; i < daysInMonth + 1; i++) {
     const appointmentsForDay = getAppointmentsForDay(i, currentMonthAppointments);
     calendarDays.push(<CalendarDay dateOfMonth={i} appointmentsForDay={appointmentsForDay} setActiveDay={setActiveDay}/>);
   }
-  //add a unique key prop to each CalendarDay for react optimization
+  //TO DO: add a unique key prop to each CalendarDay for react optimization
   const blankEndCalendarDays = [];
   for (let i = endDay + 1; i < 7; i++) {
     blankEndCalendarDays.push(<CalendarDay />);  
@@ -34,10 +37,16 @@ const CalendarStart = ({ currentDate, appointments, setActiveDay }) => {
   const gridRows = Math.ceil(totalCells / 7);
 
   function handleLeftClick() {
-
+    const date = new Date(currentDate);
+    const newMonth = date.getMonth() - 1;
+    date.setMonth(newMonth, 1);
+    setCurrentDate(date.toString());
   }
   function handleRightClick() {
-
+    const date = new Date(currentDate);
+    const newMonth = date.getMonth() + 1;
+    date.setMonth(newMonth, 28);
+    setCurrentDate(date.toString());
   }
 
   return (

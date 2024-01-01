@@ -6,9 +6,10 @@ import AddAppointmentContainer from "../components/AddAppointmentContainerP.jsx"
 
 //called by: MainContainer
 const BodyContainer = ({ user, BASE_URL, activeAppointmentId, appointments, previousActiveAppointmentId }) => {
+  console.log('BodyContainer re-render')
   const [activeDay, setActiveDay] = useState(null);
   const [isInAddMode, setIsInAddMode] = useState(false);
-  const currentDate = Date();
+  const [currentDate, setCurrentDate] = useState(Date());
 
 
   if (isInAddMode) {
@@ -25,7 +26,7 @@ const BodyContainer = ({ user, BASE_URL, activeAppointmentId, appointments, prev
     return (
       <section className="flex flex-col justify-start items-center bg-[#e7e6e1] flex-grow">
         <AddAppointmentButton isInAddMode={isInAddMode} setIsInAddMode={setIsInAddMode} />
-        <CalendarStart currentDate={currentDate} appointments={appointments} setActiveDay={setActiveDay}/>
+        <CalendarStart currentDate={currentDate} setCurrentDate={setCurrentDate} appointments={appointments} setActiveDay={setActiveDay}/>
       </section>
     );
   }
