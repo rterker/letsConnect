@@ -60,10 +60,10 @@ const MainContainer = () => {
   }
 
   return (
-    <>
+    <div className="flex h-full w-full bg-[#e7e6e1]">
       <AppointmentsContainer user={user} BASE_URL={BASE_URL} appointments={appointments} activeDay={activeDay} setActiveDay={setActiveDay} />
       <BodyContainer user={user} BASE_URL={BASE_URL} appointments={appointments} activeDay={activeDay} setActiveDay={setActiveDay}/>
-    </>
+    </div>
   );
 
 }

@@ -32,11 +32,21 @@ module.exports = {
         slideOut: {
           '0%': {transform: 'translateX(0%)'},
           '100%': {transform: 'translateX(100vw)'}
+        },
+        fadeIn: {
+          '0%': {opacity: 0},
+          '100%': {opacity: 1}
+        },
+        sideBarSlideIn: {
+          '0%': {transform: 'translateX(-100%)'},
+          '100%': {transform: 'translateX(0%)'}
         }
       },
       animation: {
         slideIn: 'slideIn 0.75s ease-in-out forwards',
-        slideOut: 'slideOut 0.75s ease-in-out forwards'
+        slideOut: 'slideOut 0.75s ease-in-out forwards',
+        fadeIn: 'fadeIn 0.2s ease forwards',
+        sideBarSlideIn: 'sideBarSlideIn 0.3s ease-in forwards'
       }
     },
   },

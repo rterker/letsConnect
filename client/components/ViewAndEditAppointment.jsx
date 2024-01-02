@@ -17,7 +17,7 @@ const ViewAndEditAppointment = ({ appointment, inEditMode }) => {
   
   if (inEditMode) {
     return (
-    <form className="flex flex-col p-4 h-full border border-black bg-[#e7e6e1]">
+    <form className="flex flex-col p-4 h-full border border-black bg-[#e7e6e1] animate-fadeIn">
       <label htmlFor="date"><u>Date</u>: </label>
       <input name="date" type="text" value={formattedDate} required/>
       <label htmlFor="subject"><u>Subject</u>: </label>
@@ -33,7 +33,7 @@ const ViewAndEditAppointment = ({ appointment, inEditMode }) => {
   }
 
   return (
-    <div className="p-4 h-full border border-black bg-[#e7e6e1]">
+    <div className="p-4 h-full border border-black bg-[#e7e6e1] animate-fadeIn">
       <p><u>Date</u>: {formattedDate}</p>
       <p className="overflow-hidden whitespace-nowrap text-ellipsis"><u>Subject</u>: {subject}</p>
       <p className="overflow-hidden whitespace-nowrap text-ellipsis"><u>Participants</u>: {participants.map((participant, i) => {

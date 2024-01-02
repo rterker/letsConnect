@@ -11,9 +11,7 @@ const CalendarContainer = ({ currentDate, setCurrentDate, appointments, setActiv
   if (activeDay?.day) {
     const dailyAppointments = getAppointmentsForDay(activeDay, appointments);
     return (
-      <div className="w-160 h-160 mx-auto my-auto ">
         <ActiveDay dailyAppointments={dailyAppointments} setActiveDay={setActiveDay}/>
-      </div>
     );
   }
 

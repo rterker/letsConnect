@@ -12,7 +12,7 @@ const BodyContainer = ({ user, BASE_URL, appointments, activeDay, setActiveDay }
 
   if (isInAddMode) {
     return (
-      <section className="flex flex-col justify-start items-center bg-[#e7e6e1] flex-grow">
+      <section className="flex flex-col justify-start items-center flex-grow">
         <AddAppointmentButton isInAddMode={isInAddMode} setIsInAddMode={setIsInAddMode} />
         <AddAppointmentContainer user={user} setIsInAddMode={setIsInAddMode} />
       </section>
@@ -20,7 +20,7 @@ const BodyContainer = ({ user, BASE_URL, appointments, activeDay, setActiveDay }
   }
   
   return (
-    <section className="flex flex-col justify-start items-center bg-[#e7e6e1] flex-grow">
+    <section className="flex flex-col justify-start items-center flex-grow">
       <AddAppointmentButton isInAddMode={isInAddMode} setIsInAddMode={setIsInAddMode} />
       <CalendarContainer currentDate={currentDate} setCurrentDate={setCurrentDate} appointments={appointments} setActiveDay={setActiveDay} activeDay={activeDay}/>
     </section>
