@@ -66,9 +66,27 @@ appointmentController.getUserListOfAppointments = async (req, res, next) => {
 
 }
 
-appointmentController.updateAppointment = async (req, res, next) => {
-  //req.body will contain the appointment object
+appointmentController.updateAppointmentWithoutChangingStatus = async (req, res, next) => {
+  //req.body will contain the appointment object with shape: { date, subject, [participants], status, creator, _id, createdAt, __v }
   const appointmentUpdate = req.body;
+  console.log('appointmentUpdate  in appointmentController.updateAppointment before update:', appointmentUpdate)
+
+  const { date, subject, participants, status, _id: appointmentId } = appointmentUpdate;
+  const update = { $set: {date, subject, participants}};
+
+  try {
+    const updatedAppointment = await Appointment.findOneAndUpdate({_id: appointmentId}, update, {new: true});
+    console.log('updatedAppointment in appointmentController.updateAppointment after update:', updatedAppointment)
+    res.locals.updatedAppointment = updatedAppointment;
+    next();
+
+  } catch (err) {
+    return next({
+      log: `The following middleware error occured in appointmentController.updateAppointmentWithoutChangingStatus: ${err}`,
+      status: 500,
+      message: {err: err}
+    });
+  }
 
 };
 
