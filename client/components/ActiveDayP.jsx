@@ -4,7 +4,7 @@ import ViewAndEditAppointment from "./ViewAndEditAppointment.jsx";
 import adaptValidateUpdateAppt from '../utils/adaptValidateUpdateAppt.js';
 
 //called by: CalendarContainer
-const ActiveDay = ({ dailyAppointments, setActiveDay }) => {
+const ActiveDay = ({ dailyAppointments, setAppointments, setActiveDay }) => {
   const [clickedAppointment, setClickedAppointment] = useState(null);
   console.log('clickedAppointment:', clickedAppointment)
   const [inEditMode, setInEditMode] = useState(false);
@@ -24,7 +24,7 @@ const ActiveDay = ({ dailyAppointments, setActiveDay }) => {
   //TO DO: need to submit fetch with this save
   function handleSaveClick(e) {
     e.preventDefault();
-    adaptValidateUpdateAppt(clickedAppointment);
+    adaptValidateUpdateAppt(clickedAppointment, setAppointments);
     setInEditMode(false);
   }
 

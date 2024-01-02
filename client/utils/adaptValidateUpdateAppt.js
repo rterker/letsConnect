@@ -2,7 +2,7 @@ import config from '../config.js';
 
 //called by: ActiveDAy
 //possible input: dates can be comma separated in the format MM/DD/YY @ {HH:MM, HH:MM}'. backend expecting date in format YYYY-MM-DDTHH:MM:SSZ
-const adaptValidateUpdateAppt = async (formData, user) => {
+const adaptValidateUpdateAppt = async (formData, setAppointments) => {
   console.log('adaptValidateUpdate invoked')
   //input values for forms are type string
   const copyOfData = {...formData};
@@ -28,6 +28,16 @@ const adaptValidateUpdateAppt = async (formData, user) => {
     console.log('updated appointment json:', updatedAppointment)
 
     if (responseStatus === 200) {
+      //this set lets the sidebar update immediately after edit
+      setAppointments((prevAppointments) => {
+        const newAppointmentList = [...prevAppointments];
+        console.log('appointment list before update in adaptValidateUpdateAppt:', newAppointmentList)
+        const index = newAppointmentList.findIndex(el => el._id === updatedAppointment._id);
+        console.log('index of updated appointment in appointment list in adaptValidateUpdateAppt:', index)
+        //update that index with new appointment
+        newAppointmentList[index] = updatedAppointment;
+        return newAppointmentList;
+      });
       console.log('Appointment successfully updated: \n' + JSON.stringify(updatedAppointment, null, 2)); 
     } else {
       console.log('Status code: ', responseStatus);

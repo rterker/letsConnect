@@ -5,7 +5,7 @@ import AddAppointmentButton from "../components/AddAppointmentButtonP.jsx";
 import AddAppointmentContainer from "../components/AddAppointmentContainerP.jsx";
 
 //called by: MainContainer
-const BodyContainer = ({ user, BASE_URL, appointments, activeDay, setActiveDay }) => {
+const BodyContainer = ({ user, BASE_URL, appointments, setAppointments, activeDay, setActiveDay }) => {
   console.log('BodyContainer re-render')
   const [isInAddMode, setIsInAddMode] = useState(false);
   const [currentDate, setCurrentDate] = useState(Date());
@@ -15,7 +15,7 @@ const BodyContainer = ({ user, BASE_URL, appointments, activeDay, setActiveDay }
     return (
       <section className="flex flex-col justify-start items-center flex-grow">
         <AddAppointmentButton isInAddMode={isInAddMode} setIsInAddMode={setIsInAddMode} />
-        <AddAppointmentContainer user={user} setIsInAddMode={setIsInAddMode} />
+        <AddAppointmentContainer user={user} setAppointments={setAppointments} setIsInAddMode={setIsInAddMode} />
       </section>
     );
   }
@@ -23,7 +23,7 @@ const BodyContainer = ({ user, BASE_URL, appointments, activeDay, setActiveDay }
   return (
     <section className="flex flex-col justify-start items-center flex-grow">
       <AddAppointmentButton isInAddMode={isInAddMode} setIsInAddMode={setIsInAddMode} />
-      <CalendarContainer currentDate={currentDate} setCurrentDate={setCurrentDate} appointments={appointments} setActiveDay={setActiveDay} activeDay={activeDay}/>
+      <CalendarContainer currentDate={currentDate} setCurrentDate={setCurrentDate} appointments={appointments} setAppointments={setAppointments} setActiveDay={setActiveDay} activeDay={activeDay}/>
     </section>
   );
 }

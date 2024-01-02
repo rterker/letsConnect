@@ -2,7 +2,7 @@ import config from '../config.js';
 
 //called by: AddAppointment
 //possible input: dates can be comma separated in the format MM/DD/YY @ {HH:MM, HH:MM}'. backend expecting date in format YYYY-MM-DDTHH:MM:SSZ
-const adaptValidatePostAppt = async (formData, user) => {
+const adaptValidatePostAppt = async (formData, setAppointments) => {
   console.log('adaptValidatePost invoked')
   //input values for forms are type string
   const copyOfData = {...formData};
@@ -26,6 +26,14 @@ const adaptValidatePostAppt = async (formData, user) => {
     console.log('createdAppointment json response:', createdAppointment)
 
     if (responseStatus === 200) {
+      //this set lets the sidebar update immediately after appointment created
+      setAppointments((prevAppointments) => {
+        const newAppointmentList = [...prevAppointments];
+        console.log('appointment list before create in adaptValidatePostAppt:', newAppointmentList)
+        //add new appointment
+        newAppointmentList.push(createdAppointment)
+        return newAppointmentList;
+      });
       console.log('New Appointment successfully created: \n' + JSON.stringify(createdAppointment, null, 2)); 
     } else {
       console.log('Status code: ', responseStatus);

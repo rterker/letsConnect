@@ -3,7 +3,7 @@ import adaptValidatePostAppt from '../utils/adaptValidatePostAppt.js';
 
 //called by: AddAppointmentContainer
 //currently not using user
-const AddAppointment = ({ user, setIsInAddMode }) => {
+const AddAppointment = ({ user, setAppointments, setIsInAddMode }) => {
   const [formData, setFormData] = useState({date: '', subject: '', participants: '', status: 'pending', creator: user.email});
 
   //TO DO: add some state to update with the response after successful post of new appointment
@@ -14,7 +14,7 @@ const AddAppointment = ({ user, setIsInAddMode }) => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    adaptValidatePostAppt(formData, user, setIsInAddMode);
+    adaptValidatePostAppt(formData, setAppointments);
     setIsInAddMode(false);  
   }
 
