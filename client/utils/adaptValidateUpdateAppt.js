@@ -15,7 +15,7 @@ const adaptValidateUpdateAppt = async (formData, user) => {
   let responseJson;
 
   try {
-    response = await fetch(`${config.DEV_BASE_URL}/appointment`, {
+    response = await fetch(`${config.DEV_BASE_URL}/appointment/${formData._id}`, {
       method: 'PATCH',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(copyOfData)

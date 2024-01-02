@@ -67,7 +67,7 @@ appointmentController.getUserListOfAppointments = async (req, res, next) => {
 }
 
 appointmentController.updateAppointment = async (req, res, next) => {
-  //req.body should contain the id of the appointment
+  //req.body will contain the appointment object
   const appointmentUpdate = req.body;
 
 };

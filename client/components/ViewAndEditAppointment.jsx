@@ -1,18 +1,13 @@
 import React, { useState } from "react";
 
 //called by: ActiveDay
-const ViewAndEditAppointment = ({ clickedAppointment, inEditMode }) => {
-  // const { date, subject, participants, status, creator, createdAt} = clickedAppointment;
-  // let formattedDate = new Date(date).toLocaleString();
-  let formattedDate = new Date(clickedAppointment.date).toLocaleString();
-  const appointmentCopy = {...clickedAppointment, date: formattedDate};
-  const [appointmentData, setAppointmentData] = useState(appointmentCopy);
-  const { date, subject, participants, status, creator, createdAt} = appointmentData;
+const ViewAndEditAppointment = ({ clickedAppointment, setClickedAppointment, inEditMode }) => {
+  const { date, subject, participants, status, creator, createdAt} = clickedAppointment;
 
   //TO DO: set a flag for creator to only allow editing if you're the creator
   function handleChange(e) {
     const { name, value } = e.target;
-    setAppointmentData((prevFormData) => ({...prevFormData, [name]: value }));
+    setClickedAppointment((prevFormData) => ({...prevFormData, [name]: value }));
   }
 
   //remember to add onChange for input fields we need to edit

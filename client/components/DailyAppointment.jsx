@@ -6,7 +6,7 @@ const DailyAppointment = ({ appointment, setClickedAppointment }) => {
   let formattedDate = new Date(date).toLocaleString();
 
   function handleClick() {
-    setClickedAppointment(appointment);
+    setClickedAppointment({...appointment, date: formattedDate});
   }
 
   return (
