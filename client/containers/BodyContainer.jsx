@@ -6,6 +6,7 @@ import AddAppointmentContainer from "../components/AddAppointmentContainerP.jsx"
 
 //called by: MainContainer
 const BodyContainer = ({ user, BASE_URL, appointments, activeDay, setActiveDay }) => {
+  console.log('BodyContainer re-render')
   const [isInAddMode, setIsInAddMode] = useState(false);
   const [currentDate, setCurrentDate] = useState(Date());
 

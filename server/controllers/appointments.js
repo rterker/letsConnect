@@ -3,7 +3,9 @@ const { Appointment } = require('../models/models');
 const appointmentController = {};
 
 appointmentController.createAppointment =  async (req, res, next) => {
+  console.log('appointmentController.createAppointment invoked')
   const newAppointment = req.body;
+  console.log('newAppointment:', newAppointment)
   
   try {
     const createdAppointment = await Appointment.create(newAppointment);

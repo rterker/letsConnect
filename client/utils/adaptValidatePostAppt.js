@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from "react";
 import config from '../config.js';
 
 //called by: AddAppointment
 //possible input: dates can be comma separated in the format MM/DD/YY @ {HH:MM, HH:MM}'
-const adaptValidatePost = async (formData, user, setIsInAddMode) => {
+const adaptValidatePostAppt = async (formData, user) => {
+  console.log('adaptValidatePost invoked')
   //input values for forms are type string
   const copyOfData = {...formData};
   const { participants } = copyOfData;
 
-  //handle single participant or array or participants
   copyOfData.participants = participants.split(',').map(participant => participant.trim());
 
   let response;
@@ -26,11 +25,10 @@ const adaptValidatePost = async (formData, user, setIsInAddMode) => {
     responseJson = await response.json();
 
     if (responseStatus === 200) {
-      console.log('New Appointment successfully created: \n' + JSON.stringify(responseJson, null, 2));
-      setIsInAddMode(false);   
+      console.log('New Appointment successfully created: \n' + JSON.stringify(responseJson, null, 2)); 
     } else {
       console.log('Status code: ', responseStatus);
-      console.log('Issue occured during new appointment creation in adaptValidatePost');
+      console.log('Issue occured during new appointment creation in adaptValidatePostAppt');
     }
     
     // this is how a successful responseJson looks
@@ -49,10 +47,10 @@ const adaptValidatePost = async (formData, user, setIsInAddMode) => {
     // }
 
   } catch (err) {
-    console.log(`The following error occured in AddAppointment while attempting to add a new appointment: ${err}`);
+    console.log(`The following error occured in adaptValidatePostAppt while attempting to add a new appointment: ${err}`);
   }
 
-  //handle response
+
   //TO DO: need to do something with the returned appointment to update the client side
   
 
@@ -60,4 +58,4 @@ const adaptValidatePost = async (formData, user, setIsInAddMode) => {
   
 }
 
-export default adaptValidatePost
+export default adaptValidatePostAppt

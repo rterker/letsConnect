@@ -7,6 +7,7 @@ const BASE_URL = config.DEV_BASE_URL;
 const userId = config.TESTING_USER_ID;
 
 const MainContainer = () => {
+  console.log('MainContainer re-render')
   const [user, setUser] = useState({});
   const [isUserLoading, setIsUserLoading] = useState(true);
   const [isAppointmentsLoading, setIsAppointmentsLoading] = useState(true);

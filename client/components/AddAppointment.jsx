@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
-import adaptValidatePost from '../utils/adaptValidatePost.js';
+import adaptValidatePostAppt from '../utils/adaptValidatePostAppt.js';
 
 //called by: AddAppointmentContainer
+//currently not using user
 const AddAppointment = ({ user, setIsInAddMode }) => {
   const [formData, setFormData] = useState({date: '', subject: '', participants: '', status: 'pending', creator: user.email});
 
@@ -13,7 +14,8 @@ const AddAppointment = ({ user, setIsInAddMode }) => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    adaptValidatePost(formData, user, setIsInAddMode);
+    adaptValidatePostAppt(formData, user, setIsInAddMode);
+    setIsInAddMode(false);  
   }
 
   function handleChange(e) {
@@ -34,7 +36,7 @@ const AddAppointment = ({ user, setIsInAddMode }) => {
         <input type="text" id="participants" name="participants" value={formData.participants} onChange={(e) => handleChange(e)} required/>
         </div>
         <div className="flex h-20 justify-center items-center space-x-4 w-full flex bg-[#537791] pt-4 pb-4 border-t-8 border-black">
-          <button type="submit" className="h-12 w-36 bg-[#c1c0b9] text-xl rounded-lg shadow-lg hover:shadow-xl active:shadow-inner focus:outline-none" onSubmit={(e) => handleSubmit(e)}>Save</button>
+          <button type="submit" className="h-12 w-36 bg-[#c1c0b9] text-xl rounded-lg shadow-lg hover:shadow-xl active:shadow-inner focus:outline-none" onClick={(e) => handleSubmit(e)}>Save</button>
           <button className="h-12 w-36 bg-[#c1c0b9] text-xl rounded-lg shadow-lg hover:shadow-xl active:shadow-inner focus:outline-none" onClick={handleCancel}>Cancel</button>
         </div>
       </form>
@@ -43,3 +45,5 @@ const AddAppointment = ({ user, setIsInAddMode }) => {
 }
 
 export default AddAppointment;
+
+ 

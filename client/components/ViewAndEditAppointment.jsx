@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 
 //called by: ActiveDay
-const ViewAndEditAppointment = ({ appointment, inEditMode }) => {
-  // const { date, subject, participants, status, creator, createdAt} = appointment;
+const ViewAndEditAppointment = ({ clickedAppointment, inEditMode }) => {
+  // const { date, subject, participants, status, creator, createdAt} = clickedAppointment;
   // let formattedDate = new Date(date).toLocaleString();
-  let formattedDate = new Date(appointment.date).toLocaleString();
-  const appointmentCopy = {...appointment, date: formattedDate};
+  let formattedDate = new Date(clickedAppointment.date).toLocaleString();
+  const appointmentCopy = {...clickedAppointment, date: formattedDate};
   const [appointmentData, setAppointmentData] = useState(appointmentCopy);
   const { date, subject, participants, status, creator, createdAt} = appointmentData;
 

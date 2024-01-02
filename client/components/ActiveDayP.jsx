@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import DailyAppointment from './DailyAppointment.jsx';
 import ViewAndEditAppointment from "./ViewAndEditAppointment.jsx";
+import adaptValidateUpdateAppt from '../utils/adaptValidateUpdateAppt.js';
 
 //called by: CalendarContainer
 const ActiveDay = ({ dailyAppointments, setActiveDay }) => {
@@ -20,7 +21,9 @@ const ActiveDay = ({ dailyAppointments, setActiveDay }) => {
 
   //TO DO: may need to set other state here like activeday and clicked appointment
   //TO DO: need to submit fetch with this save
-  function handleSaveClick() {
+  function handleSaveClick(e) {
+    e.preventDefault();
+    adaptValidateUpdateAppt
     setInEditMode(false);
   }
 
@@ -37,12 +40,12 @@ const ActiveDay = ({ dailyAppointments, setActiveDay }) => {
       <div className="flex justify-center items-center min-w-full min-h-full border-8 border-black bg-black rounded-lg">
         <div className="flex flex-col h-160 w-160 ">
           <div className="h-full w-full bg-black overflow-auto snap-y snap-mandatory rounded-lg">
-            {clickedAppointment ? <ViewAndEditAppointment appointment={clickedAppointment} inEditMode={inEditMode} /> : dailyAppointments.map(appt => <DailyAppointment appointment={appt} setClickedAppointment={setClickedAppointment} />)}
+            {clickedAppointment ? <ViewAndEditAppointment clickedAppointment={clickedAppointment} inEditMode={inEditMode} /> : dailyAppointments.map(appt => <DailyAppointment appointment={appt} setClickedAppointment={setClickedAppointment} />)}
           </div>
             <div className="flex h-20 justify-center items-center w-full flex bg-[#537791] pt-4 pb-4 border-t-8 border-black">
               <button className={`h-12 w-36 ${innerMarginR} bg-[#c1c0b9] text-xl rounded-lg shadow-lg hover:shadow-xl active:shadow-inner focus:outline-none"`} onClick={handleCancelClick}>Cancel</button>
               {(clickedAppointment && !inEditMode) && <button className={`h-12 w-36  ${innerMarginL} bg-[#c1c0b9] text-xl rounded-lg shadow-lg hover:shadow-xl active:shadow-inner focus:outline-none`} onClick={handleEditClick}>Edit</button>}
-              {inEditMode && <button className={`h-12 w-36  ${innerMarginL} bg-[#c1c0b9] text-xl rounded-lg shadow-lg hover:shadow-xl active:shadow-inner focus:outline-none`} onClick={handleSaveClick}>Save</button>}
+              {inEditMode && <button className={`h-12 w-36  ${innerMarginL} bg-[#c1c0b9] text-xl rounded-lg shadow-lg hover:shadow-xl active:shadow-inner focus:outline-none`} onClick={(e) => handleSaveClick(e)}>Save</button>}
             </div>
         </div>
       </div>
