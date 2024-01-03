@@ -18,7 +18,7 @@ const adaptValidatePostAppt = async (user, formData, setAppointments) => {
   copyOfData.potentialDates = [
     {
       userId,
-      potentialDates
+      availabilities: potentialDates
     }
   ];
 
