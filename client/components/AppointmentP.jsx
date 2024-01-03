@@ -4,27 +4,34 @@ import React from "react";
 const isClickedAppointment = signal(null);
 
 //called by: AppointmentsContainer
-const Appointment = ({ appointment, activeDay, setActiveDay }) => {
+const Appointment = ({ appointment, activeDay, setActiveDay, setClickedAppointment }) => {
   //TO DO: need to make sure that activeDay is only set here when appointment is confirmed
 
+  //TO DO: remove active day setting from this component
 
   if (!activeDay) isClickedAppointment.value = null;
 
-  const date = new Date(appointment.date);
-  const dateString = date.toLocaleString('en-US');
-  const apptMonth = date.getMonth();
-  const apptDay = date.getDate();
-  const apptYear = date.getFullYear();
+  // const date = new Date(appointment.date);
+  // const dateString = date.toLocaleString('en-US');
+  // const apptMonth = date.getMonth();
+  // const apptDay = date.getDate();
+  // const apptYear = date.getFullYear();
 
   function handleClick(e) {
     if (!isClickedAppointment.value) isClickedAppointment.value = JSON.stringify(appointment);
     else if (JSON.stringify(appointment) !== JSON.stringify(isClickedAppointment.value.appointment)) isClickedAppointment.value = JSON.stringify(appointment);
 
-    setActiveDay({
-      day: apptDay,
-      month: apptMonth,
-      year: apptYear
-    });
+    setClickedAppointment(appointment);
+
+    //TO DO: will need to refactor. this should be setting an object with day, month, year; however for now we're just setting to true, so the view and edit modal
+    //opens up on clicking the appointment
+    setActiveDay(true);
+
+    // setActiveDay({
+    //   day: apptDay,
+    //   month: apptMonth,
+    //   year: apptYear
+    // });
   }
 
   if (isClickedAppointment.value === JSON.stringify(appointment)) {

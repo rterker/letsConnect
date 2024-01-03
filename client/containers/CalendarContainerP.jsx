@@ -5,19 +5,18 @@ import getConfirmedAppointmentsForDay from '../utils/getConfirmedAppointmentsFor
 import getPendingAppointmentsForDay from '../utils/getPendingAppointmentsForDay.js';
 
 //called by: BodyContainer
-const CalendarContainer = ({ user, currentDate, setCurrentDate, appointments, setAppointments, setActiveDay, activeDay }) => {
+const CalendarContainer = ({ user, currentDate, setCurrentDate, appointments, setAppointments, setActiveDay, activeDay, clickedAppointment, setClickedAppointment }) => {
   console.log('activeDay in CalendarContainer:', activeDay)
 
   // const containerKey = activeAppointment ? activeAppointment._id : 'no-appointment';
   
-  //date on calendar is clicked
-  //TO DO: we want all appointments for that day not confirmed only
-  if (activeDay?.day) {
+  //date on calendar is clicked OR sidebar appointment is clicked
+  if (activeDay) {
     const { _id: userId } = user;
     const confirmedAppointments = getConfirmedAppointmentsForDay(activeDay, appointments);
     const pendingAppointments = getPendingAppointmentsForDay(userId, activeDay, appointments);
     return (
-        <ActiveDay confirmedAppointments={confirmedAppointments} pendingAppointments={pendingAppointments} setAppointments={setAppointments} setActiveDay={setActiveDay}/>
+        <ActiveDay confirmedAppointments={confirmedAppointments} pendingAppointments={pendingAppointments} setAppointments={setAppointments} setActiveDay={setActiveDay} clickedAppointment={clickedAppointment} setClickedAppointment={setClickedAppointment}/>
     );
   }
 
