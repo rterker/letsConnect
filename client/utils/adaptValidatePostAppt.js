@@ -2,14 +2,25 @@ import config from '../config.js';
 
 //called by: AddAppointment
 //possible input: dates can be comma separated in the format MM/DD/YY @ {HH:MM, HH:MM}'. backend expecting date in format YYYY-MM-DDTHH:MM:SSZ
-const adaptValidatePostAppt = async (formData, setAppointments) => {
+const adaptValidatePostAppt = async (user, formData, setAppointments) => {
   console.log('adaptValidatePost invoked')
   //input values for forms are type string
   const copyOfData = {...formData};
   const { participants } = copyOfData;
+  const { _id: userId } = user;
 
   //participants is a string
   copyOfData.participants = participants.split(',').map(participant => participant.trim());
+
+  //potentialDates is a string but this will change later
+  let { potentialDates } = copyOfData;
+  potentialDates = potentialDates.split(',').map(date => date.trim());
+  copyOfData.potentialDates = [
+    {
+      userId,
+      potentialDates
+    }
+  ];
 
   let response;
   let responseStatus;

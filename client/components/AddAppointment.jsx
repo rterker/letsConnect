@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import adaptValidatePostAppt from '../utils/adaptValidatePostAppt.js';
 
 //called by: AddAppointmentContainer
-//currently not using user
 const AddAppointment = ({ user, setAppointments, setIsInAddMode }) => {
   const [formData, setFormData] = useState({subject: '', participants: '', potentialDates: '', status: 'pending', creator: user.email});
 
@@ -14,7 +13,7 @@ const AddAppointment = ({ user, setAppointments, setIsInAddMode }) => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    adaptValidatePostAppt(formData, setAppointments);
+    adaptValidatePostAppt(user, formData, setAppointments);
     setIsInAddMode(false);  
   }
 
