@@ -35,10 +35,16 @@ module.exports = {
     ]
   },
   devServer: {
-    static: {
-      directory: path.join(__dirname, './'),
-      publicPath: '/'
-    },
+    static: [
+      {
+        directory: path.join(__dirname, './'),
+        publicPath: '/'
+      },
+      {
+        directory: path.join(__dirname, './client/assets'),
+        publicPath: '/assets/'
+      },
+    ],
     proxy: {
       '/user': 'http://localhost:3000',
       '/appointment': 'http://localhost:3000'
