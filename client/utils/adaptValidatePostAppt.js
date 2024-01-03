@@ -8,6 +8,7 @@ const adaptValidatePostAppt = async (formData, setAppointments) => {
   const copyOfData = {...formData};
   const { participants } = copyOfData;
 
+  //participants is a string
   copyOfData.participants = participants.split(',').map(participant => participant.trim());
 
   let response;
