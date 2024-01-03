@@ -5,6 +5,8 @@ const isClickedAppointment = signal(null);
 
 //called by: AppointmentsContainer
 const Appointment = ({ appointment, activeDay, setActiveDay }) => {
+  //TO DO: need to make sure that activeDay is only set here when appointment is confirmed
+
 
   if (!activeDay) isClickedAppointment.value = null;
 

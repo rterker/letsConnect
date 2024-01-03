@@ -1,6 +1,6 @@
 import dateUtil from "./dateUtil";
 
-export default function getAppointmentsForMonth(date, appointments) {
+export default function getConfirmedAppointmentsForMonth(date, appointments) {
   const dateObj = new dateUtil(date);
   return appointments.filter(appt => {
     const apptDate = new dateUtil(appt.date);

@@ -29,7 +29,7 @@ const BodyContainer = ({ user, BASE_URL, appointments, setAppointments, activeDa
         <RefreshButton setShouldRefresh={setShouldRefresh}/>
         <AddAppointmentButton isInAddMode={isInAddMode} setIsInAddMode={setIsInAddMode} />
       </div>
-      <CalendarContainer currentDate={currentDate} setCurrentDate={setCurrentDate} appointments={appointments} setAppointments={setAppointments} setActiveDay={setActiveDay} activeDay={activeDay}/>
+      <CalendarContainer user={user} currentDate={currentDate} setCurrentDate={setCurrentDate} appointments={appointments} setAppointments={setAppointments} setActiveDay={setActiveDay} activeDay={activeDay}/>
     </section>
   );
 }
