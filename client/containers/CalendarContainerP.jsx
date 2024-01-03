@@ -16,7 +16,6 @@ const CalendarContainer = ({ user, currentDate, setCurrentDate, appointments, se
     const { _id: userId } = user;
     const confirmedAppointments = getConfirmedAppointmentsForDay(activeDay, appointments);
     const pendingAppointments = getPendingAppointmentsForDay(userId, activeDay, appointments);
-    console.log('pendingAppointments in CalendarContainer:', pendingAppointments)
     return (
         <ActiveDay confirmedAppointments={confirmedAppointments} pendingAppointments={pendingAppointments} setAppointments={setAppointments} setActiveDay={setActiveDay}/>
     );

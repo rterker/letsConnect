@@ -1,7 +1,8 @@
 import config from '../config.js';
 
 //called by: AddAppointment
-//possible input: dates can be comma separated in the format MM/DD/YY @ {HH:MM, HH:MM}'. backend expecting date in format YYYY-MM-DDTHH:MM:SSZ
+//possible input: dates can be comma separated in the format YYYY-MM-DDTHH:MM:SS. backend expecting date in format YYYY-MM-DDTHH:MM:SSZ. LEAVE
+//OFF THE Z, so it means local time. backend will convert to GMT and add the Z
 const adaptValidatePostAppt = async (user, formData, setAppointments) => {
   console.log('adaptValidatePost invoked')
   //input values for forms are type string

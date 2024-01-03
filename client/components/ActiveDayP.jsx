@@ -8,8 +8,8 @@ const ActiveDay = ({ confirmedAppointments, pendingAppointments, setAppointments
   const [clickedAppointment, setClickedAppointment] = useState(null);
   console.log('clickedAppointment:', clickedAppointment)
   const [inEditMode, setInEditMode] = useState(false);
-  //TO DO: useRef to store a copy of the initial clickedAppointment, so that after the edits are made, you can compare to see what needs updating
   const allAppointments = confirmedAppointments.concat(pendingAppointments);
+  //TO DO: useRef to store a copy of the initial clickedAppointment, so that after the edits are made, you can compare to see what needs updating
 
   function handleCancelClick() {
     setActiveDay(null);
