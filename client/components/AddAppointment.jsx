@@ -3,7 +3,7 @@ import adaptValidatePostAppt from '../utils/adaptValidatePostAppt.js';
 
 //called by: AddAppointmentContainer
 const AddAppointment = ({ user, setAppointments, setIsInAddMode }) => {
-  const [formData, setFormData] = useState({subject: '', participants: '', potentialDates: '', status: 'pending', creator: user.email});
+  const [formData, setFormData] = useState({subject: '', participants: '', potentialDates: '', status: 'pending', creator: user.userName});
 
   //TO DO: add some state to update with the response after successful post of new appointment
 

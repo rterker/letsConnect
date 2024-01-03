@@ -5,7 +5,7 @@ import getConfirmedAppointmentsForDay from '../utils/getConfirmedAppointmentsFor
 import getConfirmedAppointmentsForMonth from '../utils/getConfirmedAppointmentsForMonth.js'
 
 //called by: CalendarContainer
-const Calendar = ({ currentDate, setCurrentDate, appointments, setActiveDay }) => {
+const Calendar = ({ currentDate, setCurrentDate, appointments, setActiveDay, setShowAppointments }) => {
   //currentDate is a string
   console.log('Calendar re-render')
   //getConfirmedAppointmentsForMonth only cares about year and month, not day
@@ -31,7 +31,7 @@ const Calendar = ({ currentDate, setCurrentDate, appointments, setActiveDay }) =
       year: currentDateObj.yearOfAppointment
     };
     const appointmentsForDay = getConfirmedAppointmentsForDay(dateObj, currentMonthAppointments);
-    calendarDays.push(<CalendarDay day={i} year={currentDateObj.yearOfAppointment} month={currentDateObj.monthOfAppointment} appointmentsForDay={appointmentsForDay} setActiveDay={setActiveDay} />);
+    calendarDays.push(<CalendarDay day={i} year={currentDateObj.yearOfAppointment} month={currentDateObj.monthOfAppointment} appointmentsForDay={appointmentsForDay} setActiveDay={setActiveDay} setShowAppointments={setShowAppointments} />);
   }
   //TO DO: add a unique key prop to each CalendarDay for react optimization
   const blankEndCalendarDays = [];

@@ -8,7 +8,7 @@ const adaptValidatePostAppt = async (user, formData, setAppointments) => {
   //input values for forms are type string
   const copyOfData = {...formData};
   const { participants } = copyOfData;
-  const { _id: userId } = user;
+  const { userName } = user;
 
   //participants is a string
   copyOfData.participants = participants.split(',').map(participant => participant.trim());
@@ -18,7 +18,7 @@ const adaptValidatePostAppt = async (user, formData, setAppointments) => {
   potentialDates = potentialDates.split(',').map(date => date.trim());
   copyOfData.potentialDates = [
     {
-      userId,
+      userName,
       availabilities: potentialDates
     }
   ];

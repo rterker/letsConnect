@@ -2,13 +2,15 @@ import React from "react";
 import Dot from "./DotP.jsx";
 
 //called by: Calendar
-const CalendarDay = ({ day, year, month, appointmentsForDay, setActiveDay }) => {
+const CalendarDay = ({ day, year, month, appointmentsForDay, setActiveDay, setShowAppointments }) => {
   function handleClick(e) {
       setActiveDay({
         month,
         day,
         year
       });
+      
+      setShowAppointments(true);
   }
   
   if (!appointmentsForDay) {

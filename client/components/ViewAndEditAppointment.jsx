@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 //called by: ActiveDay
 const ViewAndEditAppointment = ({ clickedAppointment, setClickedAppointment, inEditMode }) => {
-  const { date, subject, participants, status, creator, createdAt} = clickedAppointment;
+  const { date, subject, participants, status, creator, potentialDates, createdAt} = clickedAppointment;
 
   //TO DO: set a flag for creator to only allow editing if you're the creator
   function handleChange(e) {

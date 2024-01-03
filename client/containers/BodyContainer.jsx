@@ -5,7 +5,7 @@ import AddAppointmentContainer from "../components/AddAppointmentContainerP.jsx"
 import RefreshButton from "../components/RefreshButton.jsx";
 
 //called by: MainContainer
-const BodyContainer = ({ user, BASE_URL, appointments, setAppointments, activeDay, setActiveDay, setShouldRefresh, clickedAppointment, setClickedAppointment }) => {
+const BodyContainer = ({ user, BASE_URL, appointments, setAppointments, showAppointments, setShowAppointments, setShouldRefresh, clickedAppointment, setClickedAppointment }) => {
   // console.log('BodyContainer re-render')
   const [isInAddMode, setIsInAddMode] = useState(false);
   const [currentDate, setCurrentDate] = useState(Date());
@@ -29,7 +29,7 @@ const BodyContainer = ({ user, BASE_URL, appointments, setAppointments, activeDa
         <RefreshButton setShouldRefresh={setShouldRefresh}/>
         <AddAppointmentButton isInAddMode={isInAddMode} setIsInAddMode={setIsInAddMode} />
       </div>
-      <CalendarContainer user={user} currentDate={currentDate} setCurrentDate={setCurrentDate} appointments={appointments} setAppointments={setAppointments} setActiveDay={setActiveDay} activeDay={activeDay} clickedAppointment={clickedAppointment} setClickedAppointment={setClickedAppointment} />
+      <CalendarContainer user={user} currentDate={currentDate} setCurrentDate={setCurrentDate} appointments={appointments} setAppointments={setAppointments} showAppointments={showAppointments} setShowAppointments={setShowAppointments} clickedAppointment={clickedAppointment} setClickedAppointment={setClickedAppointment} />
     </section>
   );
 }

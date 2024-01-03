@@ -13,9 +13,9 @@ const MainContainer = () => {
   const [isAppointmentsLoading, setIsAppointmentsLoading] = useState(true);
   const [appointments, setAppointments] = useState([]);
   console.log('appointments in MainContainer:', appointments)
-  const [activeDay, setActiveDay] = useState(null); //MOVE THIS TO CALENDAR CONTAINER IF I DON'T NEED IN APPOINTMENT CONTAINER
   const [shouldRefresh, setShouldRefresh] = useState(1); 
   const [clickedAppointment, setClickedAppointment] = useState(null);
+  const [showAppointments, setShowAppointments] = useState(false);
 
   useEffect(() => {
     const controller = new AbortController();
@@ -65,8 +65,8 @@ const MainContainer = () => {
 
   return (
     <div className="flex h-full w-full bg-[#e7e6e1]">
-      <AppointmentsContainer user={user} BASE_URL={BASE_URL} appointments={appointments} activeDay={activeDay} setActiveDay={setActiveDay} setClickedAppointment={setClickedAppointment} />
-      <BodyContainer user={user} BASE_URL={BASE_URL} appointments={appointments} setAppointments={setAppointments} activeDay={activeDay} setActiveDay={setActiveDay} setShouldRefresh={setShouldRefresh} clickedAppointment={clickedAppointment} setClickedAppointment={setClickedAppointment} />
+      <AppointmentsContainer user={user} BASE_URL={BASE_URL} appointments={appointments} showAppointments={showAppointments} setShowAppointments={setShowAppointments} setClickedAppointment={setClickedAppointment} />
+      <BodyContainer user={user} BASE_URL={BASE_URL} appointments={appointments} setAppointments={setAppointments} showAppointments={showAppointments} setShowAppointments={setShowAppointments} setShouldRefresh={setShouldRefresh} clickedAppointment={clickedAppointment} setClickedAppointment={setClickedAppointment} />
     </div>
   );
 

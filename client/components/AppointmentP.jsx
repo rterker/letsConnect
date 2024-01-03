@@ -4,12 +4,12 @@ import React from "react";
 const isClickedAppointment = signal(null);
 
 //called by: AppointmentsContainer
-const Appointment = ({ appointment, activeDay, setActiveDay, setClickedAppointment }) => {
+const Appointment = ({ appointment, showAppointments, setShowAppointments, setClickedAppointment }) => {
   //TO DO: need to make sure that activeDay is only set here when appointment is confirmed
 
   //TO DO: remove active day setting from this component
 
-  if (!activeDay) isClickedAppointment.value = null;
+  if (!showAppointments) isClickedAppointment.value = null;
 
   // const date = new Date(appointment.date);
   // const dateString = date.toLocaleString('en-US');
@@ -25,7 +25,7 @@ const Appointment = ({ appointment, activeDay, setActiveDay, setClickedAppointme
 
     //TO DO: will need to refactor. this should be setting an object with day, month, year; however for now we're just setting to true, so the view and edit modal
     //opens up on clicking the appointment
-    setActiveDay(true);
+    setShowAppointments(true);
 
     // setActiveDay({
     //   day: apptDay,

@@ -4,14 +4,20 @@ import ViewAndEditAppointment from "./ViewAndEditAppointment.jsx";
 import adaptValidateUpdateAppt from '../utils/adaptValidateUpdateAppt.js';
 
 //called by: CalendarContainer
-const ActiveDay = ({ confirmedAppointments, pendingAppointments, setAppointments, setActiveDay, clickedAppointment, setClickedAppointment }) => {
+const ActiveDay = ({ confirmedAppointments, pendingAppointments, setAppointments, setActiveDay, setShowAppointments, clickedAppointment, setClickedAppointment }) => {
   console.log('clickedAppointment in ActiveDay:', clickedAppointment)
   const [inEditMode, setInEditMode] = useState(false);
-  const allAppointments = confirmedAppointments.concat(pendingAppointments);
+  
+  let allAppointments;
+  if (confirmedAppointments && pendingAppointments) {
+    allAppointments = confirmedAppointments.concat(pendingAppointments);
+  }
+
   //TO DO: useRef to store a copy of the initial clickedAppointment, so that after the edits are made, you can compare to see what needs updating
 
   function handleCancelClick() {
     setActiveDay(null);
+    setShowAppointments(false);
     setClickedAppointment(null);
     setInEditMode(false);
   }
