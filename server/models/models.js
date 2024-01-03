@@ -23,7 +23,7 @@ const userSchema = new Schema({
 });
 
 const potentialDateSchema = new Schema({
-  userId: [{type: Schema.Types.ObjectId, ref: 'user'}],
+  userId: {type: Schema.Types.ObjectId, ref: 'user'},
   potentialDates: {type: [Date], required: true}
 });
 
