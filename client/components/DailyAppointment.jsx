@@ -2,7 +2,8 @@ import React, { useState } from "react";
 
 //called by: ActiveDay
 const DailyAppointment = ({ appointment, setClickedAppointment }) => {
-  const { date, subject, participants, status, creator, createdAt} = appointment;
+  const { date, subject, participants, status, creator, potentialDates, createdAt} = appointment;
+  console.log('potentialDates in DailyAppointment:', potentialDates)
 
   let formattedDate;
   if (date) {
@@ -29,4 +30,5 @@ const DailyAppointment = ({ appointment, setClickedAppointment }) => {
 }
 
 export default DailyAppointment;
+
 
