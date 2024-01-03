@@ -3,6 +3,7 @@ import React, { useState } from "react";
 //called by: ActiveDay
 const ViewAndEditAppointment = ({ clickedAppointment, setClickedAppointment, inEditMode }) => {
   const { date, subject, participants, status, creator, potentialDates, createdAt} = clickedAppointment;
+  console.log('potentialDates in ViewAndEditAppointment:', potentialDates[0])
 
   //TO DO: set a flag for creator to only allow editing if you're the creator
   function handleChange(e) {
@@ -30,12 +31,18 @@ const ViewAndEditAppointment = ({ clickedAppointment, setClickedAppointment, inE
         <>
           <p><b>User Name</b>: {userName}</p>
           {availabilities.map(availability => {
-            const formattedDate = new Date(availability);
-            return (
-              <div>
-                {formattedDate.toLocaleString()}
-              </div>
-            );
+            if (availability) {
+              const formattedDate = new Date(availability);
+              return (
+                <div>
+                  {formattedDate.toLocaleString()}
+                </div>
+              );
+            } else {
+              return (
+                <p>No Availabilities Set Yet</p>
+              )
+            }
           })}
         </>
         );
@@ -61,12 +68,18 @@ const ViewAndEditAppointment = ({ clickedAppointment, setClickedAppointment, inE
         <>
           <p><b>User Name</b>: {userName}</p>
           {availabilities.map(availability => {
-            const formattedDate = new Date(availability);
-            return (
-              <div>
-                {formattedDate.toLocaleString()}
-              </div>
-            );
+            if (availability) {
+              const formattedDate = new Date(availability);
+              return (
+                <div>
+                  {formattedDate.toLocaleString()}
+                </div>
+              );
+            } else {
+              return (
+                <p>No Availabilities Set Yet</p>
+              )
+            }
           })}
         </>
         );

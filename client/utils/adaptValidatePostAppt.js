@@ -52,21 +52,6 @@ const adaptValidatePostAppt = async (user, formData, setAppointments) => {
       console.log('Status code: ', responseStatus);
       console.log('Issue occured during new appointment creation in adaptValidatePostAppt');
     }
-    
-    // this is how a successful createdAppointment looks
-    // New Appointment successfully created: 
-    // {
-    //   "date": "2024-01-23T05:00:00.000Z",
-    //   "subject": "Test Subject 3",
-    //   "participants": [
-    //     "marshall@gmail.com"
-    //   ],
-    //   "status": "pending",
-    //   "creator": "marshall@gmail.com",
-    //   "_id": "65921853f65b2794e06ab7e9",
-    //   "createdAt": "2024-01-01T01:41:39.839Z",
-    //   "__v": 0
-    // }
 
   } catch (err) {
     console.log(`The following error occured in adaptValidatePostAppt while attempting to add a new appointment: ${err}`);

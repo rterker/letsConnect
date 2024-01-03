@@ -22,7 +22,7 @@ const CalendarContainer = ({ user, currentDate, setCurrentDate, appointments, se
       pendingAppointments = getPendingAppointmentsForDay(userName, activeDay, appointments);
     }
     return (
-        <ActiveDay confirmedAppointments={confirmedAppointments} pendingAppointments={pendingAppointments} setAppointments={setAppointments} setActiveDay={setActiveDay} setShowAppointments={setShowAppointments} clickedAppointment={clickedAppointment} setClickedAppointment={setClickedAppointment}/>
+        <ActiveDay user={user} confirmedAppointments={confirmedAppointments} pendingAppointments={pendingAppointments} setAppointments={setAppointments} setActiveDay={setActiveDay} setShowAppointments={setShowAppointments} clickedAppointment={clickedAppointment} setClickedAppointment={setClickedAppointment}/>
     );
   }
 
