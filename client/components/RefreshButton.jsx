@@ -1,9 +1,10 @@
 import React from "react";
 
-const RefreshButton = () => {
-
+//called from: BodyContainer
+const RefreshButton = ({ setShouldRefresh }) => {
+  //TO DO - possible refactor: set some state here, and put appointment fetch inside of async handleClick, and when fetch resolves, set state with fetch appointments, then set appoinments in MainContainer
   function handleClick() {
-
+    setShouldRefresh((prevValue) => prevValue * -1);
   }
 
   return (

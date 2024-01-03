@@ -14,6 +14,7 @@ const MainContainer = () => {
   const [appointments, setAppointments] = useState([]);
   console.log('appointments in MainContainer:', appointments)
   const [activeDay, setActiveDay] = useState(null); //MOVE THIS TO CALENDAR CONTAINER IF I DON'T NEED IN APPOINTMENT CONTAINER
+  const [shouldRefresh, setShouldRefresh] = useState(1); 
 
   useEffect(() => {
     const controller = new AbortController();
@@ -48,7 +49,7 @@ const MainContainer = () => {
         controller.abort();
       }
     }
-  }, [user]);
+  }, [user, shouldRefresh]);
 
   //refactor to render a data loading component when data is loading
   if (isUserLoading || isAppointmentsLoading) {
@@ -64,7 +65,7 @@ const MainContainer = () => {
   return (
     <div className="flex h-full w-full bg-[#e7e6e1]">
       <AppointmentsContainer user={user} BASE_URL={BASE_URL} appointments={appointments} activeDay={activeDay} setActiveDay={setActiveDay} />
-      <BodyContainer user={user} BASE_URL={BASE_URL} appointments={appointments} setAppointments={setAppointments} activeDay={activeDay} setActiveDay={setActiveDay}/>
+      <BodyContainer user={user} BASE_URL={BASE_URL} appointments={appointments} setAppointments={setAppointments} activeDay={activeDay} setActiveDay={setActiveDay} setShouldRefresh={setShouldRefresh}/>
     </div>
   );
 
