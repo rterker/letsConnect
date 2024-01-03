@@ -1,5 +1,5 @@
 import React from "react";
-import CalendarDay from "./CalendarDayP.jsx";
+import CalendarDay from "./CalendarDay.jsx";
 import dateUtil from "../utils/dateUtil.js";
 import getAppointmentsForDay from '../utils/getAppointmentsForDay.js'
 import getAppointmentsForMonth from '../utils/getAppointmentsForMonth.js'

@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import CalendarContainer from './CalendarContainerP.jsx'
-import CalendarStart from "../components/CalendarStartP.jsx";
 import AddAppointmentButton from "../components/AddAppointmentButtonP.jsx";
 import AddAppointmentContainer from "../components/AddAppointmentContainerP.jsx";
 import RefreshButton from "../components/RefreshButton.jsx";

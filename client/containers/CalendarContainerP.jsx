@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Calendar from "../components/CalendarP.jsx";
+import Calendar from "../components/Calendar.jsx";
 import ActiveDay from "../components/ActiveDayP.jsx";
 import getAppointmentsForDay from '../utils/getAppointmentsForDay.js'
 
