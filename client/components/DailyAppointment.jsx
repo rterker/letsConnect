@@ -25,6 +25,23 @@ const DailyAppointment = ({ appointment, setClickedAppointment }) => {
         })}</p>
       <p><u>Status</u>: {status}</p>
       <p className="overflow-hidden whitespace-nowrap text-ellipsis"><u>Creator</u>: {creator}</p>
+      <p><u>Availability</u>:</p>
+      <br />
+      {potentialDates.map(({ userName, availabilities }) => {
+        return (
+        <>
+          <p><b>User Name</b>: {userName}</p>
+          {availabilities.map(availability => {
+            const formattedDate = new Date(availability);
+            return (
+              <div>
+                {formattedDate.toLocaleString()}
+              </div>
+            );
+          })}
+        </>
+        );
+      })}
     </div>
   );
 }
