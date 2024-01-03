@@ -14,9 +14,9 @@ const CalendarContainer = ({ user, currentDate, setCurrentDate, appointments, se
   //TO DO: we want all appointments for that day not confirmed only
   if (activeDay?.day) {
     const { _id: userId } = user;
-    console.log('user in CalendarContainer: ', user);
     const confirmedAppointments = getConfirmedAppointmentsForDay(activeDay, appointments);
-    const pendingAppointments = getPendingAppointmentsForDay(userId, appointments);
+    const pendingAppointments = getPendingAppointmentsForDay(userId, activeDay, appointments);
+    console.log('pendingAppointments in CalendarContainer:', pendingAppointments)
     return (
         <ActiveDay confirmedAppointments={confirmedAppointments} pendingAppointments={pendingAppointments} setAppointments={setAppointments} setActiveDay={setActiveDay}/>
     );

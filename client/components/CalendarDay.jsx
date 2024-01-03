@@ -4,13 +4,11 @@ import Dot from "./DotP.jsx";
 //called by: Calendar
 const CalendarDay = ({ day, year, month, appointmentsForDay, setActiveDay }) => {
   function handleClick(e) {
-    if (appointmentsForDay.length > 0) {
       setActiveDay({
         month,
         day,
         year
       });
-    }
   }
   
   if (!appointmentsForDay) {
