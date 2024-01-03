@@ -3,9 +3,8 @@ const { Appointment } = require('../models/models');
 const appointmentController = {};
 
 appointmentController.createAppointment =  async (req, res, next) => {
-  console.log('appointmentController.createAppointment invoked')
   const newAppointment = req.body;
-  console.log('newAppointment:', newAppointment)
+  console.log('newAppointment in appointmentController.createAppointment:', newAppointment)
   
   try {
     const createdAppointment = await Appointment.create(newAppointment);
@@ -69,10 +68,10 @@ appointmentController.getUserListOfAppointments = async (req, res, next) => {
 appointmentController.updateAppointmentWithoutChangingStatus = async (req, res, next) => {
   //req.body will contain the appointment object with shape: { date, subject, [participants], status, creator, _id, createdAt, __v }
   const appointmentUpdate = req.body;
-  console.log('appointmentUpdate  in appointmentController.updateAppointment before update:', appointmentUpdate)
+  console.log('appointmentUpdate in appointmentController.updateAppointment before update:', appointmentUpdate)
 
-  const { date, subject, participants, status, _id: appointmentId } = appointmentUpdate;
-  const update = { $set: {date, subject, participants}};
+  const { date, subject, participants, potentialDates, status, _id: appointmentId } = appointmentUpdate;
+  const update = { $set: {date, subject, participants, potentialDates}};
 
   try {
     const updatedAppointment = await Appointment.findOneAndUpdate({_id: appointmentId}, update, {new: true});
