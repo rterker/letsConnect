@@ -2,12 +2,6 @@ import React, { useState } from "react";
 import dateUtil from "../utils/dateUtil.js";
 import DatePickerDay from "./DatePickerDay.jsx";
 
-
-//call with 
-// return (
-//   <DatePicker dateString={Date()}/>
-// );
-
 //called by: ViewAndEditAppointment
 const DatePicker = ({ dateString }) => {
   const [currentDateString, setCurrentDateString] = useState(dateString);
@@ -54,8 +48,10 @@ const DatePicker = ({ dateString }) => {
     setCurrentDateString(date.toString());
   }
 
+
+  //TO DO: when date clicked, show times to choose underneath as buttons. when time is clicked. set some state which will eventually be sent to backend as availability
   return (
-    <div className="flex flex-col mx-auto my-auto w-160 h-160 bg-white animate-fadeIn">
+    <div className="flex flex-col mx-auto my-auto w-1/2 h-2/3 bg-white animate-fadeIn">
       <div className="flex justify-between pt-3 pb-3 border-t-2 border-l-2 border-r-2 border-black bg-[#fafafa]">
         <button className="w-10 bg-[#c1c0b9] text-xl rounded-lg shadow-lg hover:shadow-xl active:shadow-inner focus:outline-none ml-2 cursor-pointer" onClick={handleLeftClick}>{'<'}</button>
         <b className="text-xl">{currentDate.monthOfAppointment + 1} / {currentDate.yearOfAppointment}</b>
