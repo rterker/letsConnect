@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import DatePicker from './DatePicker.jsx';
 
 //called by: ActiveDay
 const ViewAndEditAppointment = ({ clickedAppointment, inEditMode, updateData, setUpdateData }) => {
@@ -9,7 +10,6 @@ const ViewAndEditAppointment = ({ clickedAppointment, inEditMode, updateData, se
     const { name, value } = e.target;
     setUpdateData((prevFormData) => ({...prevFormData, [name]: value }));
   }
-
 
   //remember to add onChange for input fields we need to edit
   if (inEditMode) {
