@@ -5,6 +5,8 @@ import DatePickerDay from "./DatePickerDay.jsx";
 //called by: ViewAndEditAppointment
 const DatePicker = ({ dateString }) => {
   const [currentDateString, setCurrentDateString] = useState(dateString);
+  const [availabilities, setAvailabilities] = useState([]);
+  console.log('availabilities in DatePicker:', availabilities)
   const currentDate = new dateUtil(currentDateString);
 
   const daysInMonth = dateUtil.getDaysInMonth(currentDate.yearOfAppointment, currentDate.monthOfAppointment);
@@ -24,7 +26,7 @@ const DatePicker = ({ dateString }) => {
       month: currentDate.monthOfAppointment,
       year: currentDate.yearOfAppointment
     };
-    calendarDays.push(<DatePickerDay day={i} year={currentDate.yearOfAppointment} month={currentDate.monthOfAppointment} />);
+    calendarDays.push(<DatePickerDay day={i} year={currentDate.yearOfAppointment} month={currentDate.monthOfAppointment} setAvailabilities={setAvailabilities} />);
   }
   //TO DO: add a unique key prop to each DatePickerDay for react optimization
   const blankEndCalendarDays = [];
