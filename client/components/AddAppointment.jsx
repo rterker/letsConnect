@@ -36,8 +36,8 @@ const AddAppointment = ({ user, setAppointments, setIsInAddMode }) => {
         <input type="text" id="potentialDates" name="potentialDates" value={formData.potentialDates} onChange={(e) => handleChange(e)} required/>
         </div>
         <div className="flex h-20 justify-center items-center space-x-4 w-full flex bg-[#537791] pt-4 pb-4 border-t-8 border-black">
-          <button type="submit" className="h-12 w-36 bg-[#c1c0b9] text-xl rounded-lg shadow-lg hover:shadow-xl active:shadow-inner focus:outline-none" onClick={(e) => handleSubmit(e)}>Save</button>
           <button className="h-12 w-36 bg-[#c1c0b9] text-xl rounded-lg shadow-lg hover:shadow-xl active:shadow-inner focus:outline-none" onClick={handleCancel}>Cancel</button>
+          <button type="submit" className="h-12 w-36 bg-[#c1c0b9] text-xl rounded-lg shadow-lg hover:shadow-xl active:shadow-inner focus:outline-none" onClick={(e) => handleSubmit(e)}>Save</button>
         </div>
       </form>
     </div>

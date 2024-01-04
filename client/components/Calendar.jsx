@@ -7,10 +7,8 @@ import getConfirmedAppointmentsForMonth from '../utils/getConfirmedAppointmentsF
 //called by: CalendarContainer
 const Calendar = ({ currentDate, setCurrentDate, appointments, setActiveDay, setShowAppointments }) => {
   //currentDate is a string
-  console.log('Calendar re-render')
   //getConfirmedAppointmentsForMonth only cares about year and month, not day
   const currentMonthAppointments = getConfirmedAppointmentsForMonth(currentDate, appointments);
-  console.log('currentMonthAppointments in Calendar:', currentMonthAppointments)
   const currentDateObj = new dateUtil(currentDate);
 
   const daysInMonth = dateUtil.getDaysInMonth(currentDateObj.yearOfAppointment, currentDateObj.monthOfAppointment);

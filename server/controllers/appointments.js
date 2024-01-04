@@ -71,7 +71,10 @@ appointmentController.updateAppointmentWithoutChangingStatus = async (req, res, 
   console.log('appointmentUpdate in appointmentController.updateAppointment before update:', appointmentUpdate)
 
   const { date, subject, participants, potentialDates, status, _id: appointmentId } = appointmentUpdate;
-  const update = { $set: {date, subject, participants, potentialDates}};
+
+  let update;
+  if (!date) update = { $set: {subject, participants, potentialDates}};
+  else update = { $set: {date, subject, participants, potentialDates}};
 
   try {
     const updatedAppointment = await Appointment.findOneAndUpdate({_id: appointmentId}, update, {new: true});

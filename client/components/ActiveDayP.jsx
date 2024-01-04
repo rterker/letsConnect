@@ -5,8 +5,10 @@ import adaptValidateUpdateAppt from '../utils/adaptValidateUpdateAppt.js';
 
 //called by: CalendarContainer
 const ActiveDay = ({ user, confirmedAppointments, pendingAppointments, setAppointments, setActiveDay, setShowAppointments, clickedAppointment, setClickedAppointment }) => {
-  console.log('clickedAppointment in ActiveDay:', clickedAppointment)
   const [inEditMode, setInEditMode] = useState(false);
+
+  const clickedAppointmentCopy = JSON.parse(JSON.stringify(clickedAppointment));
+  const [updateData, setUpdateData] = useState({...clickedAppointmentCopy, potentialDates: ''});
   
   let allAppointments;
   if (confirmedAppointments && pendingAppointments) {
@@ -30,7 +32,7 @@ const ActiveDay = ({ user, confirmedAppointments, pendingAppointments, setAppoin
   //TO DO: need to submit fetch with this save
   function handleSaveClick(e) {
     e.preventDefault();
-    adaptValidateUpdateAppt(user, clickedAppointment, setAppointments);
+    adaptValidateUpdateAppt(user, updateData, clickedAppointmentCopy, setAppointments);
     setInEditMode(false);
   }
 
@@ -47,7 +49,7 @@ const ActiveDay = ({ user, confirmedAppointments, pendingAppointments, setAppoin
       <div className="flex justify-center items-center min-w-full min-h-full border-8 border-black bg-black rounded-lg">
         <div className="flex flex-col h-160 w-160 ">
           <div className="h-full w-full bg-black overflow-auto snap-y snap-mandatory rounded-lg">
-            {clickedAppointment ? <ViewAndEditAppointment clickedAppointment={clickedAppointment} setClickedAppointment={setClickedAppointment} inEditMode={inEditMode} /> : allAppointments.map(appt => <DailyAppointment appointment={appt} setClickedAppointment={setClickedAppointment} />)}
+            {clickedAppointment ? <ViewAndEditAppointment clickedAppointment={clickedAppointment} inEditMode={inEditMode} updateData={updateData} setUpdateData={setUpdateData} /> : allAppointments.map(appt => <DailyAppointment appointment={appt} setClickedAppointment={setClickedAppointment} />)}
           </div>
             <div className="flex h-20 justify-center items-center w-full flex bg-[#537791] pt-4 pb-4 border-t-8 border-black">
               <button className={`h-12 w-36 ${innerMarginR} bg-[#c1c0b9] text-xl rounded-lg shadow-lg hover:shadow-xl active:shadow-inner focus:outline-none"`} onClick={handleCancelClick}>Cancel</button>

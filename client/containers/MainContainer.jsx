@@ -7,12 +7,10 @@ const BASE_URL = config.DEV_BASE_URL;
 const userId = config.TESTING_USER_ID;
 
 const MainContainer = () => {
-  // console.log('MainContainer re-render')
   const [user, setUser] = useState({});
   const [isUserLoading, setIsUserLoading] = useState(true);
   const [isAppointmentsLoading, setIsAppointmentsLoading] = useState(true);
   const [appointments, setAppointments] = useState([]);
-  console.log('appointments in MainContainer:', appointments)
   const [shouldRefresh, setShouldRefresh] = useState(1); 
   const [clickedAppointment, setClickedAppointment] = useState(null);
   const [showAppointments, setShowAppointments] = useState(false);

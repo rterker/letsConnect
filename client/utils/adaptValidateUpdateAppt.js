@@ -3,33 +3,35 @@ import config from '../config.js';
 //called by: ActiveDAy
 //possible input: dates can be comma separated in the format YYYY-MM-DDTHH:MM:SS. backend expecting date in format YYYY-MM-DDTHH:MM:SSZ. LEAVE
 //OFF THE Z, so it means local time. backend will convert to GMT and add the Z
-const adaptValidateUpdateAppt = async (user, formData, setAppointments) => {
-  console.log('adaptValidateUpdate invoked')
+const adaptValidateUpdateAppt = async (user, updateData, clickedAppointmentCopy, setAppointments) => {
   //input values for forms are type string
-  const copyOfData = {...formData};
+  const copyOfData = {...updateData};
   const { participants } = copyOfData;
   const { userName } = user;
+  let { potentialDates: originalPotentialDatesToKeepOnUpdate } = clickedAppointmentCopy;
 
-  //for now, participants are not updated, so the formData.participants retains the type of array; however, if we add participants as an update field in the form, it 
+  //for now, participants are not updated, so the updateData.participants retains the type of array; however, if we add participants as an update field in the form, it 
   //should be cast to string, in which case, we need this line. 
   if (typeof participants === 'string') copyOfData.participants = participants.split(',').map(participant => participant.trim());
 
    //potentialDates is a string but this will change later
    let { potentialDates } = copyOfData;
    potentialDates = potentialDates.split(',').map(date => date.trim());
-   copyOfData.potentialDates = [
-     {
-       userName,
-       availabilities: potentialDates
-     }
-   ];
+   originalPotentialDatesToKeepOnUpdate = originalPotentialDatesToKeepOnUpdate.filter(potentialDatesObject => potentialDatesObject.userName !== userName);
+
+  const userUpdatedPotentialDatesData = {
+    userName,
+    availabilities: potentialDates
+  };
+
+  copyOfData.potentialDates = [...originalPotentialDatesToKeepOnUpdate, userUpdatedPotentialDatesData];
 
   let response;
   let responseStatus;
   let updatedAppointment;
 
   try {
-    response = await fetch(`${config.DEV_BASE_URL}/appointment/${formData._id}`, {
+    response = await fetch(`${config.DEV_BASE_URL}/appointment/${updateData._id}`, {
       method: 'PUT',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify(copyOfData)
@@ -37,15 +39,13 @@ const adaptValidateUpdateAppt = async (user, formData, setAppointments) => {
   
     responseStatus = response.status;
     updatedAppointment = await response.json();
-    console.log('updated appointment json:', updatedAppointment)
 
     if (responseStatus === 200) {
       //this set lets the sidebar update immediately after edit
       setAppointments((prevAppointments) => {
         const newAppointmentList = [...prevAppointments];
-        console.log('appointment list before update in adaptValidateUpdateAppt:', newAppointmentList)
+        console.log('appointment list before update in adaptValidateUpdateAppt:', newAppointmentList) //why does this line actually show the list after the update? it's rerendering main container. some state must be changing 
         const index = newAppointmentList.findIndex(el => el._id === updatedAppointment._id);
-        console.log('index of updated appointment in appointment list in adaptValidateUpdateAppt:', index)
         //update that index with new appointment
         newAppointmentList[index] = updatedAppointment;
         return newAppointmentList;

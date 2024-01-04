@@ -7,7 +7,6 @@ import getPendingAppointmentsForDay from '../utils/getPendingAppointmentsForDay.
 //called by: BodyContainer
 const CalendarContainer = ({ user, currentDate, setCurrentDate, appointments, setAppointments, showAppointments, setShowAppointments, clickedAppointment, setClickedAppointment }) => {
   const [activeDay, setActiveDay] = useState(null); 
-  console.log('activeDay in CalendarContainer:', activeDay)
 
   // const containerKey = activeAppointment ? activeAppointment._id : 'no-appointment';
   

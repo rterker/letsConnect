@@ -6,7 +6,6 @@ import RefreshButton from "../components/RefreshButton.jsx";
 
 //called by: MainContainer
 const BodyContainer = ({ user, BASE_URL, appointments, setAppointments, showAppointments, setShowAppointments, setShouldRefresh, clickedAppointment, setClickedAppointment }) => {
-  // console.log('BodyContainer re-render')
   const [isInAddMode, setIsInAddMode] = useState(false);
   const [currentDate, setCurrentDate] = useState(Date());
 
