@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 
+//called by: DatePicker
 const DatePickerDay = ({ day, year, month, availableDate, setAvailableDate, isDateClicked, setIsDateClicked }) => {
   //only time isDateClicked is false is when clicked date is unclicked
   function handleClick() {
@@ -22,8 +23,8 @@ const DatePickerDay = ({ day, year, month, availableDate, setAvailableDate, isDa
     }
   }
 
-  const clickedStyling = 'bg-[#537791] text-[#f7f6e7] border border-black cursor-pointer active:bg-[#537791] active:text-[#f7f6e7]';
-  const unclickedStyling = 'bg-[#fafafa] border border-black cursor-pointer hover:bg-[#c1c0b9] active:bg-[#537791] active:text-[#f7f6e7]';
+  const clickedStyling = 'bg-[#537791] text-[#f7f6e7] border-l border-b border-black cursor-pointer active:bg-[#537791] active:text-[#f7f6e7]';
+  const unclickedStyling = 'bg-[#fafafa] border-l border-b border-black cursor-pointer hover:bg-[#c1c0b9] active:bg-[#537791] active:text-[#f7f6e7]';
 
   return (
     <div className={isDateClicked && availableDate.getDate() === day ? clickedStyling : unclickedStyling} onClick={handleClick}>

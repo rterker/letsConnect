@@ -15,7 +15,7 @@ const CalendarDay = ({ day, year, month, appointmentsForDay, setActiveDay, setSh
   
   if (!appointmentsForDay) {
     return (
-      <div className="bg-[#fafafa] border border-black">
+      <div className="bg-[#fafafa] border-l border-b border-black">
         {day}
       </div>
     );
@@ -23,7 +23,7 @@ const CalendarDay = ({ day, year, month, appointmentsForDay, setActiveDay, setSh
 
   //TO DO: handle overflowing dots; used to have flex-wrap, but the div grew out of proportion
   return (
-    <div className="flex flex-col bg-[#fafafa] border border-black cursor-pointer hover:bg-[#c1c0b9] active:bg-[#537791] active:text-[#f7f6e7]" onClick={(e) => handleClick(e)}>
+    <div className="flex flex-col bg-[#fafafa] border-l border-b border-black cursor-pointer hover:bg-[#c1c0b9] active:bg-[#537791] active:text-[#f7f6e7]" onClick={(e) => handleClick(e)}>
       <div>
       {day}
       </div>

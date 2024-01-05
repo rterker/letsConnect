@@ -25,8 +25,8 @@ const AddAppointment = ({ user, setAppointments, setIsInAddMode }) => {
   //input values for forms are type string
   return (
     <div className="flex flex-col h-160 w-160">
-      <form className="flex flex-col grow w-full bg-white rounded-lg">
-        <div className="flex flex-col grow w-full bg-white rounded-lg">
+      <form className="flex flex-col grow w-full bg-[#fafafa] ">
+        <div className="flex flex-col grow w-full bg-[#fafafa] ">
         <p>Date: TBD</p>
         <label htmlFor="subject">Subject:</label>
         <input type="text" id="subject" name="subject" value={formData.subject} onChange={(e) => handleChange(e)} required/>
@@ -35,7 +35,7 @@ const AddAppointment = ({ user, setAppointments, setIsInAddMode }) => {
         <label htmlFor="potentialDates">Potential Dates:</label>
         <input type="text" id="potentialDates" name="potentialDates" value={formData.potentialDates} onChange={(e) => handleChange(e)} required/>
         </div>
-        <div className="flex h-20 justify-center items-center space-x-4 w-full flex bg-[#537791] pt-4 pb-4 border-t-8 border-black">
+        <div className="flex h-20 justify-center items-center space-x-4 w-full flex bg-[#537791] pt-4 pb-4 border-t-1 border-black">
           <button className="h-12 w-36 bg-[#c1c0b9] text-xl rounded-lg shadow-lg hover:shadow-xl active:shadow-inner focus:outline-none" onClick={handleCancel}>Cancel</button>
           <button type="submit" className="h-12 w-36 bg-[#c1c0b9] text-xl rounded-lg shadow-lg hover:shadow-xl active:shadow-inner focus:outline-none" onClick={(e) => handleSubmit(e)}>Save</button>
         </div>

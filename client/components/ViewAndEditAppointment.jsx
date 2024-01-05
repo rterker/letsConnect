@@ -15,7 +15,7 @@ const ViewAndEditAppointment = ({ clickedAppointment, inEditMode, updateData, se
   if (inEditMode) {
     return (
     <div className="flex flex-col h-full">
-      <form className="flex flex-col p-4 h-full border border-black bg-[#e7e6e1] animate-fadeIn">
+      <form className="flex flex-col p-4 h-full bg-[#fafafa] animate-fadeIn">
         <p><u>Date</u>: {date ? date : 'TBD'}</p>
         <label htmlFor="subject"><u>Subject</u>: </label>
         <input name="subject" type="text" value={updateData.subject}  onChange={(e) => handleChange(e)} required/>
@@ -33,7 +33,7 @@ const ViewAndEditAppointment = ({ clickedAppointment, inEditMode, updateData, se
   }
   //TO DO: when refresh button clicked, this should immediately show updated data
   return (
-    <div className="p-4 h-full border border-black bg-[#e7e6e1] animate-fadeIn">
+    <div className="p-4 h-full bg-[#fafafa] animate-fadeIn">
       <p><u>Date</u>: {date ? date : 'TBD'}</p>
       <p className="overflow-hidden whitespace-nowrap text-ellipsis"><u>Subject</u>: {subject}</p>
       <p className="overflow-hidden whitespace-nowrap text-ellipsis"><u>Participants</u>: {participants.map((participant, i) => {

@@ -1,12 +1,14 @@
 import React, { useState } from "react";
 import dateUtil from "../utils/dateUtil.js";
 import DatePickerDay from "./DatePickerDay.jsx";
+import TimePicker from "./TimePicker.jsx";
 
 //called by: ViewAndEditAppointment
 const DatePicker = ({ dateString }) => {
   const [currentDateString, setCurrentDateString] = useState(dateString);
   const [availableDate, setAvailableDate] = useState(null);
   const [isDateClicked, setIsDateClicked] = useState(false);
+  const [availableTimes, setAvailableTimes] = useState([]);
   const currentDate = new dateUtil(currentDateString);
 
   const daysInMonth = dateUtil.getDaysInMonth(currentDate.yearOfAppointment, currentDate.monthOfAppointment);
@@ -53,16 +55,19 @@ const DatePicker = ({ dateString }) => {
 
   //TO DO: when date clicked, show times to choose underneath as buttons. when time is clicked. set some state which will eventually be sent to backend as availability
   return (
-    <div className="flex flex-col mx-auto my-auto w-1/2 h-2/3 bg-white animate-fadeIn">
-      <div className="flex justify-between pt-3 pb-3 border-t-2 border-l-2 border-r-2 border-black bg-[#fafafa]">
+    <div className="flex flex-col mx-auto my-auto w-1/2 h-2/3 bg-[#fafafa] border-t border-r border-black animate-fadeIn">
+      <div className="flex justify-between pt-3 pb-3 border-l border-b  border-black bg-[#fafafa]">
         <button className="w-10 bg-[#c1c0b9] text-xl rounded-lg shadow-lg hover:shadow-xl active:shadow-inner focus:outline-none ml-2 cursor-pointer" onClick={handleLeftClick}>{'<'}</button>
         <b className="text-xl">{currentDate.monthOfAppointment + 1} / {currentDate.yearOfAppointment}</b>
         <button className="w-10 bg-[#c1c0b9] text-xl rounded-lg shadow-lg hover:shadow-xl active:shadow-inner focus:outline-none mr-2 cursor-pointer" onClick={handleRightClick}>{'>'}</button>
       </div>
-      <div className={`grid grid-rows-${gridRows} grid-cols-7 w-full h-full border border-black`}>
-        {blankStartCalendarDays}
-        {calendarDays}
-        {blankEndCalendarDays}
+      <div className="flex">
+        <div className={`grid grid-rows-${gridRows} grid-cols-7 w-full h-full `}>
+          {blankStartCalendarDays}
+          {calendarDays}
+          {blankEndCalendarDays}
+        </div>
+        {isDateClicked && <TimePicker availableTimes={availableTimes} setAvailableTimes={setAvailableTimes} />}
       </div>
     </div>
   );
