@@ -53,7 +53,7 @@ const MainContainer = () => {
   //refactor to render a data loading component when data is loading
   if (isUserLoading || isAppointmentsLoading) {
     return (
-      <div className="h-full w-full bg-[#392f2f]">
+      <div className="h-full w-full bg-[#fafafa]">
         <svg className="spinner" viewBox="0 0 50 50">
           <circle className="path" cx="25" cy="25" r="20" fill="none" strokeWidth="5"></circle>
         </svg>
@@ -62,7 +62,7 @@ const MainContainer = () => {
   }
 
   return (
-    <div className="flex h-full w-full bg-[#e7e6e1]">
+    <div className="flex h-full w-full bg-[#d3d6db]">
       <AppointmentsContainer user={user} BASE_URL={BASE_URL} appointments={appointments} showAppointments={showAppointments} setShowAppointments={setShowAppointments} setClickedAppointment={setClickedAppointment} />
       <BodyContainer user={user} BASE_URL={BASE_URL} appointments={appointments} setAppointments={setAppointments} showAppointments={showAppointments} setShowAppointments={setShowAppointments} setShouldRefresh={setShouldRefresh} clickedAppointment={clickedAppointment} setClickedAppointment={setClickedAppointment} />
     </div>
@@ -71,4 +71,3 @@ const MainContainer = () => {
 }
 
 export default MainContainer;
-

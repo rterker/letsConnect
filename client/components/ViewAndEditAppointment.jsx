@@ -15,7 +15,7 @@ const ViewAndEditAppointment = ({ clickedAppointment, inEditMode, updateData, se
   if (inEditMode) {
     return (
     <div className="flex flex-col h-full">
-      <form className="flex flex-col p-4 h-full bg-[#fafafa] animate-fadeIn">
+      <form className="flex flex-col p-4 min-h-80 bg-[#fafafa] animate-fadeIn">
         <p><u>Date</u>: {date ? date : 'TBD'}</p>
         <label htmlFor="subject"><u>Subject</u>: </label>
         <input name="subject" type="text" value={updateData.subject}  onChange={(e) => handleChange(e)} required/>

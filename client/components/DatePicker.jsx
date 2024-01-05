@@ -8,7 +8,7 @@ const DatePicker = ({ dateString }) => {
   const [currentDateString, setCurrentDateString] = useState(dateString);
   const [availableDate, setAvailableDate] = useState(null);
   const [isDateClicked, setIsDateClicked] = useState(false);
-  const [availableTimes, setAvailableTimes] = useState([]);
+  const [availableTimes, setAvailableTimes] = useState([54000000, 57600000, 61200000, 64800000, 68400000, 72000000]);
   const currentDate = new dateUtil(currentDateString);
 
   const daysInMonth = dateUtil.getDaysInMonth(currentDate.yearOfAppointment, currentDate.monthOfAppointment);
@@ -55,19 +55,25 @@ const DatePicker = ({ dateString }) => {
 
   //TO DO: when date clicked, show times to choose underneath as buttons. when time is clicked. set some state which will eventually be sent to backend as availability
   return (
-    <div className="flex flex-col mx-auto my-auto w-1/2 h-2/3 bg-[#fafafa] border-t border-r border-black animate-fadeIn">
-      <div className="flex justify-between pt-3 pb-3 border-l border-b  border-black bg-[#fafafa]">
-        <button className="w-10 bg-[#c1c0b9] text-xl rounded-lg shadow-lg hover:shadow-xl active:shadow-inner focus:outline-none ml-2 cursor-pointer" onClick={handleLeftClick}>{'<'}</button>
-        <b className="text-xl">{currentDate.monthOfAppointment + 1} / {currentDate.yearOfAppointment}</b>
-        <button className="w-10 bg-[#c1c0b9] text-xl rounded-lg shadow-lg hover:shadow-xl active:shadow-inner focus:outline-none mr-2 cursor-pointer" onClick={handleRightClick}>{'>'}</button>
-      </div>
-      <div className="flex">
-        <div className={`grid grid-rows-${gridRows} grid-cols-7 w-full h-full `}>
-          {blankStartCalendarDays}
-          {calendarDays}
-          {blankEndCalendarDays}
+    <div className="flex justify-center w-full h-full bg-[#fafafa] border-black animate-fadeIn">
+      <div className=" p-4 h-full w-1/2">
+        <div className="flex justify-between pt-3 pb-3 border-l border-t border-r border-black bg-[#fafafa]">
+          <button className="w-10 bg-[#c1c0b9] text-xl rounded-lg shadow-lg hover:shadow-xl active:shadow-inner focus:outline-none ml-2 cursor-pointer" onClick={handleLeftClick}>{'<'}</button>
+          <b className="text-xl">{currentDate.monthOfAppointment + 1} / {currentDate.yearOfAppointment}</b>
+          <button className="w-10 bg-[#c1c0b9] text-xl rounded-lg shadow-lg hover:shadow-xl active:shadow-inner focus:outline-none mr-2 cursor-pointer" onClick={handleRightClick}>{'>'}</button>
         </div>
-        {isDateClicked && <TimePicker availableTimes={availableTimes} setAvailableTimes={setAvailableTimes} />}
+        <div className="flex border-r border-b border-black h-3/4 max-h-3/4">
+          <div className={`grid grid-rows-${gridRows} grid-cols-7 w-full h-full `}>
+            {blankStartCalendarDays}
+            {calendarDays}
+            {blankEndCalendarDays}
+          </div>
+        </div>
+      </div>
+      <div className="w-1/2 pl-10 pr-10 pt-12 pb-12 ">
+        <div className="flex flex-wrap gap-4">
+          {isDateClicked && availableTimes.map(time => <TimePicker time={time} setAvailableTimes={setAvailableTimes} />)}
+        </div>
       </div>
     </div>
   );

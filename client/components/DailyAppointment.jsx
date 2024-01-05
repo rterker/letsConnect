@@ -16,7 +16,7 @@ const DailyAppointment = ({ appointment, setClickedAppointment }) => {
   }
 
   return (
-    <div className="p-4 snap-center cursor-pointer bg-[#fafafa] hover:bg-[#e7e6e1] active:bg-black active:text-[#f7f6e7]" onClick={handleClick}>
+    <div className="p-4 snap-center cursor-pointer bg-[#fafafa] hover:bg-[#c1c0b9] active:bg-[#537791] active:text-[#f7f6e7]" onClick={handleClick}>
       <p><u>Date</u>: {formattedDate ? formattedDate : 'TBD'}</p>
       <p className="overflow-hidden whitespace-nowrap text-ellipsis"><u>Subject</u>: {subject}</p>
       <p className="overflow-hidden whitespace-nowrap text-ellipsis"><u>Participants</u>: {participants.map((participant, i) => {
