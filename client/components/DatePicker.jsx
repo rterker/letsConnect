@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import dateUtil from "../utils/dateUtil.js";
 import DatePickerDay from "./DatePickerDay.jsx";
 import TimePicker from "./TimePicker.jsx";
@@ -9,8 +9,8 @@ const DatePicker = ({ dateString }) => {
   const [availableDate, setAvailableDate] = useState(null);
   const [isDateClicked, setIsDateClicked] = useState(false);
   const [availableTimes, setAvailableTimes] = useState([]);
-  console.log('availableTimes in DatePicker:', availableTimes)
-  const [displayTimes, setDisplayTimes] = useState([54000000, 57600000, 61200000, 64800000, 68400000, 72000000]);
+  const displayTimes = useRef([54000000, 57600000, 61200000, 64800000, 68400000, 72000000]);
+  const [clickedTimes, setClickedTimes] = useState([]);
   const currentDate = new dateUtil(currentDateString);
 
   const daysInMonth = dateUtil.getDaysInMonth(currentDate.yearOfAppointment, currentDate.monthOfAppointment);
@@ -73,7 +73,7 @@ const DatePicker = ({ dateString }) => {
       </div>
       <div className="w-1/2 pl-10 pr-10 pt-12 pb-12 ">
         <div className="flex flex-wrap gap-4">
-          {isDateClicked && displayTimes.map(time => <TimePicker time={time} setAvailableTimes={setAvailableTimes} displayTimes={displayTimes} setDisplayTimes={setDisplayTimes}/>)}
+          {isDateClicked && displayTimes.current.map(time => <TimePicker time={time} displayTimes={displayTimes} setAvailableTimes={setAvailableTimes} clickedTimes={clickedTimes} setClickedTimes={setClickedTimes}/>)}
         </div>
       </div>
     </div>
