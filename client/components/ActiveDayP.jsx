@@ -8,7 +8,7 @@ const ActiveDay = ({ user, confirmedAppointments, pendingAppointments, setAppoin
   const [inEditMode, setInEditMode] = useState(false);
 
   const clickedAppointmentCopy = JSON.parse(JSON.stringify(clickedAppointment));
-  const [updateData, setUpdateData] = useState({...clickedAppointmentCopy, potentialDates: ''});
+  const [updateData, setUpdateData] = useState({...clickedAppointmentCopy});
   const [availableDate, setAvailableDate] = useState(null);
   console.log('availableDate in ActiveDay:', availableDate)
   const [availableTimes, setAvailableTimes] = useState([]);
@@ -36,8 +36,12 @@ const ActiveDay = ({ user, confirmedAppointments, pendingAppointments, setAppoin
   //TO DO: need to submit fetch with this save
   function handleSaveClick(e) {
     e.preventDefault();
-    adaptValidateUpdateAppt(user, updateData, clickedAppointmentCopy, setAppointments);
+    const availabilities = availableTimes.map(time => availableDate.setMilliseconds(time - 18000000));
+    console.log('availabilities in handleClick:', availabilities)
+    adaptValidateUpdateAppt(user, updateData, clickedAppointmentCopy, setAppointments, availabilities);
     setInEditMode(false);
+    setAvailableTimes([]);
+    setAvailableDate(null);
   }
 
   let innerMarginR;

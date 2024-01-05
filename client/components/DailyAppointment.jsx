@@ -29,7 +29,7 @@ const DailyAppointment = ({ appointment, setClickedAppointment }) => {
       <br />
       {potentialDates.map(({ userName, availabilities }) => {
         return (
-        <>
+        <div>
           <p><b>User Name</b>: {userName}</p>
           {availabilities.map(availability => {
             if (availability) {
@@ -45,7 +45,7 @@ const DailyAppointment = ({ appointment, setClickedAppointment }) => {
               )
             }
           })}
-        </>
+        </div>
         );
       })}
     </div>

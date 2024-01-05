@@ -28,7 +28,7 @@ const DatePicker = ({ dateString, availableDate, setAvailableDate, setAvailableT
       month: currentDate.monthOfAppointment,
       year: currentDate.yearOfAppointment
     };
-    calendarDays.push(<DatePickerDay day={i} year={currentDate.yearOfAppointment} month={currentDate.monthOfAppointment} availableDate={availableDate} setAvailableDate={setAvailableDate} isDateClicked={isDateClicked} setIsDateClicked={setIsDateClicked} />);
+    calendarDays.push(<DatePickerDay day={i} year={currentDate.yearOfAppointment} month={currentDate.monthOfAppointment} availableDate={availableDate} setAvailableDate={setAvailableDate} setAvailableTimes={setAvailableTimes} isDateClicked={isDateClicked} setIsDateClicked={setIsDateClicked} />);
   }
   //TO DO: add a unique key prop to each DatePickerDay for react optimization
   const blankEndCalendarDays = [];

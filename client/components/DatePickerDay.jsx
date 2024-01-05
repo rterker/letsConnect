@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 //called by: DatePicker
-const DatePickerDay = ({ day, year, month, availableDate, setAvailableDate, isDateClicked, setIsDateClicked }) => {
+const DatePickerDay = ({ day, year, month, availableDate, setAvailableDate, setAvailableTimes, isDateClicked, setIsDateClicked }) => {
 
   //only time isDateClicked is false is when clicked date is unclicked
   function handleClick() {
@@ -19,6 +19,7 @@ const DatePickerDay = ({ day, year, month, availableDate, setAvailableDate, isDa
     } else if (isDateClicked && (availableDate.getDate() === day && availableDate.getFullYear() === year && availableDate.getMonth() === month)) {
       setIsDateClicked(false);
       setAvailableDate(null);
+      setAvailableTimes([]);
     } else {
       const availability = new Date();
       availability.setFullYear(year);
@@ -29,6 +30,7 @@ const DatePickerDay = ({ day, year, month, availableDate, setAvailableDate, isDa
       availability.setSeconds(0);
       availability.setMilliseconds(0);
       setAvailableDate(availability);
+      setAvailableTimes([]);
     }
   }
 

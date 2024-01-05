@@ -3,7 +3,8 @@ import config from '../config.js';
 //called by: ActiveDAy
 //possible input: dates can be comma separated in the format YYYY-MM-DDTHH:MM:SS. backend expecting date in format YYYY-MM-DDTHH:MM:SSZ. LEAVE
 //OFF THE Z, so it means local time. backend will convert to GMT and add the Z
-const adaptValidateUpdateAppt = async (user, updateData, clickedAppointmentCopy, setAppointments) => {
+const adaptValidateUpdateAppt = async (user, updateData, clickedAppointmentCopy, setAppointments, availabilities) => {
+  console.log('availabilities at top of adaptValidateUpdateAppt:', availabilities)
   //input values for forms are type string
   const copyOfData = {...updateData};
   const { participants } = copyOfData;
@@ -14,14 +15,19 @@ const adaptValidateUpdateAppt = async (user, updateData, clickedAppointmentCopy,
   //should be cast to string, in which case, we need this line. 
   if (typeof participants === 'string') copyOfData.participants = participants.split(',').map(participant => participant.trim());
 
-   //potentialDates is a string but this will change later
-   let { potentialDates } = copyOfData;
-   potentialDates = potentialDates.split(',').map(date => date.trim());
-   originalPotentialDatesToKeepOnUpdate = originalPotentialDatesToKeepOnUpdate.filter(potentialDatesObject => potentialDatesObject.userName !== userName);
+  availabilities = availabilities.map(availability => {
+    const date = new Date(availability);
+    console.log('date:', date)
+    return date.toUTCString();
+  });
+  console.log('availabilities in adaptValidateUpdateAppt:', availabilities)
+
+  originalPotentialDatesToKeepOnUpdate = originalPotentialDatesToKeepOnUpdate.filter(potentialDatesObject => potentialDatesObject.userName !== userName);
+  console.log('originalPotentialDatesToKeepOnUpdate in adaptValidateUpdateAppt:', originalPotentialDatesToKeepOnUpdate)
 
   const userUpdatedPotentialDatesData = {
     userName,
-    availabilities: potentialDates
+    availabilities
   };
 
   copyOfData.potentialDates = [...originalPotentialDatesToKeepOnUpdate, userUpdatedPotentialDatesData];
