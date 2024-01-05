@@ -11,6 +11,7 @@ const MainContainer = () => {
   const [isUserLoading, setIsUserLoading] = useState(true);
   const [isAppointmentsLoading, setIsAppointmentsLoading] = useState(true);
   const [appointments, setAppointments] = useState([]);
+  console.log('appointments in MainContainer:', appointments)
   const [shouldRefresh, setShouldRefresh] = useState(1); 
   const [clickedAppointment, setClickedAppointment] = useState(null);
   const [showAppointments, setShowAppointments] = useState(false);

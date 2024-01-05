@@ -1,17 +1,21 @@
 import React, { useState } from "react";
 import DatePicker from './DatePicker.jsx';
+import getCommonAvailabilities from '../utils/getCommonAvailabilities.js';
 
 //called by: ActiveDay
 const ViewAndEditAppointment = ({ clickedAppointment, inEditMode, updateData, setUpdateData, availableDate, setAvailableDate, setAvailableTimes }) => {
   const { date, subject, participants, status, creator, potentialDates, createdAt} = clickedAppointment;
 
-  //TO DO: set a flag for creator to only allow editing if you're the creator
+  const commonAvailabilities = getCommonAvailabilities(potentialDates)
+
+  //TO DO: set a flag for creator to only allow editing if you're the creator.
   function handleChange(e) {
     const { name, value } = e.target;
     setUpdateData((prevFormData) => ({...prevFormData, [name]: value }));
   }
 
-  //remember to add onChange for input fields we need to edit
+  //TO DO: only allow edit mode if you're the creator of the appointment
+  //TO DO: only show common availabilities if you're the creator
   if (inEditMode) {
     return (
     <div className="flex flex-col h-full">
@@ -64,12 +68,13 @@ const ViewAndEditAppointment = ({ clickedAppointment, inEditMode, updateData, se
         })}</p>
       <p><u>Status</u>: {status}</p>
       <p className="overflow-hidden whitespace-nowrap text-ellipsis"><u>Creator</u>: {creator}</p>
-      <p><u>Availability</u>:</p>
+      <br />
+      <p><b>Availability</b>:</p>
       <br />
       {potentialDates.map(({ userName, availabilities }) => {
         return (
         <div>
-          <p><b>User Name</b>: {userName}</p>
+          <p><u>User Name</u>: {userName}</p>
           {availabilities.map(availability => {
             if (!availability?.length) {
               return (
@@ -87,6 +92,20 @@ const ViewAndEditAppointment = ({ clickedAppointment, inEditMode, updateData, se
         </div>
         );
       })}
+      {
+        commonAvailabilities.length > 0 &&
+        <>
+          <br /> 
+          <b>Common Availabilities:</b>
+          <br /> 
+          {
+          commonAvailabilities.map(dateTime => {
+            const dateObj = new Date(dateTime);
+            return dateObj.toLocaleString();
+          })
+          }
+        </>
+      }
     </div>
   );
 }

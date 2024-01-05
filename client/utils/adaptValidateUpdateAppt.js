@@ -31,6 +31,8 @@ const adaptValidateUpdateAppt = async (userName, updateData, clickedAppointmentC
   let responseStatus;
   let updatedAppointment;
 
+  console.log('updateData in update: ', copyOfData)
+
   try {
     response = await fetch(`${config.DEV_BASE_URL}/appointment/${updateData._id}`, {
       method: 'PUT',

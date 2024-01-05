@@ -27,6 +27,8 @@ const adaptValidatePostAppt = async (userName, formData, setAppointments, availa
   let responseStatus;
   let createdAppointment;
 
+  console.log('updateData in create: ', copyOfData)
+
   try {
     response = await fetch(`${config.DEV_BASE_URL}/appointment`, {
       method: 'POST',
