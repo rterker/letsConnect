@@ -3,8 +3,9 @@ import DatePicker from './DatePicker.jsx';
 import getCommonAvailabilities from '../utils/getCommonAvailabilities.js';
 
 //called by: ActiveDay
-const ViewAndEditAppointment = ({ clickedAppointment, inEditMode, updateData, setUpdateData, availableDate, setAvailableDate, setAvailableTimes }) => {
-  const { date, subject, participants, status, creator, potentialDates, createdAt} = clickedAppointment;
+const ViewAndEditAppointment = ({ userName, clickedAppointment, inEditMode, updateData, setUpdateData, availableDate, setAvailableDate, setAvailableTimes }) => {
+  const { date, subject, participants, status, creator, potentialDates, createdAt} = clickedAppointment; 
+  //TO DO: have appt updates automatically rerender after update. may have to do with this clickedAppointment. Should be reading other state instead or in addition to clickedAppointment
 
   const commonAvailabilities = getCommonAvailabilities(potentialDates)
 
@@ -14,8 +15,16 @@ const ViewAndEditAppointment = ({ clickedAppointment, inEditMode, updateData, se
     setUpdateData((prevFormData) => ({...prevFormData, [name]: value }));
   }
 
-  //TO DO: only allow edit mode if you're the creator of the appointment
-  //TO DO: only show common availabilities if you're the creator
+  function handleClick() {
+    //TO DO: set date
+    //when save is pushed in ActiveDay, update status to confirmed 
+  }
+
+  const clickedTimesStyle = 'h-9 w-52 p-1 text-base text-center bg-[#2772db] text-lg text-[#fafafa] rounded-full shadow-lg hover:shadow-xl active:shadow-inner focus:outline-none cursor-pointer active:bg-[#2772db] active:text-[#fafafa]';
+  const unclickedTimesStyle = 'h-9 w-52 p-1 text-base text-center bg-[#00bbf0] text-lg text-[#fafafa] rounded-full shadow-lg hover:shadow-xl active:shadow-inner focus:outline-none cursor-pointer active:bg-[#2772db] active:text-[#fafafa]';
+
+  //TO DO: only show confirm buttons if you're the creator
+  // user.userName === clickedAppointment.creator
   if (inEditMode) {
     return (
     <div className="flex flex-col h-full">
@@ -30,8 +39,9 @@ const ViewAndEditAppointment = ({ clickedAppointment, inEditMode, updateData, se
         <p><u>Status</u>: {status}</p>
         <p className="overflow-hidden whitespace-nowrap text-ellipsis"><u>Creator</u>: {creator}</p>
         <br />
+        <p>{commonAvailabilities.length > 0 ? <b>Common Availabilities</b> : <b>Availability</b>}:</p>
       </form>
-      {potentialDates.map(({ userName, availabilities }) => {
+      {commonAvailabilities.length === 0 && potentialDates.map(({ userName, availabilities }) => {
         return (
         <div className="p-4">
           <p><b>User Name</b>: {userName}</p>
@@ -52,11 +62,29 @@ const ViewAndEditAppointment = ({ clickedAppointment, inEditMode, updateData, se
         </div>
         );
       })}
+      {
+        commonAvailabilities.length > 0 && 
+        <div className="flex p-4 gap-4">
+          {
+            commonAvailabilities.map(commonAvailability => {
+              const dateTime = new Date(commonAvailability).toLocaleString();
+              return (
+                <>
+                  <div className={unclickedTimesStyle} onClick={handleClick}>
+                    {dateTime}
+                  </div>
+                </> 
+              )
+            })
+          }
+        </div>
+      }
       <DatePicker dateString={Date()} availableDate={availableDate} setAvailableDate={setAvailableDate} setAvailableTimes={setAvailableTimes} />
     </div>
     );
   }
 
+  //only show common availabilities if you're the creator
   //TO DO: when refresh button clicked, this should immediately show updated data
   return (
     <div className="p-4 h-full bg-[#fafafa] animate-fadeIn">
@@ -93,7 +121,7 @@ const ViewAndEditAppointment = ({ clickedAppointment, inEditMode, updateData, se
         );
       })}
       {
-        commonAvailabilities.length > 0 &&
+        commonAvailabilities.length > 0 && (userName === creator) &&
         <>
           <br /> 
           <b>Common Availabilities:</b>

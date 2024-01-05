@@ -12,13 +12,9 @@ function findCommonAvailabilities(potentialDates) {
   potentialDates.forEach(({ userName, availabilities }) => {
     arrayOfAvailabilityArrays.push(availabilities);
   });
-  console.log('arrayOfAvailabilityArrays:', arrayOfAvailabilityArrays)
   const numArrs = arrayOfAvailabilityArrays.length;
-  console.log('numArrs:', numArrs)
   const firstEl = arrayOfAvailabilityArrays[0];
-  console.log('firstEl:', firstEl)
   const rest = arrayOfAvailabilityArrays.slice(1);
-  console.log('rest:', rest)
 
   const countMap = new Map();
   for (const el of firstEl) {
