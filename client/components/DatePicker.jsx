@@ -8,7 +8,9 @@ const DatePicker = ({ dateString }) => {
   const [currentDateString, setCurrentDateString] = useState(dateString);
   const [availableDate, setAvailableDate] = useState(null);
   const [isDateClicked, setIsDateClicked] = useState(false);
-  const [availableTimes, setAvailableTimes] = useState([54000000, 57600000, 61200000, 64800000, 68400000, 72000000]);
+  const [availableTimes, setAvailableTimes] = useState([]);
+  console.log('availableTimes in DatePicker:', availableTimes)
+  const [displayTimes, setDisplayTimes] = useState([54000000, 57600000, 61200000, 64800000, 68400000, 72000000]);
   const currentDate = new dateUtil(currentDateString);
 
   const daysInMonth = dateUtil.getDaysInMonth(currentDate.yearOfAppointment, currentDate.monthOfAppointment);
@@ -52,7 +54,6 @@ const DatePicker = ({ dateString }) => {
     setCurrentDateString(date.toString());
   }
 
-
   //TO DO: when date clicked, show times to choose underneath as buttons. when time is clicked. set some state which will eventually be sent to backend as availability
   return (
     <div className="flex justify-center w-full h-full bg-[#fafafa] border-black animate-fadeIn">
@@ -72,7 +73,7 @@ const DatePicker = ({ dateString }) => {
       </div>
       <div className="w-1/2 pl-10 pr-10 pt-12 pb-12 ">
         <div className="flex flex-wrap gap-4">
-          {isDateClicked && availableTimes.map(time => <TimePicker time={time} setAvailableTimes={setAvailableTimes} />)}
+          {isDateClicked && displayTimes.map(time => <TimePicker time={time} setAvailableTimes={setAvailableTimes} displayTimes={displayTimes} setDisplayTimes={setDisplayTimes}/>)}
         </div>
       </div>
     </div>
