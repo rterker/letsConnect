@@ -9,7 +9,11 @@ const ActiveDay = ({ user, confirmedAppointments, pendingAppointments, setAppoin
 
   const clickedAppointmentCopy = JSON.parse(JSON.stringify(clickedAppointment));
   const [updateData, setUpdateData] = useState({...clickedAppointmentCopy, potentialDates: ''});
-  
+  const [availableDate, setAvailableDate] = useState(null);
+  console.log('availableDate in ActiveDay:', availableDate)
+  const [availableTimes, setAvailableTimes] = useState([]);
+  console.log('availableTimes in ActiveDay:', availableTimes)
+
   let allAppointments;
   if (confirmedAppointments && pendingAppointments) {
     allAppointments = confirmedAppointments.concat(pendingAppointments);
@@ -48,7 +52,7 @@ const ActiveDay = ({ user, confirmedAppointments, pendingAppointments, setAppoin
     <div className="w-160 h-160 mx-auto my-auto border border-black bg-[#fafafa]">
       <div className="flex flex-col w-full h-full animate-fadeIn ">
         <div className="h-full w-full overflow-auto snap-y snap-mandatory">
-          {clickedAppointment ? <ViewAndEditAppointment clickedAppointment={clickedAppointment} inEditMode={inEditMode} updateData={updateData} setUpdateData={setUpdateData} /> : allAppointments.map(appt => <DailyAppointment appointment={appt} setClickedAppointment={setClickedAppointment} />)}
+          {clickedAppointment ? <ViewAndEditAppointment clickedAppointment={clickedAppointment} inEditMode={inEditMode} updateData={updateData} setUpdateData={setUpdateData} availableDate={availableDate} setAvailableDate={setAvailableDate} setAvailableTimes={setAvailableTimes} /> : allAppointments.map(appt => <DailyAppointment appointment={appt} setClickedAppointment={setClickedAppointment} />)}
         </div>
         <div className="flex h-20 justify-center items-center w-full flex bg-[#537791] pt-4 pb-4 border-t-1 border-black">
           <button className={`h-12 w-36 ${innerMarginR} bg-[#c1c0b9] text-xl rounded-lg shadow-lg hover:shadow-xl active:shadow-inner focus:outline-none"`} onClick={handleCancelClick}>Cancel</button>

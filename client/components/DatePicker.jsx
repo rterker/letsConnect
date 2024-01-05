@@ -4,11 +4,9 @@ import DatePickerDay from "./DatePickerDay.jsx";
 import TimePicker from "./TimePicker.jsx";
 
 //called by: ViewAndEditAppointment
-const DatePicker = ({ dateString }) => {
+const DatePicker = ({ dateString, availableDate, setAvailableDate, setAvailableTimes }) => {
   const [currentDateString, setCurrentDateString] = useState(dateString);
-  const [availableDate, setAvailableDate] = useState(null);
   const [isDateClicked, setIsDateClicked] = useState(false);
-  const [availableTimes, setAvailableTimes] = useState([]);
   const displayTimes = useRef([54000000, 57600000, 61200000, 64800000, 68400000, 72000000]);
   const [clickedTimes, setClickedTimes] = useState([]);
   const currentDate = new dateUtil(currentDateString);

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import DatePicker from './DatePicker.jsx';
 
 //called by: ActiveDay
-const ViewAndEditAppointment = ({ clickedAppointment, inEditMode, updateData, setUpdateData }) => {
+const ViewAndEditAppointment = ({ clickedAppointment, inEditMode, updateData, setUpdateData, availableDate, setAvailableDate, setAvailableTimes }) => {
   const { date, subject, participants, status, creator, potentialDates, createdAt} = clickedAppointment;
 
   //TO DO: set a flag for creator to only allow editing if you're the creator
@@ -27,7 +27,7 @@ const ViewAndEditAppointment = ({ clickedAppointment, inEditMode, updateData, se
         <p className="overflow-hidden whitespace-nowrap text-ellipsis"><u>Creator</u>: {creator}</p>
         <br />
       </form>
-      <DatePicker dateString={Date()}/>
+      <DatePicker dateString={Date()} availableDate={availableDate} setAvailableDate={setAvailableDate} setAvailableTimes={setAvailableTimes} />
     </div>
     );
   }
