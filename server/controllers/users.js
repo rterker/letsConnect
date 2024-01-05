@@ -30,7 +30,6 @@ userController.updateUsersAppointment = async (req, res, next) => {
     //do i need to check for null?
     //this updateMany works when passing in an array with a single participant
     const updateMessage = await User.updateMany({userName: {$in: participants}}, {$push: {appointments: appointmentId}}, {new: true, upsert: false});
-    console.log('updateMessage:', updateMessage)
     //need to test this when passing in array of participants
     if (updateMessage.modifiedCount !== participants.length) throw new Error('Number of modified user documents did not equal number of passed in users');
     if (updateMessage.modifiedCount === 1) {

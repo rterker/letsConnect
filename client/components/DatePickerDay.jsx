@@ -19,7 +19,6 @@ const DatePickerDay = ({ day, year, month, availableDate, setAvailableDate, setA
     } else if (isDateClicked && (availableDate.getDate() === day && availableDate.getFullYear() === year && availableDate.getMonth() === month)) {
       setIsDateClicked(false);
       setAvailableDate(null);
-      setAvailableTimes([]);
     } else {
       const availability = new Date();
       availability.setFullYear(year);
@@ -30,7 +29,6 @@ const DatePickerDay = ({ day, year, month, availableDate, setAvailableDate, setA
       availability.setSeconds(0);
       availability.setMilliseconds(0);
       setAvailableDate(availability);
-      setAvailableTimes([]);
     }
   }
 

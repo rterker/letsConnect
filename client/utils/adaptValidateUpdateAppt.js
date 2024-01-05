@@ -4,7 +4,6 @@ import config from '../config.js';
 //possible input: dates can be comma separated in the format YYYY-MM-DDTHH:MM:SS. backend expecting date in format YYYY-MM-DDTHH:MM:SSZ. LEAVE
 //OFF THE Z, so it means local time. backend will convert to GMT and add the Z
 const adaptValidateUpdateAppt = async (user, updateData, clickedAppointmentCopy, setAppointments, availabilities) => {
-  console.log('availabilities at top of adaptValidateUpdateAppt:', availabilities)
   //input values for forms are type string
   const copyOfData = {...updateData};
   const { participants } = copyOfData;
@@ -17,13 +16,10 @@ const adaptValidateUpdateAppt = async (user, updateData, clickedAppointmentCopy,
 
   availabilities = availabilities.map(availability => {
     const date = new Date(availability);
-    console.log('date:', date)
     return date.toUTCString();
   });
-  console.log('availabilities in adaptValidateUpdateAppt:', availabilities)
 
   originalPotentialDatesToKeepOnUpdate = originalPotentialDatesToKeepOnUpdate.filter(potentialDatesObject => potentialDatesObject.userName !== userName);
-  console.log('originalPotentialDatesToKeepOnUpdate in adaptValidateUpdateAppt:', originalPotentialDatesToKeepOnUpdate)
 
   const userUpdatedPotentialDatesData = {
     userName,

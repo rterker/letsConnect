@@ -2,7 +2,6 @@ import dateUtil from "./dateUtil";
 
 //called by: CalendarContainer
 export default function getPendingAppointmentsForDay(userName, activeDay, appointments) {
-  console.log('appointments in getPendingAppointmentsForDay:', appointments)
   const { day, month, year } = activeDay;
 
   return appointments.filter(appointment => {

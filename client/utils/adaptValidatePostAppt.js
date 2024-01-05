@@ -35,7 +35,6 @@ const adaptValidatePostAppt = async (user, formData, setAppointments) => {
   
     responseStatus = response.status;
     createdAppointment = await response.json();
-    console.log('createdAppointment json response:', createdAppointment)
 
     if (responseStatus === 200) {
       //this set lets the sidebar update immediately after appointment created
