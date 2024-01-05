@@ -3,15 +3,14 @@ import config from '../config.js';
 //called by: ActiveDAy
 //possible input: dates can be comma separated in the format YYYY-MM-DDTHH:MM:SS. backend expecting date in format YYYY-MM-DDTHH:MM:SSZ. LEAVE
 //OFF THE Z, so it means local time. backend will convert to GMT and add the Z
-const adaptValidateUpdateAppt = async (user, updateData, clickedAppointmentCopy, setAppointments, availabilities) => {
+const adaptValidateUpdateAppt = async (userName, updateData, clickedAppointmentCopy, setAppointments, availabilities) => {
   //input values for forms are type string
   const copyOfData = {...updateData};
   const { participants } = copyOfData;
-  const { userName } = user;
   let { potentialDates: originalPotentialDatesToKeepOnUpdate } = clickedAppointmentCopy;
 
   //for now, participants are not updated, so the updateData.participants retains the type of array; however, if we add participants as an update field in the form, it 
-  //should be cast to string, in which case, we need this line. 
+  //should be cast from string to array, in which case, we need this line. 
   if (typeof participants === 'string') copyOfData.participants = participants.split(',').map(participant => participant.trim());
 
   availabilities = availabilities.map(availability => {

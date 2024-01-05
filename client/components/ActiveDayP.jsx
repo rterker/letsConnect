@@ -40,7 +40,7 @@ const ActiveDay = ({ user, confirmedAppointments, pendingAppointments, setAppoin
       availableDate.setMilliseconds(-milliseconds);
       return newTime;
     });
-    adaptValidateUpdateAppt(user, updateData, clickedAppointmentCopy, setAppointments, availabilities);
+    adaptValidateUpdateAppt(user.userName, updateData, clickedAppointmentCopy, setAppointments, availabilities);
     setInEditMode(false);
     setAvailableTimes([]);
     setAvailableDate(null);
@@ -57,7 +57,8 @@ const ActiveDay = ({ user, confirmedAppointments, pendingAppointments, setAppoin
   return (
     <div className="w-160 h-160 mx-auto my-auto border border-black bg-[#fafafa]">
       <div className="flex flex-col w-full h-full animate-fadeIn ">
-        <div className="h-full w-full overflow-auto snap-y snap-mandatory">
+        {/* //REMOVE THIS LATER: add appointment starts here */}
+        <div className="h-full w-full overflow-auto snap-y snap-mandatory"> 
           {clickedAppointment ? <ViewAndEditAppointment clickedAppointment={clickedAppointment} inEditMode={inEditMode} updateData={updateData} setUpdateData={setUpdateData} availableDate={availableDate} setAvailableDate={setAvailableDate} setAvailableTimes={setAvailableTimes} /> : allAppointments.map(appt => <DailyAppointment appointment={appt} setClickedAppointment={setClickedAppointment} />)}
         </div>
         <div className="flex h-20 justify-center items-center w-full flex bg-[#537791] pt-4 pb-4 border-t-1 border-black">

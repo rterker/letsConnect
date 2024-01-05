@@ -3,22 +3,23 @@ import config from '../config.js';
 //called by: AddAppointment
 //possible input: dates can be comma separated in the format YYYY-MM-DDTHH:MM:SS. backend expecting date in format YYYY-MM-DDTHH:MM:SSZ. LEAVE
 //OFF THE Z, so it means local time. backend will convert to GMT and add the Z
-const adaptValidatePostAppt = async (user, formData, setAppointments) => {
+const adaptValidatePostAppt = async (userName, formData, setAppointments, availabilities) => {
   //input values for forms are type string
   const copyOfData = {...formData};
   const { participants } = copyOfData;
-  const { userName } = user;
 
-  //participants is a string
-  copyOfData.participants = participants.split(',').map(participant => participant.trim());
+  //participants is a string, cast to array
+  if (typeof participants === 'string') copyOfData.participants = participants.split(',').map(participant => participant.trim());
 
-  //potentialDates is a string but this will change later
-  let { potentialDates } = copyOfData;
-  potentialDates = potentialDates.split(',').map(date => date.trim());
+  availabilities = availabilities.map(availability => {
+    const date = new Date(availability);
+    return date.toUTCString();
+  });
+
   copyOfData.potentialDates = [
     {
       userName,
-      availabilities: potentialDates
+      availabilities
     }
   ];
 

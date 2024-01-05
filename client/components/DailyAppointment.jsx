@@ -32,17 +32,17 @@ const DailyAppointment = ({ appointment, setClickedAppointment }) => {
         <div>
           <p><b>User Name</b>: {userName}</p>
           {availabilities.map(availability => {
-            if (availability) {
+            if (!availability?.length) {
+              return (
+                <p>No Availabilities Set Yet</p>
+              );
+            } else {
               const formattedDate = new Date(availability);
               return (
                 <div>
                   {formattedDate.toLocaleString()}
                 </div>
               );
-            } else {
-              return (
-                <p>No Availabilities Set Yet</p>
-              )
             }
           })}
         </div>
