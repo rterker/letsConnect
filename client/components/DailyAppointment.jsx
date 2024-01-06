@@ -10,7 +10,7 @@ const DailyAppointment = ({ userName, appointment, setClickedAppointment }) => {
     formattedDate = new Date(date).toLocaleString();
   }
 
-  const commonAvailabilities = getCommonAvailabilities(potentialDates)
+  const commonAvailabilities = getCommonAvailabilities(potentialDates, participants)
 
   function handleClick() {
     if (date) setClickedAppointment({...appointment, date: formattedDate});

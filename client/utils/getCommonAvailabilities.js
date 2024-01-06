@@ -4,7 +4,7 @@
 //potential dates availabilities may be empty arrays
 //returns an array
 
-function findCommonAvailabilities(potentialDates) {
+function getCommonAvailabilities(potentialDates, participants) {
   if (potentialDates.length < 2) return [];
 
   const arrayOfAvailabilityArrays = [];
@@ -13,6 +13,7 @@ function findCommonAvailabilities(potentialDates) {
     arrayOfAvailabilityArrays.push(availabilities);
   });
   const numArrs = arrayOfAvailabilityArrays.length;
+  const numParticipants = participants.length;
   const firstEl = arrayOfAvailabilityArrays[0];
   const rest = arrayOfAvailabilityArrays.slice(1);
 
@@ -29,13 +30,16 @@ function findCommonAvailabilities(potentialDates) {
 
   const common = [];
 
+  // countMap.forEach((val, key) => {
+  //   if (val === numArrs) common.push(key);
+  // });
   countMap.forEach((val, key) => {
-    if (val === numArrs) common.push(key);
+    if (val === numParticipants) common.push(key);
   });
 
   return common;
 
 }
 
-export default findCommonAvailabilities;
+export default getCommonAvailabilities;
 

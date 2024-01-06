@@ -7,7 +7,7 @@ const ViewAndEditAppointment = ({ userName, clickedAppointment, inEditMode, upda
   const { date, subject, participants, status, creator, potentialDates, createdAt} = clickedAppointment; 
   //TO DO: have appt updates automatically rerender after update. may have to do with this clickedAppointment. Should be reading other state instead or in addition to clickedAppointment
 
-  const commonAvailabilities = getCommonAvailabilities(potentialDates)
+  const commonAvailabilities = getCommonAvailabilities(potentialDates, participants)
 
   //TO DO: set a flag for creator to only allow editing if you're the creator.
   function handleChange(e) {
