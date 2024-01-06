@@ -5,6 +5,7 @@ export default function getPendingAppointmentsForDay(userName, activeDay, appoin
   const { day, month, year } = activeDay;
 
   return appointments.filter(appointment => {
+    if (appointment.status === 'confirmed') return false;
     const potentialDatesObject = appointment.potentialDates.filter(potentialDateObject => potentialDateObject.userName === userName)[0];
     if (potentialDatesObject) {
       for (let i = 0; i < potentialDatesObject.availabilities.length; i++) {
