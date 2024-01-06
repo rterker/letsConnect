@@ -57,7 +57,7 @@ const Calendar = ({ currentDate, setCurrentDate, appointments, setActiveDay, set
     <div className="flex flex-col mx-auto my-auto w-160 h-160 bg-[#fafafa] border-t border-r border-black animate-slideIn">
       <div className="flex justify-between pt-3 pb-3 border-b border-black border-l bg-[#fafafa] ">
         <button className="w-10 bg-[#c1c0b9] text-xl rounded-lg shadow-lg hover:shadow-xl active:shadow-inner focus:outline-none ml-2 cursor-pointer" onClick={handleLeftClick}>{'<'}</button>
-        <b className="text-xl">{currentDateObj.monthOfAppointment + 1} / {currentDateObj.yearOfAppointment}</b>
+        <b id="calendarHeader" className="text-2xl">{currentDateObj.monthOfAppointment + 1} / {currentDateObj.yearOfAppointment}</b>
         <button className="w-10 bg-[#c1c0b9] text-xl rounded-lg shadow-lg hover:shadow-xl active:shadow-inner focus:outline-none mr-2 cursor-pointer" onClick={handleRightClick}>{'>'}</button>
       </div>
       <div className={`grid grid-rows-${gridRows} grid-cols-7 w-full h-full `}>

@@ -1,5 +1,6 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=M+PLUS+1+Code&family=Satisfy&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap');
 
 .spinner {
   animation: rotate 2s linear infinite;
@@ -42,4 +43,12 @@
 
 #title {
   font-family: 'Satisfy', cursive;
+}
+
+#calendarHeader {
+  font-family: 'Playfair Display', serif;
+}
+
+#datePickerHeader {
+  font-family: 'Playfair Display', serif;
 }

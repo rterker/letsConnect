@@ -58,7 +58,7 @@ const DatePicker = ({ dateString, availableDate, setAvailableDate, setAvailableT
       <div className=" p-4 h-full w-1/2">
         <div className="flex justify-between pt-3 pb-3 border-l border-t border-r border-black bg-[#fafafa]">
           <button className="w-10 bg-[#c1c0b9] text-xl rounded-lg shadow-lg hover:shadow-xl active:shadow-inner focus:outline-none ml-2 cursor-pointer" onClick={handleLeftClick}>{'<'}</button>
-          <b className="text-xl">{currentDate.monthOfAppointment + 1} / {currentDate.yearOfAppointment}</b>
+          <b id="datePickerHeader" className="text-xl">{currentDate.monthOfAppointment + 1} / {currentDate.yearOfAppointment}</b>
           <button className="w-10 bg-[#c1c0b9] text-xl rounded-lg shadow-lg hover:shadow-xl active:shadow-inner focus:outline-none mr-2 cursor-pointer" onClick={handleRightClick}>{'>'}</button>
         </div>
         <div className="flex border-r border-b border-black h-3/4 max-h-3/4">
