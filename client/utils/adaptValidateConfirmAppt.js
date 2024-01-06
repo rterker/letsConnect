@@ -2,7 +2,9 @@ import config from '../config.js';
 
 //called by: ActiveDAy
 //if you leave off the Z in dateTime string, it means local time. backend will convert to GMT and add the Z
-const adaptValidateUpdateAppt = async (userName, updateData, originalPotentialDatesToKeepOnUpdate, setAppointments, availabilities) => {
+//i think update data should contain the updateData.potentialDates data to keep. don't think it was updated since clickedAppointment. 
+//keeping potential dates and handling on backend. may decide to use them later.
+const adaptValidateConfirmAppt = async (updateData, confirmedAppointmentDateTime, setAppointments) => {
   //input values for forms are type string
   const copyOfData = {...updateData};
   const { participants } = copyOfData;
@@ -11,25 +13,15 @@ const adaptValidateUpdateAppt = async (userName, updateData, originalPotentialDa
   //should be cast from string to array, in which case, we need this line. 
   if (typeof participants === 'string') copyOfData.participants = participants.split(',').map(participant => participant.trim());
 
-  availabilities = availabilities.map(availability => {
-    const date = new Date(availability);
-    return date.toUTCString();
-  });
-
-  originalPotentialDatesToKeepOnUpdate = originalPotentialDatesToKeepOnUpdate.filter(potentialDatesObject => potentialDatesObject.userName !== userName);
-
-  const userUpdatedPotentialDatesData = {
-    userName,
-    availabilities
-  };
-
-  copyOfData.potentialDates = [...originalPotentialDatesToKeepOnUpdate, userUpdatedPotentialDatesData];
-
   let response;
   let responseStatus;
   let updatedAppointment;
 
-  console.log('updateData in update: ', copyOfData)
+  copyOfData.date = new Date(confirmedAppointmentDateTime);
+  //TO DO: may want to handle status change on the back end later
+  copyOfData.status = 'confirmed';
+
+  console.log('updateData in confirm: ', copyOfData)
 
   try {
     response = await fetch(`${config.DEV_BASE_URL}/appointment/${updateData._id}`, {
@@ -45,22 +37,21 @@ const adaptValidateUpdateAppt = async (userName, updateData, originalPotentialDa
       //this set lets the sidebar update immediately after edit
       setAppointments((prevAppointments) => {
         const newAppointmentList = [...prevAppointments];
-        //why does this line actually show the list after the update? it's rerendering main container. some state must be changing. may be because copyOfData is a shallow 
-        //copy of updateData. can check on this later. not a big deal now.
-        console.log('appointment list before update in adaptValidateUpdateAppt:', newAppointmentList) 
+        //why does this line actually show the list after the update? it's rerendering main container. some state must be changing. may be because copyOfData is a shallow copy
+        console.log('appointment list before confirm in adaptValidateConfirmAppt:', newAppointmentList) 
         const index = newAppointmentList.findIndex(el => el._id === updatedAppointment._id);
         //update that index with new appointment
         newAppointmentList[index] = updatedAppointment;
         return newAppointmentList;
       });
-      console.log('Appointment successfully updated: \n' + JSON.stringify(updatedAppointment, null, 2)); 
+      console.log('Appointment successfully confirmed: \n' + JSON.stringify(updatedAppointment, null, 2)); 
     } else {
       console.log('Status code: ', responseStatus);
-      console.log('Issue occured during appointment update in adaptValidateUpdateApp');
+      console.log('Issue occured during appointment confirm in adaptValidateConfirmAppt');
     }
 
   } catch (err) {
-    console.log(`The following error occured in adaptValidateUpdateAppt while attempting to update appointment: ${err}`);
+    console.log(`The following error occured in adaptValidateConfirmAppt while attempting to update appointment: ${err}`);
   }
 
 
@@ -71,4 +62,4 @@ const adaptValidateUpdateAppt = async (userName, updateData, originalPotentialDa
   
 }
 
-export default adaptValidateUpdateAppt
+export default adaptValidateConfirmAppt

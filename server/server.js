@@ -43,7 +43,7 @@ app.get('/appointments/:userId', userController.getUserListOfAppointmentIds, app
 //delete an appointment
 app.delete('/appointment/:id');
 //update an appointment
-app.put('/appointment/:id', appointmentController.updateAppointmentWithoutChangingStatus, (req, res) => {
+app.put('/appointment/:id', appointmentController.updateAppointmentWithoutChangingStatus, appointmentController.updatedDateAndStatusForConfirmedAppointments, (req, res) => {
   return res.status(200).json(res.locals.updatedAppointment);
 });
 

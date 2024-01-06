@@ -17,6 +17,21 @@ const DailyAppointment = ({ userName, appointment, setClickedAppointment }) => {
     else setClickedAppointment({...appointment});
   }
 
+  if (status === 'confirmed') {
+    return (
+      <div className="p-4 snap-center cursor-pointer bg-[#fafafa] hover:bg-[#c1c0b9] active:bg-[#537791] active:text-[#f7f6e7] border border-[#d3d6db]" onClick={handleClick}>
+      <p><u>Date</u>: {formattedDate ? formattedDate : 'TBD'}</p>
+      <p className="overflow-hidden whitespace-nowrap text-ellipsis"><u>Subject</u>: {subject}</p>
+      <p className="overflow-hidden whitespace-nowrap text-ellipsis"><u>Participants</u>: {participants.map((participant, i) => {
+        if (i === participants.length - 1) return participant;
+        return participant + ', ';
+        })}</p>
+      <p><u>Status</u>: <span className="text-red-500">{status}</span></p>
+      <p className="overflow-hidden whitespace-nowrap text-ellipsis"><u>Creator</u>: {creator}</p>
+    </div>
+    );
+  }
+
   // only show common availabilities if you're the creator
   return (
     <div className="p-4 snap-center cursor-pointer bg-[#fafafa] hover:bg-[#c1c0b9] active:bg-[#537791] active:text-[#f7f6e7] border border-[#d3d6db]" onClick={handleClick}>

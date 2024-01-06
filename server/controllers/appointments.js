@@ -68,17 +68,17 @@ appointmentController.getUserListOfAppointments = async (req, res, next) => {
 appointmentController.updateAppointmentWithoutChangingStatus = async (req, res, next) => {
   //req.body will contain the appointment object with shape: { date, subject, [participants], status, creator, _id, createdAt, __v }
   const appointmentUpdate = req.body;
-  console.log('appointmentUpdate in appointmentController.updateAppointment before update:', appointmentUpdate)
+  console.log('appointmentUpdate in appointmentController.updateAppointmentWithoutChangingStatus:', appointmentUpdate)
 
   const { date, subject, participants, potentialDates, status, _id: appointmentId } = appointmentUpdate;
 
   let update;
-  if (!date) update = { $set: {subject, participants, potentialDates}};
-  else update = { $set: {date, subject, participants, potentialDates}};
+  if (date) update = { $set: {date, subject, participants, potentialDates}};
+  else update = { $set: {subject, participants, potentialDates}};
 
   try {
     const updatedAppointment = await Appointment.findOneAndUpdate({_id: appointmentId}, update, {new: true});
-    console.log('updatedAppointment in appointmentController.updateAppointment after update:', updatedAppointment)
+    console.log('updatedAppointment in appointmentController.updateAppointmentWithoutChangingStatus after update:', updatedAppointment);
     res.locals.updatedAppointment = updatedAppointment;
     next();
 
@@ -90,6 +90,29 @@ appointmentController.updateAppointmentWithoutChangingStatus = async (req, res, 
     });
   }
 
-};
+}
+
+appointmentController.updatedDateAndStatusForConfirmedAppointments = async (req, res, next) => {
+  const { _id: appointmentId, date, status } = res.locals.updatedAppointment;
+
+  //we're only status if appointment was assigned a date on front end which means it was confirmed on front end
+  if (!date) return next();
+
+  const update = { $set: {status: 'confirmed'}};
+
+  try {
+    const confirmedAppointment = await Appointment.findOneAndUpdate({_id: appointmentId}, update, {new: true});
+    console.log('confirmedAppointment in appointmentController.updatedDateAndStatusForConfirmedAppointments:', confirmedAppointment);
+    res.locals.updatedAppointment = confirmedAppointment;
+    next();
+  } catch (err) {
+    return next({
+      log: `The following middleware error occured in appointmentController.updatedDateAndStatusForConfirmedAppointments: ${err}`,
+      status: 500,
+      message: {err: err}
+    });
+  }
+
+}
 
 module.exports = appointmentController;

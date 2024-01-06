@@ -5,6 +5,7 @@ const isClickedAppointment = signal(null);
 
 //called by: AppointmentsContainer
 const Appointment = ({ appointment, showAppointments, setShowAppointments, setClickedAppointment }) => {
+  console.log('appointment in Appointment:', appointment)
   //TO DO: need to make sure that activeDay is only set here when appointment is confirmed
 
   //TO DO: remove active day setting from this component
@@ -21,7 +22,13 @@ const Appointment = ({ appointment, showAppointments, setShowAppointments, setCl
     if (!isClickedAppointment.value) isClickedAppointment.value = JSON.stringify(appointment);
     else if (JSON.stringify(appointment) !== JSON.stringify(isClickedAppointment.value.appointment)) isClickedAppointment.value = JSON.stringify(appointment);
 
-    setClickedAppointment(appointment);
+    if (!appointment.date) {
+      setClickedAppointment(appointment);
+    } else {
+      const date = new Date(appointment.date);
+      const formattedDate = date.toLocaleString();
+      setClickedAppointment({...appointment, date: formattedDate});
+    }
 
     //TO DO: will need to refactor. this should be setting an object with day, month, year; however for now we're just setting to true, so the view and edit modal
     //opens up on clicking the appointment
