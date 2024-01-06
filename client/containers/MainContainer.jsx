@@ -4,11 +4,11 @@ import BodyContainer from "./BodyContainer.jsx";
 import config from '../config.js';
 
 const BASE_URL = config.DEV_BASE_URL;
-const userId = config.TESTING_USER_ID;
+// const userId = config.TESTING_USER_ID;
 
-const MainContainer = () => {
-  const [user, setUser] = useState({});
-  const [isUserLoading, setIsUserLoading] = useState(true);
+const MainContainer = ({ user, isUserLoading }) => {
+  // const [user, setUser] = useState({});
+  // const [isUserLoading, setIsUserLoading] = useState(true);
   const [isAppointmentsLoading, setIsAppointmentsLoading] = useState(true);
   const [appointments, setAppointments] = useState([]);
   console.log('appointments in MainContainer:', appointments)
@@ -16,21 +16,21 @@ const MainContainer = () => {
   const [clickedAppointment, setClickedAppointment] = useState(null);
   const [showAppointments, setShowAppointments] = useState(false);
 
-  useEffect(() => {
-    const controller = new AbortController();
+  // useEffect(() => {
+  //   const controller = new AbortController();
 
-    fetch(`${BASE_URL}/user/${userId}`, controller.signal)
-      .then(user => user.json())
-      .then(user => {
-        setUser(user);
-        setIsUserLoading(false);
-      })
-      .catch(err => console.log(`The following error occured in MainContainer get user fetch: ${err}`));
+  //   fetch(`${BASE_URL}/user/${user._id}`, controller.signal)
+  //     .then(user => user.json())
+  //     .then(user => {
+  //       setUser(user);
+  //       setIsUserLoading(false);
+  //     })
+  //     .catch(err => console.log(`The following error occured in MainContainer get user fetch: ${err}`));
 
-    return () => {
-      controller.abort();
-    }
-  }, []);
+  //   return () => {
+  //     controller.abort();
+  //   }
+  // }, []);
 
   useEffect(() => {
     const controller = new AbortController();

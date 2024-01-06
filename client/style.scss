@@ -1,3 +1,6 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=M+PLUS+1+Code&family=Satisfy&display=swap');
+
 .spinner {
   animation: rotate 2s linear infinite;
   z-index: 2;
@@ -35,4 +38,8 @@
     stroke-dasharray: 90, 150;
     stroke-dashoffset: -124;
   }
+}
+
+#title {
+  font-family: 'Satisfy', cursive;
 }
