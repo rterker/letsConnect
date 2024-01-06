@@ -5,7 +5,7 @@ const isClickedAppointment = signal(null);
 
 //called by: AppointmentsContainer
 const Appointment = ({ appointment, showAppointments, setShowAppointments, setClickedAppointment }) => {
-  console.log('appointment in Appointment:', appointment)
+  // console.log('appointment in Appointment:', appointment)
   //TO DO: need to make sure that activeDay is only set here when appointment is confirmed
 
   //TO DO: remove active day setting from this component
@@ -43,7 +43,7 @@ const Appointment = ({ appointment, showAppointments, setShowAppointments, setCl
 
   if (isClickedAppointment.value === JSON.stringify(appointment)) {
     return (
-      <li className="flex bg-[#537791] text-[#f7f6e7] active:bg-[#537791] active:text-[#f7f6e7]">
+      <li className="font-ptSerif text-lg flex bg-[#537791] text-[#f7f6e7] active:bg-[#537791] active:text-[#f7f6e7]">
         <div className="w-full h-11 pl-3 pr-3 pt-2.5 text-left overflow-hidden whitespace-nowrap text-ellipsis cursor-pointer" onClick={(e) => handleClick(e)}> 
           {appointment.subject}
         </div>
@@ -52,7 +52,7 @@ const Appointment = ({ appointment, showAppointments, setShowAppointments, setCl
   }
 
   return (
-    <li className="flex hover:bg-[#c1c0b9] active:bg-[#537791] active:text-[#f7f6e7]">
+    <li className="font-ptSerif text-lg flex hover:bg-[#c1c0b9] active:bg-[#537791] active:text-[#f7f6e7]">
       <div className="w-full h-11 pl-3 pr-3 pt-2.5 text-left overflow-hidden whitespace-nowrap text-ellipsis cursor-pointer" onClick={(e) => handleClick(e)}>
         {appointment.subject}
       </div>

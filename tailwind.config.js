@@ -48,6 +48,9 @@ module.exports = {
         slideOut: 'slideOut 0.75s ease-in-out forwards',
         fadeIn: 'fadeIn 0.2s ease forwards',
         sideBarSlideIn: 'sideBarSlideIn 0.3s ease-in forwards'
+      },
+      fontFamily: {
+        ptSerif: ['PT Serif', 'serif']
       }
     },
   },

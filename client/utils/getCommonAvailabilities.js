@@ -12,7 +12,7 @@ function getCommonAvailabilities(potentialDates, participants) {
   potentialDates.forEach(({ userName, availabilities }) => {
     arrayOfAvailabilityArrays.push(availabilities);
   });
-  const numArrs = arrayOfAvailabilityArrays.length;
+  // const numArrs = arrayOfAvailabilityArrays.length;
   const numParticipants = participants.length;
   const firstEl = arrayOfAvailabilityArrays[0];
   const rest = arrayOfAvailabilityArrays.slice(1);
