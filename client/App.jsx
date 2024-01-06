@@ -16,7 +16,7 @@ const App = () => {
 
   return(
     <div className="h-screen w-screen flex">
-      <MainContainer user={user} isUserLoading={isUserLoading} setIsUserLoading={setIsUserLoading} />
+      <MainContainer user={user} isUserLoading={isUserLoading} setIsLogged={setIsLogged}/>
     </div>
   )
 

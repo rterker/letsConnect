@@ -6,7 +6,7 @@ import config from '../config.js';
 const BASE_URL = config.DEV_BASE_URL;
 // const userId = config.TESTING_USER_ID;
 
-const MainContainer = ({ user, isUserLoading }) => {
+const MainContainer = ({ user, isUserLoading, setIsLogged }) => {
   // const [user, setUser] = useState({});
   // const [isUserLoading, setIsUserLoading] = useState(true);
   const [isAppointmentsLoading, setIsAppointmentsLoading] = useState(true);
@@ -65,7 +65,7 @@ const MainContainer = ({ user, isUserLoading }) => {
   return (
     <div className="flex h-full w-full bg-[#d3d6db]">
       <AppointmentsContainer user={user} BASE_URL={BASE_URL} appointments={appointments} showAppointments={showAppointments} setShowAppointments={setShowAppointments} setClickedAppointment={setClickedAppointment} />
-      <BodyContainer user={user} BASE_URL={BASE_URL} appointments={appointments} setAppointments={setAppointments} showAppointments={showAppointments} setShowAppointments={setShowAppointments} setShouldRefresh={setShouldRefresh} clickedAppointment={clickedAppointment} setClickedAppointment={setClickedAppointment} />
+      <BodyContainer user={user} BASE_URL={BASE_URL} appointments={appointments} setAppointments={setAppointments} showAppointments={showAppointments} setShowAppointments={setShowAppointments} setShouldRefresh={setShouldRefresh} clickedAppointment={clickedAppointment} setClickedAppointment={setClickedAppointment} setIsLogged={setIsLogged}/>
     </div>
   );
 
