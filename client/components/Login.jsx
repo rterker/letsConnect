@@ -41,10 +41,10 @@ const Login = ({ setUser, setIsLogged, setIsUserLoading }) => {
     <div className="flex justify-center items-center h-screen w-screen">
       <div className="flex flex-col h-160 w-160 bg-white ">
         <h1 id='title' className="text-center pt-20 pb-12 text-8xl text-blue-500 text-satisfy " >letsConnect</h1>
-        <div className="flex flex-col justify-center items-center w-full h-full">
+        <div id="loginModal" className="flex flex-col justify-center items-center w-full h-full">
           <div className="flex flex-col w-2/3 h-2/3 border border-grey-200 rounded-xl mb-12">
             <div className="h-2/3 w-full">
-            <form className="bg-grey h-full ml-20 mt-20">
+            <form className="h-full ml-20 mt-24">
                 <label htmlFor="name" className="text-xl">Username: </label>
                 <input name="name" type="text" value={userData.name}  onChange={(e) => handleChange(e)} required/>
             </form>
