@@ -22,14 +22,21 @@ const userSchema = new Schema({
   createdAt: {type: Date, default: Date.now}
 });
 
+const potentialDateSchema = new Schema({
+  userName: String,
+  availabilities: {type: [Date], required: true}
+});
+
 const appointmentSchema = new Schema({
-  date: {type: Date, required: true},
+  date: Date,
   subject: {type: String, required: true},
   participants: {type: [String], required: true},
+  potentialDates: [potentialDateSchema],
   status: {type: String, required: true},
   creator: {type: String, required: true},
   createdAt: {type: Date, default: Date.now}
 });
+
 
 const Login = mongoose.model('login', loginSchema);
 const User = mongoose.model('user', userSchema);
